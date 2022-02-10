@@ -16,7 +16,7 @@
 | Student Name | Student Email | GitHub Username |
 |    :---:     |     :---:     |     :---:       |
 | Michael Almeda      |      malmeda@mail.sfsu.edu         |    malmeda             |
-| member2      |               |                 |
+| Michael Davichick      |      mdavichick@mail.sfsu.edu         |       Mdavichick          |
 | member3      |               |                 |
 | member4      |               |                 |
 | member5      |               |                 |
