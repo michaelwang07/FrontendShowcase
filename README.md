@@ -18,7 +18,7 @@
 | Michael Almeda      |      malmeda@mail.sfsu.edu         |    malmeda             |
 | Michael Davichick      |      mdavichick@mail.sfsu.edu         |       Mdavichick          |
 | William Rattan      |   wrattan@mail.sfsu.edu            |   wrattan              |
-| member4      |               |                 |
+| Bobby Roots      |   broots@mail.sfsu.edu            |  Bobby142               |
 | member5      |               |                 |
 | member6      |               |                 |
 
