@@ -72,7 +72,7 @@ function home() {
                     {/* member 2 */}
                     <img src="https://randomuser.me/api/portraits/men/1.jpg" className="rounded-circle mb-3" alt="" />
                     <a href>
-                      <h5 className="card-title mb-3">Mike D</h5>
+                      <h5 className="card-title mb-3">Michael Davichick</h5>
                     </a>
                     <p className="card-text">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo porro, architecto natus enim quod reiciendis.
@@ -126,7 +126,7 @@ function home() {
                     {/* member 5 */}
                     <img src="https://randomuser.me/api/portraits/men/1.jpg" className="rounded-circle mb-3" alt="" />
                     <a href>
-                      <h5 className="card-title mb-3">Michael A</h5>
+                      <h5 className="card-title mb-3">Michael Almeda</h5>
                     </a>
                     <p className="card-text">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo porro, architecto natus enim quod reiciendis.
