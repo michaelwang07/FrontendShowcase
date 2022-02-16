@@ -1,8 +1,10 @@
-var profile = React.createClass({
-   render: function() {
-     return (
+import React, { Component } from 'react';
+
+class Profile extends Component {
+  render() {
+    return (
        <div>
-         <title>Prifle Card</title>
+         <title>Profile Card</title>
          <meta charSet="UTF-8" />
          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,6 +73,8 @@ var profile = React.createClass({
            </div>
          </div>
        </div>
-     );
-   }
- });
+    );
+  }
+}
+
+ export default Profile;

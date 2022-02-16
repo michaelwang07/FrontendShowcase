@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <title>Frontend</title>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-light">
-   <!-- Navbar -->
+import React, { Component } from 'react';
+
+class home extends Component {
+  render() {
+    return (
+    
+    <div>
+      <body class="bg-light">
    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <div class="container">
-         <a href="/" class="navbar-brand">CSC 648 - 03</a>
+         <a href="home.html" class="navbar-brand">CSC 648 - 03</a>
 
          <button class="navbar-toggler" 
          type="button" 
@@ -38,30 +34,28 @@
       </div>
    </nav>
 
-   <!-- Showcase -->
+ 
    <section class="bg-dark text-light p-1 text-center">
       <div class="containter">
 
       </div>
    </section>
 
-   <!-- Team Members -->
+  <div>
    <section id="members" class="p-5 bg-secondary">
       <div class="container">
          <h3 class="text-center text-white mb-5">
             Software Engineering class SFSU
             <br/>Fall, 2022
-            <br>Section 03
-            <br>Team 6
+            <br>Section 03</br>
+            <br>Team 6</br>
          </h3>
-         <!--<p class="lead text-center text-white mb-5">
-            We have a well rounded team with members from a varitey of diverse backgrounds </p>-->
+       
          <div class="row g-4">
             <div class="col-md-6 col-lg-2">
                <div class="card bg-light">
                   <div class="card-body text-center">
-                     <!-- BobbyR-->
-                     <!-- Upload profile image to folder M0 change scr="picture_name.jpg" -->
+                    
                      <img 
                         src="/img/MichaelW.jpg" class="rounded-circle mb-3" 
                         alt="Profile Picture" style="width:100px; height:100px; object-fit: cover;"
@@ -69,7 +63,7 @@
                      <a href="/html/BobbyR.html">
                         <h5 class="card-title mb-3">Bobby Roots</h5>
                      </a>
-                     <!-- Edit Your Role-->
+                  
                      <p class="card-text">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo porro, architecto natus enim quod reiciendis.
                      </p>
@@ -84,8 +78,7 @@
             <div class="col-md-6 col-lg-2">
                <div class="card bg-light">
                   <div class="card-body text-center">
-                     <!-- MikeD -->
-                     <!-- Upload profile image to folder M0 change scr="picture_name.jpg" -->
+                  
                      <img 
                         src="/img/MichaelW.jpg" class="rounded-circle mb-3" 
                         alt="Profile Picture" style="width:100px; height:100px; object-fit: cover;"
@@ -107,17 +100,16 @@
             <div class="col-md-6 col-lg-2">
                <div class="card bg-light">
                   <div class="card-body text-center">
-                     <!-- WilliamT -->
-                     <!-- Upload profile image to folder M0 change scr="picture_name.jpg" -->
+                   
                      <img 
-                        src="/img/William.jpg" class="rounded-circle mb-3" 
+                        src="/img/MichaelW.jpg" class="rounded-circle mb-3" 
                         alt="Profile Picture" style="width:100px; height:100px; object-fit: cover;"
                      />
                      <a href="/html/WilliamR.html">
                         <h5 class="card-title mb-3">William Rattan</h5>
                      </a>
                      <p class="card-text">
-                        Backend Member
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo porro, architecto natus enim quod reiciendis.
                      </p>
                      <a href="#"><i class="bi bi-github"></i></a>
                      <a href="#"><i class="bi bi-facebook"></i></a>
@@ -130,8 +122,7 @@
             <div class="col-md-6 col-lg-2">
                <div class="card bg-light">
                   <div class="card-body text-center">
-                     <!-- member 4 -->
-                     <!-- Upload profile image to folder M0 change scr="picture_name.jpg" -->
+                  
                      <img 
                         src="/img/MichaelW.jpg" class="rounded-circle mb-3" 
                         alt="Profile Picture" style="width:100px; height:100px; object-fit: cover;"
@@ -153,8 +144,7 @@
             <div class="col-md-6 col-lg-2">
                <div class="card bg-light">
                   <div class="card-body text-center">
-                     <!-- MichaelA -->
-                     <!-- Upload profile image to folder M0 change scr="picture_name.jpg" -->
+                
                      <img 
                         src="/img/MichaelW.jpg" class="rounded-circle mb-3" 
                         alt="Profile Picture" style="width:100px; height:100px; object-fit: cover;"
@@ -175,8 +165,7 @@
             <div class="col-md-6 col-lg-2">
                <div class="card bg-light">
                   <div class="card-body text-center">
-                     <!-- member 6 -->
-                     <!-- Upload profile image to folder M0 change scr="picture_name.jpg" -->
+          
                      <img 
                         src="/img/MichaelW.jpg" class="rounded-circle mb-3" 
                         alt="Profile Picture" style="width:100px; height:100px; object-fit: cover;"
@@ -196,8 +185,13 @@
             </div>
          </div>
       </div>
-   </section>
 
+   </section>
+    </div>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
-</html>
+     </div> 
+   );
+  }
+}
+export default home;
