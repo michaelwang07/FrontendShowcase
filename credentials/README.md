@@ -32,7 +32,7 @@
 
 Instructions to SSH into the server
 
-1.Using PuTTY put the server IP into the Host Name (or IP address) bar and set port to 22.
-2. navigate to SSH then Auth and put the private key in the private key file bar
-3. Open with PuTTY
-4. put team6 for username and you are in
+1.Using PuTTY put the server IP into the Host Name (or IP address) bar and set port to 22.  
+2. navigate to SSH then Auth and put the private key in the private key file bar  
+3. Open with PuTTY  
+4. put team6 for username and you are in  
