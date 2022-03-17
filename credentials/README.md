@@ -22,3 +22,17 @@
 ## These values need to kept update to date throughout the semester. <br>
 ## <strong>Failure to do so will result it points be deducted from milestone submissions.</strong><br>
 ## You may store the most of the above in this README.md file. DO NOT Store the SSH key or any keys in this README.md file.
+
+
+1. Server Url: https://inlaid-crane-341607.uc.r.appspot.com/
+2. Server IP: 34.125.172.95
+3. Server username: team6
+4. port for SSH: 22
+5. SSH Key: located in csc648-03-sp22-team06\credentials\team6_privatekey.ppk
+
+Instructions to SSH into the server
+
+1.Using PuTTY put the server IP into the Host Name (or IP address) bar and set port to 22.  
+2. navigate to SSH then Auth and put the private key in the private key file bar  
+3. Open with PuTTY  
+4. put team6 for username and you are in  
