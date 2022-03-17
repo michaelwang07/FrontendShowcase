@@ -28,10 +28,10 @@ function Teampage() {
                <div className="collapse navbar-collapse" id="navmenu">
                   <ul className="navbar-nav ms-auto">
                      <li className="nav-item">
-                        <a href="template1" className="nav-link">Team Page</a>
+                        <Link to = '/' className="nav-link">Home Page</Link>
                      </li>
                      <li className="nav-item">
-                        <a href="home" className="nav-link">Home Page</a>
+                        <Link to = '/team' className="nav-link">Team Page</Link>
                      </li>
                      <li className="nav-item">
                         <a href="template3" className="nav-link">template3</a>
@@ -178,7 +178,7 @@ function Teampage() {
                         </div>
                      </div>
                   </div>
-                  
+
                   <div className="col-md-6 col-lg-2">
                      <div className="card bg-light">
                         <div className="card-body text-center">

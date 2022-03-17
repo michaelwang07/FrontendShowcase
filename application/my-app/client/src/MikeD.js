@@ -1,4 +1,4 @@
-// import {Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import './App.css';
 import React from "react";
 import MD from './img/MichaelD.jpg'
@@ -19,16 +19,16 @@ function MikeD() {
             <span class="navbar-toggler-icon"></span>
          </button>
 
-         <div class="collapse navbar-collapse" id="navmenu">
-            <ul class="navbar-nav ms-auto">
-               <li class="nav-item">
-                  <a href="template1" class="nav-link">Team Page</a>
+         <div className="collapse navbar-collapse" id="navmenu">
+            <ul className="navbar-nav ms-auto">
+               <li className="nav-item">
+                  <Link to = '/' className="nav-link">Home Page</Link>
                </li>
-               <li class="nav-item">
-                  <a href="template2" class="nav-link">template2</a>
+               <li className="nav-item">
+                  <Link to = '/team' className="nav-link">Team Page</Link>
                </li>
-               <li class="nav-item">
-                  <a href="template3" class="nav-link">template3</a>
+               <li className="nav-item">
+                  <a href="template3" className="nav-link">template3</a>
                </li>
             </ul>
          </div>
