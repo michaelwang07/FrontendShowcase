@@ -10,13 +10,15 @@ import MichaelW from './MichaelW';
 import MichaelA from './MichaelA';
 import MikeD from './MikeD';
 import WilliamR from './WilliamR';
+import Homepage from './Homepage';
 
 function App() {
   return (
    <Router>
      <Routes>
        {/* <Route path="/" exact element ={<CreateUser/>} /> */}
-       <Route path="/" exact element ={<Results/>} />
+       <Route path="/" exact element ={<Homepage/>} />
+       <Route path="/results" exact element ={<Results/>} />
        <Route path="/team" exact element ={<Teampage/>} />
        <Route path="/team/BobbyR" exact element ={<BobbyR/>} />
        <Route path="/team/MichaelW" exact element ={<MichaelW/>} />
