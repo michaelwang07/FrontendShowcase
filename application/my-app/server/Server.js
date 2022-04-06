@@ -1,3 +1,15 @@
+/********************************************************************
+* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Author(s):  
+* Team: 06 
+*
+* File: Server.js
+*
+* Description: 
+*
+*
+********************************************************************/
+
 const express = require ("express");
 const app = express();
 const mysql = require('mysql2');

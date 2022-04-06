@@ -1,3 +1,15 @@
+/********************************************************************
+* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Author(s):  
+* Team: 06 
+*
+* File: Homepage.js
+*
+* Description: 
+*
+*
+********************************************************************/
+
 import {Link} from "react-router-dom";
 import './App.css';
 import React from "react";
