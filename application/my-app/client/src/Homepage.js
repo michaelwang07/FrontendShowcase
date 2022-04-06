@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import './App.css';
 import React from "react";
 import Results from "./Results";
+import Footer from "./Footer";
 
 function Homepage() {
 
@@ -36,6 +37,7 @@ function Homepage() {
          </nav>
 
          <Results/>
+         <Footer/>
        </div>
    );
  }
