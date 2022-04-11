@@ -7,9 +7,10 @@ import {Nav, Navbar, Container} from "react-bootstrap";
 function Footer() {
     return (
         <div>
-            <Navbar bg="dark" expand="lg" variant="dark">
+            <Navbar bg="dark" expand="lg" variant="dark" fixed="bottom">
                 <Container>
                     <Navbar.Brand href="#home">GatorBay</Navbar.Brand>
+                    <p></p>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

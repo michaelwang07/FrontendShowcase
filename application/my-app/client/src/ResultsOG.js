@@ -10,11 +10,19 @@ function Results() {
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
 
     // store all db results within a list
-    // useState stores userList as a list variable check react states for more info
     const [userList, setUserList] = useState([]);
 
+    // // API CALL
+    // const getUsers = () => {
+    //     Axios.get('http://localhost:3001/users',{
+    //     }).then((response) => {
+    //         setUserList(response.data);
+    //         console.log("Searching " +pname + " within " + ptag +".");
+    //       });
+    // };
 
-    // API call to retreive backend
+
+    // Failed attempt of using params
     async function getUsers (){
         const response = await Axios.get('http://localhost:3001/Products',
         {
@@ -23,7 +31,6 @@ function Results() {
                 pname: pname,
             }
         });
-        // stores returned values into list
         setUserList(response.data);
     };
 
@@ -50,12 +57,10 @@ function Results() {
 
          {/* Below function maps our list to readable format */}
          {userList.map((val, key) => {
-             return <div className="user">    {/* edit card for user*/}
-                 <h3>Key: {key} </h3>
+             return <div className="user">
                  <h3>Name:<br/> {val.pname}</h3>
                  <h3>Description:<br/> {val.pdescription}</h3>
                  <h3>Tag:<br/> {val.ptag}</h3>
-                 <h3>Pid: {val.pid} </h3>
                  </div>
          })}
         </div>
