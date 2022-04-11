@@ -17,9 +17,9 @@ function Teampage() {
    <Header/>
 
       {/* <!-- Team Members --> */}
-      <section id="members" className="p-5 bg-secondary" >
+      <section id="members" className="p-5" >
       <div className="container">
-         <h3 className="text-center text-white mb-5" >
+         <h3 className="text-center fw-bold mb-5">
          Software Engineering class SFSU
          <br />Fall, 2022
          <br />Section 03

@@ -1,4 +1,36 @@
-.App {
+/* New Frontend CSS */
+
+body {
+  padding-bottom: 50px;
+}
+
+.box {
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  /* overflow: hidden; */
+  /* height: 200px; */
+  /* max-height: 100vh; */
+}
+
+.grid{
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.grid > div {
+  flex-basis: calc(20% - 40px);
+}
+
+
+
+/* depreciated */
+
+/* .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,9 +67,9 @@
   width: 100%;
   justify-content: center;
   flex-direction: column;
-}
+} */
 
-.user{
+/* .user{
   width: 700px;
   height: 100px;
   border: 1px solid black;
@@ -45,13 +77,13 @@
   display: flex;
   padding: 10px;
   font-family: 'Courier New', Courier, monospace;
-}
+} */
 
-.user h3{
+/* .user h3{
   margin: 20px;
-}
+} */
 
-.option{
+/* .option{
   padding-left: 30px;
   align-content: center;
 }
@@ -60,13 +92,12 @@
   padding-left: 5px;
   margin-right:5px;
   padding-right: -10px;
-  /* align-content: center; */
 }
 
 .form-control{
   padding-right: 50px;
   margin-right: 5px;
-}
+} */
 
 /* .search.btn{
   padding-right: 5px;

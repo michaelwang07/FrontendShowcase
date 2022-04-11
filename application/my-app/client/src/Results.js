@@ -4,6 +4,8 @@ import {useState} from "react";
 import Axios from "axios";
 // import {Link} from "react-router-dom";
 import {Form} from "react-bootstrap";
+import {Card} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 
 function Results() {
     const [ptag, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
@@ -27,40 +29,52 @@ function Results() {
         setUserList(response.data);
     };
 
+    // Function to convert buffer type image to base64 for display
+    const convertPhoto = (file) => {
+        if (file !== null){
+            const base64String = btoa(String.fromCharCode(...new Uint8Array(file.data))); // Conversion 
+            return base64String;
+        }
+    }
+
+
     // Find a way to display getUsers without needing onClick for default display
     return (
-    <div className="App">
+    <div>
         {/* <Link to ="/"><button>Create User</button></Link> */}
 
-        <div className="results">
-        <h1>Results</h1>
+        <h1 className="text-center fw-bold">Results</h1>
 
         {/* Drop Down */}
         <div class="input-group">
-        <Form.Select>
-        <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
-        <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
-        <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
-        <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
-        </Form.Select>
-        {/* Search Bar */}
-        <input type="search" onChange={(event) => {setPName(event.target.value);}} class="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="button" class="search.btn" onClick={getUsers}>search</button>
+            <Form.Select>
+            <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
+            <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
+            <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
+            <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
+            </Form.Select>
+            {/* Search Bar */}
+            <input type="search" onChange={(event) => {setPName(event.target.value);}} class="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="search.btn" onClick={getUsers}>search</button>
         </div>
 
-         {/* Below function maps our list to readable format */}
-         {userList.map((val, key) => {
-             return <div className="user">    {/* edit card for user*/}
-                 <h3>Key: {key} </h3>
-                 <h3>Name:<br/> {val.pname}</h3>
-                 <h3>Description:<br/> {val.pdescription}</h3>
-                 <h3>Tag:<br/> {val.ptag}</h3>
-                 <h3>Pid: {val.pid} </h3>
-                 </div>
-         })}
+        {/* Below function maps our list to readable format */}
+        <div className="grid">
+            {userList.map((val, key) => {
+                return <div>
+                    <Card style={{ width: '18rem'}} key={key} className="box">
+                    <Card.Img variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
+                    <Card.Body>
+                        <Card.Title>{val.pname}</Card.Title>
+                        <Card.Text>{val.pdescription}</Card.Text>
+                        <Button variant="primary">Product Page</Button>
+                    </Card.Body>
+                    </Card>
+                </div>
+            })}
         </div>
-     </div>
+    </div>
     );
-  }
+}
 
-  export default Results;
+export default Results;
