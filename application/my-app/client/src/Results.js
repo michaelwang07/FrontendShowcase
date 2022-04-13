@@ -1,6 +1,6 @@
 /**
 * Project: SFSU Software Engineering Project CSC648-848, Spring 2022
-* Author(s):  Michael Davichick, William Rattan
+* Author(s):  Michael Davichick, William Rattan, Michael Wang
 * Team: 06 
 *
 * File: Results.js
@@ -9,6 +9,7 @@
 *              and displaying results from the back-end using Axios
 *              API as our middleware. 
 **/
+
 import './App.css';
 import React from "react";
 import {useState} from "react";
