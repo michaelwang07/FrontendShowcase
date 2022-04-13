@@ -1,8 +1,21 @@
+/********************************************************************
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
+* Author(s): WilliamR, Michael Wang 
+* Team: 06 
+*
+* File: WilliamR.js
+*
+* Description: WilliamR's profile page
+*
+*
+********************************************************************/
+
 import {Link} from "react-router-dom";
 import './App.css';
 import React from "react";
 import william from './img/William.jpg'
 import Header from "./Header";
+import Footer from "./Footer";
 
 function WilliamR() {
 
@@ -58,6 +71,7 @@ function WilliamR() {
          </div>
       </div>
    </div>
+      <Footer/>
       </div>
    );
  }

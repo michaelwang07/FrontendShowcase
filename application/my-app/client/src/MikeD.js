@@ -1,8 +1,21 @@
+/********************************************************************
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
+* Author(s): Michael Davichick, Michael Wang 
+* Team: 06 
+*
+* File: MikeD.js
+*
+* Description: MikeD's profile page
+*
+*
+********************************************************************/
+
 import {Link} from "react-router-dom";
 import './App.css';
 import React from "react";
 import MD from './img/MichaelD.jpg'
 import Header from "./Header";
+import Footer from "./Footer";
 
 function MikeD() {
 
@@ -58,6 +71,7 @@ function MikeD() {
          </div>
       </div>
    </div>
+      <Footer/>
       </div>
    );
  }

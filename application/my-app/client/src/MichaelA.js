@@ -1,8 +1,21 @@
+/********************************************************************
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
+* Author(s): Michael Almeda, Michael Wang 
+* Team: 06 
+*
+* File: MichaelA.js
+*
+* Description: MichaelA's profile page
+*
+*
+********************************************************************/
+
 import {Link} from "react-router-dom";
 import './App.css';
 import React from "react";
 import MA from './img/MichaelA.jpg'
 import Header from "./Header";
+import Footer from "./Footer";
 
 function MichaelA() {
 
@@ -58,6 +71,7 @@ function MichaelA() {
          </div>
       </div>
    </div>
+      <Footer/>
       </div>
    );
  }

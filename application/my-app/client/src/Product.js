@@ -1,10 +1,27 @@
+/********************************************************************
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
+* Author(s): Michael Wang 
+* Team: 06 
+*
+* File: Product.js
+*
+* Description: Product template for all our products
+*
+*
+********************************************************************/
+
 import {Link, renderMatches} from "react-router-dom";
 import './App.css';
 import React from "react";
 import Header from "./Header";
 import { createPopper } from '@popperjs/core';
-import Popover from 'react-bootstrap/Popover'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import { Dropdown } from "react-bootstrap";
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Alert from 'react-bootstrap/Alert';
+import { useState } from "react";
+import Footer from "./Footer";
 
 class Product extends React.Component{
 
@@ -25,6 +42,10 @@ class Product extends React.Component{
       ],
       index: 0
    };
+
+   state2 = {
+      visible: true
+   }
    
    myRef = React.createRef();
 
@@ -40,24 +61,50 @@ class Product extends React.Component{
    render(){
       const {products, index} = this.state;
       const popover = (
-         <Popover id="popover-basic">
-           <Popover.Header as="h3">Popover right</Popover.Header>
-           <Popover.Body>
-             And here's some <strong>amazing</strong> content. It's very engaging.
-             right?
-           </Popover.Body>
-         </Popover>
-       );
+      <Popover id="popover-basic">
+         <Popover.Header>
+            Name: John Doe<br />
+            Telephone: 111-111-1111
+         </Popover.Header>
+         <Popover.Body>
+            <DropdownButton variant="muted" id="dropdown-basic-button" title="Select Exchange Location">
+            <Dropdown.Item href="#/action-1">Student Center</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Main Library</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Police Station</Dropdown.Item>
+            </DropdownButton>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="send" onClick={() => this.state2.visible}>Send Message</button>
+         </Popover.Body>
+      </Popover>
+      );
        
-       const Example = () => (
-         <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-           <button variant="success">Click me to see</button>
-         </OverlayTrigger>
-       );
+      const Example = () => (
+      <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+         <button className="message" variant="success">Message Seller</button>
+      </OverlayTrigger>
+      );
+
+      function AlertDismissibleExample() {
+         const [show, setShow] = useState(false);
+       
+         if (show) {
+            return (
+               <Alert variant="success" onClose={() => setShow(false)} dismissible>
+                  <Alert.Heading>Message Sent</Alert.Heading>
+                  <p>
+                  Please wait for the seller to respond to you. Thank You!
+                  </p>
+               </Alert>
+            );
+         }
+         return <button className="send" onClick={() => setShow(true)}>Show Alert</button>;
+      }
+      
       console.log(products);
       return(
          <div className="Product">
             <Header/>
+            <AlertDismissibleExample/>
             {
             products.map(item => (
                <div className="details" key={item._id}>
@@ -83,11 +130,11 @@ class Product extends React.Component{
                      </div>
                      
                      <Example />
-                     <button className="message">Message Seller</button>
                   </div>   
                </div>
             ))
             }
+            <Footer/>
          </div>
       );
    };
