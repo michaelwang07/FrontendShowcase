@@ -2,7 +2,10 @@ import './App.css';
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import CreateUser from './CreateUser';
+import CreateUser from './CreateUser';
+import CreatePost from './CreatePost';
+import PostConfirmation from './PostConfirmation';
+import SignIn from './SignIn';
 import Results from './Results';
 import Teampage from './Teampage';
 import BobbyR from './BobbyR';
@@ -16,8 +19,11 @@ function App() {
   return (
    <Router>
      <Routes>
-       {/* <Route path="/" exact element ={<CreateUser/>} /> */}
        <Route path="/" exact element ={<Homepage/>} />
+       <Route path="/createuser" exact element ={<CreateUser/>} />
+       <Route path="/createpost" exact element ={<CreatePost/>} />
+       <Route path="/postconfirmation" exact element ={<PostConfirmation/>} />
+       <Route path="/signin" exact element ={<SignIn/>} />
        <Route path="/results" exact element ={<Results/>} />
        <Route path="/team" exact element ={<Teampage/>} />
        <Route path="/team/BobbyR" exact element ={<BobbyR/>} />

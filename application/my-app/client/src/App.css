@@ -67,6 +67,11 @@ body {
   width: 100%;
   justify-content: center;
   flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  width: 50%;
 } */
 
 /* .user{
