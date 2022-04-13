@@ -1,3 +1,16 @@
+/********************************************************************
+* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Author(s):  Michael Almeda
+* Team: 06 
+*
+* File: Profile.js
+*
+* Description: This file allows the user to view their own information
+* such as User Name, Number of Post, and date registered.
+*
+*
+********************************************************************/
+
 import './App.css';
 import { Tabs, Tab, Card, Button, Table, Container } from "react-bootstrap";
 // BR 

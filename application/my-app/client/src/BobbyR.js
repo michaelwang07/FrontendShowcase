@@ -1,11 +1,13 @@
+
 /********************************************************************
-* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
-* Author(s): Bobby Roots, Michael Wang 
+* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Author(s):  Bobby Roots
 * Team: 06 
 *
 * File: BobbyR.js
 *
-* Description: Bobby's profile page
+* Description: This file allows the team member to tell a little 
+* about themselves. 
 *
 *
 ********************************************************************/
@@ -15,7 +17,6 @@ import './App.css';
 import React from "react";
 import bobby from './img/BobbyR.jpg';
 import Header from "./Header";
-import Footer from "./Footer";
 
 function BobbyR() {
 
@@ -71,7 +72,6 @@ function BobbyR() {
          </div>
       </div>
    </div>
-      <Footer/>
       </div>
    );
  }
