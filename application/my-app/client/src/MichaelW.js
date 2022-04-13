@@ -1,3 +1,15 @@
+/********************************************************************
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
+* Author(s): Michael Wang 
+* Team: 06 
+*
+* File: MichaelW.js
+*
+* Description: MichaelW's profile page
+*
+*
+********************************************************************/
+
 import {Link} from "react-router-dom";
 import './App.css';
 import React from "react";

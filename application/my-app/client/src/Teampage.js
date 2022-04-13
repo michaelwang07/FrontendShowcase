@@ -1,3 +1,15 @@
+/********************************************************************
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
+* Author(s): Bobby Roots, Michael Davichick, William Rattan, Michael Wang, Michael Almeda
+* Team: 06 
+*
+* File: Teampage.js
+*
+* Description: Overview of all our team memebers
+*
+*
+********************************************************************/
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from "react-router-dom";
 import React from "react";

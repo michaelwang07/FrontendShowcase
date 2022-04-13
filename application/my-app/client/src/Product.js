@@ -1,3 +1,15 @@
+/********************************************************************
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
+* Author(s): Michael Wang 
+* Team: 06 
+*
+* File: Product.js
+*
+* Description: Product template for all our products
+*
+*
+********************************************************************/
+
 import {Link, renderMatches} from "react-router-dom";
 import './App.css';
 import React from "react";
