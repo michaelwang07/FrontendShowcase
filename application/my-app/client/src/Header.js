@@ -15,9 +15,9 @@ function Header() {
             <Nav className="ms-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/team">Team</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-               <NavDropdown.Item href="Dashboard">Dashboard</NavDropdown.Item> 
-               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+            <NavDropdown title="Dashboard" id="basic-nav-dropdown">
+               <NavDropdown.Item href="Dashboard">Profile</NavDropdown.Item> 
+               <NavDropdown.Item href="#action/3.2">Create Post</NavDropdown.Item>
                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                <NavDropdown.Divider />
                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
