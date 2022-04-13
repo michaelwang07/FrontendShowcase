@@ -11,6 +11,7 @@ import MichaelA from './MichaelA';
 import MikeD from './MikeD';
 import WilliamR from './WilliamR';
 import Homepage from './Homepage';
+import Product from './Product';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
        <Route path="/team/MichaelA" exact element ={<MichaelA/>} />
        <Route path="/team/MikeD" exact element ={<MikeD/>} />
        <Route path="/team/WilliamR" exact element ={<WilliamR/>} />
+       <Route path="/Product" exact element = {<Product/>} />
      </Routes>
    </Router>
   );

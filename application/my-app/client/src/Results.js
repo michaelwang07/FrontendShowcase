@@ -67,7 +67,7 @@ function Results() {
                     <Card.Body>
                         <Card.Title>{val.pname}</Card.Title>
                         <Card.Text>{val.pdescription}</Card.Text>
-                        <Button variant="primary">Product Page</Button>
+                        <Button href="/Product" variant="primary">Product Page</Button>
                     </Card.Body>
                     </Card>
                 </div>
