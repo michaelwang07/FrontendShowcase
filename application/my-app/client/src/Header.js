@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import './App.css';
 import React from "react";
-import Dashboard from "./Dashboard";
+// import Dashboard from "./Dashboard";
 import {Nav, Navbar, Container, NavDropdown} from "react-bootstrap";
 
 function Header() {
