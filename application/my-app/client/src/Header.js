@@ -17,10 +17,10 @@ function Header() {
             <Nav.Link href="/team">Team</Nav.Link>
             <NavDropdown title="Dashboard" id="basic-nav-dropdown">
                <NavDropdown.Item href="Dashboard">Profile</NavDropdown.Item> 
-               <NavDropdown.Item href="#action/3.2">Create Post</NavDropdown.Item>
-               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+               <NavDropdown.Item href="/createpost">Create Post</NavDropdown.Item>
+               {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
                <NavDropdown.Divider />
-               <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+               <NavDropdown.Item href="/signin">Sign In</NavDropdown.Item>
             </NavDropdown>
             </Nav>
          </Navbar.Collapse>

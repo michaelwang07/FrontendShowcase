@@ -37,7 +37,7 @@ function SignIn() {
     <div className="App">
       <Header />
       {/* Results page button that links to results page */}
-      <Link to="/results"><button>Results Page</button></Link>
+      {/* <Link to="/results"><button>Results Page</button></Link> */}
       <div className="information">
         {/* Sign in header */}
         <h1>Sign In</h1>

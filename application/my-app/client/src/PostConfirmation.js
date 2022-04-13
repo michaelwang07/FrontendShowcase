@@ -35,7 +35,7 @@ function PostConfirmation() {
         <div className="App">
             <Header />
             {/* Results page button that links to results page */}
-            <Link to="/results"><button>Results Page</button></Link>
+            {/* <Link to="/results"><button>Results Page</button></Link> */}
             <div className="information">
                 {/* Post Preview header */}
                 <h1>Post Preview</h1>

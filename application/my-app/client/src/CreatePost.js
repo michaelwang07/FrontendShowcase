@@ -44,7 +44,7 @@ function CreatePost() {
     <div className="App">
       <Header />
       {/* Results page button that links to results page */}
-      <Link to="/results"><button>Results Page</button></Link>
+      {/* <Link to="/results"><button>Results Page</button></Link> */}
       <div className="information">
         {/* Create Post Header */}
         <h1>Create Posting</h1>
