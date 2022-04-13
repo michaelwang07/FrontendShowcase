@@ -1,3 +1,14 @@
+/**
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
+* Author(s):  Michael Davichick, William Rattan
+* Team: 06 
+*
+* File: Server.js
+*
+* Description: This component contains the Database connections as  
+*              well as the middleware Axios API calls used to serve
+*              data from our Backend to Frontend.  
+**/
 const express = require ("express");
 const app = express();
 const mysql = require('mysql2');
