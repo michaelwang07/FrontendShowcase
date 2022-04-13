@@ -3,6 +3,7 @@ import './App.css';
 import React from "react";
 import william from './img/William.jpg'
 import Header from "./Header";
+import Footer from "./Footer";
 
 function WilliamR() {
 
@@ -58,6 +59,7 @@ function WilliamR() {
          </div>
       </div>
    </div>
+      <Footer/>
       </div>
    );
  }

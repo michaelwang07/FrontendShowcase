@@ -3,6 +3,7 @@ import './App.css';
 import React from "react";
 import MD from './img/MichaelD.jpg'
 import Header from "./Header";
+import Footer from "./Footer";
 
 function MikeD() {
 
@@ -58,6 +59,7 @@ function MikeD() {
          </div>
       </div>
    </div>
+      <Footer/>
       </div>
    );
  }

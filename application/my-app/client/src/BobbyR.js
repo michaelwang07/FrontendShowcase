@@ -3,6 +3,7 @@ import './App.css';
 import React from "react";
 import bobby from './img/BobbyR.jpg';
 import Header from "./Header";
+import Footer from "./Footer";
 
 function BobbyR() {
 
@@ -58,6 +59,7 @@ function BobbyR() {
          </div>
       </div>
    </div>
+      <Footer/>
       </div>
    );
  }
