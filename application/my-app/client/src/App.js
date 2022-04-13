@@ -15,6 +15,7 @@ import MikeD from './MikeD';
 import WilliamR from './WilliamR';
 import Homepage from './Homepage';
 import Product from './Product';
+import Dashboard from './Dashboard';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
        <Route path="/team/MikeD" exact element ={<MikeD/>} />
        <Route path="/team/WilliamR" exact element ={<WilliamR/>} />
        <Route path="/Product" exact element = {<Product/>} />
+       <Route path="/dashboard" exact element ={<Dashboard/>} />
      </Routes>
    </Router>
   );
