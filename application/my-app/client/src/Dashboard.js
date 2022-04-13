@@ -1,3 +1,15 @@
+/********************************************************************
+* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Author(s):  Bobby Roots
+* Team: 06 
+*
+* File: Dahboard.js
+*
+* Description: This file allows the user to look at their individual
+* dashboard to view items such as profile, their post, and messages.
+*
+*
+********************************************************************/
 
 import './App.css';
 import React, { useState } from "react";

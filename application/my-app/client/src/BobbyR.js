@@ -1,3 +1,16 @@
+/********************************************************************
+* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Author(s):  Bobby Roots
+* Team: 06 
+*
+* File: BobbyR.js
+*
+* Description: This file allows the team member to tell a little 
+* about themselves. 
+*
+*
+********************************************************************/
+
 import {Link} from "react-router-dom";
 import './App.css';
 import React from "react";

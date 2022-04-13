@@ -1,3 +1,18 @@
+/********************************************************************
+* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Author(s):  Michael Almeda
+* Team: 06 
+*
+* File: Messages.js
+*
+* Description: This file allows the user to view any messages they 
+* may have received in reagards to their post from interested 
+* individuals.
+*
+*
+********************************************************************/
+
+
 import './App.css';
 import { Tabs, Tab, Card, Button, Table, Container } from "react-bootstrap";
 // BR
