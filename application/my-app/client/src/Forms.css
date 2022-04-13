@@ -1,0 +1,63 @@
+.pointer {
+    cursor: pointer;
+}
+
+.checkbox {
+    float: left;
+    margin-top: 5px;
+    margin-left: 25px;
+    padding-left: 100px
+}
+
+.preview {
+    border: 1px solid gray;
+    padding: 8px;
+}
+
+.dropDown {
+    width:250px;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .information{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .information input{
+    width: 250px;
+    height: 30px;
+    font-size: 20px;
+    padding-left: 15px;
+    margin: 5px;
+  }
+  
+  .information button{
+    width: 250px;
+    height: 30px;
+    margin-top: 15px;
+  }
+  
+  .information button:hover{
+    cursor: pointer;
+  }
+  
+  .results{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .input-group {
+    display: flex;
+    width: 50%;
+  }

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import './App.css';
 import React from "react";
+// import Dashboard from "./Dashboard";
 import {Nav, Navbar, Container, NavDropdown} from "react-bootstrap";
 
 function Header() {
@@ -15,7 +16,7 @@ function Header() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/team">Team</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+               <NavDropdown.Item href="Dashboard">Dashboard</NavDropdown.Item> 
                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                <NavDropdown.Divider />
