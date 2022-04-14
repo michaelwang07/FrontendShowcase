@@ -36,3 +36,15 @@ Instructions to SSH into the server
 2. navigate to SSH then Auth and put the private key in the private key file bar  
 3. Open with PuTTY  
 4. put team6 for username and you are in  
+
+Database credentials:
+
+1.Database Connection name:inlaid-crane-341607:us-west2:team6mysql
+2.Database IP: 34.94.242.160
+3.Database port: 3306
+4.Database Password: Team6password
+5.Database Name for Products: Team6
+6.Database Name in gcloud console: team6mysql 
+7.Database Username: root1
+
+
