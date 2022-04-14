@@ -1,16 +1,149 @@
-/********************************************************************
-* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
-* Author(s): Michael Wang
-* Team: 06 
-*
-* File: App.css
-*
-* Description: 
-*
-*
-********************************************************************/
+/* New Frontend CSS */
 
-.App {
+body {
+  padding-bottom: 50px;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.box {
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  /* overflow: hidden; */
+  /* height: 200px; */
+  /* max-height: 100vh; */
+}
+
+.grid{
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.grid > div {
+  flex-basis: calc(20% - 40px);
+}
+
+.product{
+  max-width: 1200px;
+  width: 100%;
+  margin: 100px auto;
+  box-shadow: 0 0 5px #ccc ;
+}
+
+.details{
+  display: flex;
+  justify-content:center;
+  flex-wrap: wrap;
+  padding: 30px 0;
+}
+
+.big-img{
+  max-width: 500px;
+  min-width: 250px;
+  overflow: hidden;
+  margin: 25px;
+}
+
+.big-img img{
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+  display: block;
+  object-fit: cover;
+}
+
+.details .description{
+  max-width: 500px;
+  min-width: 250px;
+  margin: 25px;
+}
+
+.description .row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.description .row h2{
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.description .row span{
+  color: crimson;
+}
+
+.description p{
+  line-height: 1.5;
+  margin: 15px 0;
+}
+
+.thumb{
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.thumb img{
+  width: 100px;
+  height: 100px;
+  display: block;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  margin-right: 5px;
+  opacity: 0.7;
+  border-radius: 5px;
+  transition: 0.5s linear;
+}
+
+.thumb img.active{
+  opacity: 1;
+  border: 1px solid lightseagreen;
+}
+
+.message{
+  background: #333;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 25px;
+  margin-top: 15px;
+}
+
+.send{
+  background: #0078D7;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 25px;
+  margin-top: 10px;
+}
+
+@media (max-width: 500px){
+  .thumb{
+    height: 50px;
+  }
+  .thumb img{
+    width: 50px;
+  }
+}
+/* depreciated */
+
+/* .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,7 +182,12 @@
   flex-direction: column;
 }
 
-.user{
+.input-group {
+  display: flex;
+  width: 50%;
+} */
+
+/* .user{
   width: 700px;
   height: 100px;
   border: 1px solid black;
@@ -57,13 +195,13 @@
   display: flex;
   padding: 10px;
   font-family: 'Courier New', Courier, monospace;
-}
+} */
 
-.user h3{
+/* .user h3{
   margin: 20px;
-}
+} */
 
-.option{
+/* .option{
   padding-left: 30px;
   align-content: center;
 }
@@ -72,13 +210,12 @@
   padding-left: 5px;
   margin-right:5px;
   padding-right: -10px;
-  /* align-content: center; */
 }
 
 .form-control{
   padding-right: 50px;
   margin-right: 5px;
-}
+} */
 
 /* .search.btn{
   padding-right: 5px;

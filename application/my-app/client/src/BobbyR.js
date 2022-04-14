@@ -1,11 +1,13 @@
+
 /********************************************************************
 * Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
-* Author(s):  
+* Author(s):  Bobby Roots
 * Team: 06 
 *
 * File: BobbyR.js
 *
-* Description: 
+* Description: This file allows the team member to tell a little 
+* about themselves. 
 *
 *
 ********************************************************************/
@@ -14,38 +16,13 @@ import {Link} from "react-router-dom";
 import './App.css';
 import React from "react";
 import bobby from './img/BobbyR.jpg';
+import Header from "./Header";
 
 function BobbyR() {
 
    return (
       <div>
-         <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-      <div class="container">
-         <a href="\" class="navbar-brand">CSC 648 - 03</a>
-
-         <button class="navbar-toggler" 
-         type="button" 
-         data-bs-toggle="collapse" 
-         data-bs-target="navmenu"
-         >
-            <span class="navbar-toggler-icon"></span>
-         </button>
-
-         <div className="collapse navbar-collapse" id="navmenu">
-            <ul className="navbar-nav ms-auto">
-               <li className="nav-item">
-                  <Link to = '/' className="nav-link">Home Page</Link>
-               </li>
-               <li className="nav-item">
-                  <Link to = '/team' className="nav-link">Team Page</Link>
-               </li>
-               <li className="nav-item">
-                  <a href="template3" className="nav-link">template3</a>
-               </li>
-            </ul>
-         </div>
-      </div>
-   </nav>
+   <Header/>
 
    {/* <!-- Showcase --> */}
    <section class="bg-dark text-light p-1 text-center">
