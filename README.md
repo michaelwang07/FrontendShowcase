@@ -19,7 +19,6 @@
 | Michael Davichick      |      mdavichick@mail.sfsu.edu         |       Mdavichick          |
 | William Rattan      |   wrattan@mail.sfsu.edu            |   wrattan              |
 | Bobby Roots      |   broots@mail.sfsu.edu            |  Bobby142               |
-| Arshdeep Boparai      | aboparai@mail.sfsu.edu     |   aboparai7             |
 | Michael Wang     | pwang9@mail.sfsu.edu            |   michaelwawng07              |
 
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
