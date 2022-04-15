@@ -1,6 +1,6 @@
 /**
 * Project: SFSU Software Engineering Project CSC648-848, Spring 2022
-* Author(s):  Michael Davichick, William Rattan
+* Author(s):  Michael Davichick, William Rattan, Michael Wang
 * Team: 06 
 *
 * File: Results.js
@@ -12,22 +12,41 @@
 
 import './App.css';
 import React from "react";
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import Axios from "axios";
 // import {Link} from "react-router-dom";
 import {Form} from "react-bootstrap";
-// import {Buffer} from 'buffer';
-// Buffer.from('anything','base64');
+import {Card} from "react-bootstrap";
+import {Button} from "react-bootstrap";
+
 
 function Results() {
-    // Variables to Store User Data for Backend Quaries 
     const [ptag, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
 
-    // Store all DB results within a list
+    // store all db results within a list
+    // useState stores userList as a list variable check react states for more info
     const [userList, setUserList] = useState([]);
+    
+    useEffect(() => {
+        getRecentPosts();
+      }, []);
 
-    // API call to grab queries from Back-End
+
+
+    async function getRecentPosts(){
+        const response = await Axios.get('http://localhost:3001/LastThree',
+        {
+            
+        });
+        // stores returned values into list
+        setUserList(response.data);
+    };
+
+    
+
+
+    // API call to retreive backend
     async function getUsers (){
         const response = await Axios.get('http://localhost:3001/Products',
         {
@@ -36,6 +55,7 @@ function Results() {
                 pname: pname,
             }
         });
+        // stores returned values into list
         setUserList(response.data);
     };
 
@@ -47,41 +67,47 @@ function Results() {
         }
     }
 
+
     // Find a way to display getUsers without needing onClick for default display
     return (
-    <div className="App">
+    <div>
+        {/* <Link to ="/"><button>Create User</button></Link> */}
 
-        <div className="results">
-        <h1>Results</h1>
+        <h1 className="text-center fw-bold">Results</h1>
 
         {/* Drop Down */}
-        <div className="input-group">
-        <Form.Select>
-        <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
-        <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
-        <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
-        <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
-        </Form.Select>
-        {/* Search Bar */}
-        <input type="search" onChange={(event) => {setPName(event.target.value);}} className="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="button" className="search.btn" onClick={getUsers}>search</button>
+        <div class="input-group">
+            <Form.Select>
+            <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
+            <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
+            <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
+            <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
+            </Form.Select>
+            {/* Search Bar */}
+            <input type="search" onChange={(event) => {setPName(event.target.value);}} class="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="search.btn" onClick={getUsers}>search</button>
         </div>
 
-         {/* Below function maps our list to readable format */}
-         {userList.map((val, key) => {
-             return <div className="user">
-                 
-                 <h3>Name:<br/> {val.pname}</h3>
-                 <h3>Description:<br/> {val.pdescription}</h3>
-                 <h3>Tag:<br/> {val.ptag}</h3>
-                 <img src={`data:image/png;base64,${convertPhoto(val.pimg)}`} alt="tx"/>
-
-                 </div>
-         })}
-
+        {/* Below function maps our list to readable format */}
+        <h3>Number of Results:{userList.length}</h3>
+        <div className="grid">
+            
+            {userList.map((val, key) => {
+                return <div>
+                    <Card style={{ width: '18rem'}} key={key} className="box">
+                    <Card.Img variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
+                    <Card.Body>
+                        <Card.Title>{val.pname}</Card.Title>
+                        <Card.Text>{val.pdescription}</Card.Text>
+                        <Card.Text>Price: ${val.pprice}</Card.Text>
+                        <Button href="/Product" variant="primary">Product Page</Button>
+                    </Card.Body>
+                    </Card>
+                </div>
+            })}
         </div>
-     </div>
+    </div>
     );
-  }
+}
 
-  export default Results;
+export default Results;
