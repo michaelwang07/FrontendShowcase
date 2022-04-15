@@ -1,3 +1,18 @@
+/********************************************************************
+* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Author(s):  Bobby Roots
+* Team: 06 
+*
+* File: Footer.js
+*
+* Description: This file allows the user to acess items like About
+* Us, Careers, and Contact information.  This file will be displayed
+* on all pages.
+*
+*
+********************************************************************/
+
+
 import { Link } from "react-router-dom";
 import './App.css';
 import React from "react";

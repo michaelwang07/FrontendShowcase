@@ -11,7 +11,7 @@
 **/
 
 import './App.css';
-import React from "react";
+import React, { useEffect } from "react";
 import {useState} from "react";
 import Axios from "axios";
 // import {Link} from "react-router-dom";
@@ -22,10 +22,27 @@ import {Button} from "react-bootstrap";
 function Results() {
     const [ptag, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
+    useEffect(() => {
+        getRecentPosts();
+    });
 
     // store all db results within a list
     // useState stores userList as a list variable check react states for more info
     const [userList, setUserList] = useState([]);
+
+
+    // TODO replace with recentposts API endpoint (or parameters)
+    async function getRecentPosts() {
+        const response = await Axios.get('http://localhost:3001/Products',
+        {
+            params: {
+                ptag: ptag,
+                pname: pname,
+            }
+        });
+        // stores returned values into list
+        setUserList(response.data);
+    }
 
 
     // API call to retreive backend
@@ -55,10 +72,10 @@ function Results() {
     <div>
         {/* <Link to ="/"><button>Create User</button></Link> */}
 
-        <h1 className="text-center fw-bold">Results</h1>
+        <h3 className="text-center">GatorBay helps SFSU Students, Staff, and Faculty to obtain Books, Clothes, Electronics, and Furniture</h3>
 
         {/* Drop Down */}
-        <div class="input-group">
+        <div className="input-group">
             <Form.Select>
             <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
             <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
@@ -66,8 +83,8 @@ function Results() {
             <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
             </Form.Select>
             {/* Search Bar */}
-            <input type="search" onChange={(event) => {setPName(event.target.value);}} class="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="search.btn" onClick={getUsers}>search</button>
+            <input type="search" onChange={(event) => {setPName(event.target.value);}} className="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" className="search.btn" onClick={getUsers}>search</button>
         </div>
 
         {/* Below function maps our list to readable format */}
