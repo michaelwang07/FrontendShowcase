@@ -11,8 +11,8 @@
 **/
 
 import './App.css';
-import React, { useEffect } from "react";
-import {useState} from "react";
+import React from "react";
+import {useState,useEffect} from "react";
 import Axios from "axios";
 // import {Link} from "react-router-dom";
 import {Form} from "react-bootstrap";
@@ -29,20 +29,23 @@ function Results() {
     // store all db results within a list
     // useState stores userList as a list variable check react states for more info
     const [userList, setUserList] = useState([]);
+    
+    useEffect(() => {
+        getRecentPosts();
+      }, []);
 
 
-    // TODO replace with recentposts API endpoint (or parameters)
-    async function getRecentPosts() {
-        const response = await Axios.get('http://localhost:3001/Products',
+
+    async function getRecentPosts(){
+        const response = await Axios.get('http://localhost:3001/LastThree',
         {
-            params: {
-                ptag: ptag,
-                pname: pname,
-            }
+            
         });
         // stores returned values into list
         setUserList(response.data);
-    }
+    };
+
+    
 
 
     // API call to retreive backend
@@ -72,10 +75,10 @@ function Results() {
     <div>
         {/* <Link to ="/"><button>Create User</button></Link> */}
 
-        <h3 className="text-center">GatorBay helps SFSU Students, Staff, and Faculty to obtain Books, Clothes, Electronics, and Furniture</h3>
+        <h1 className="text-center fw-bold">Results</h1>
 
         {/* Drop Down */}
-        <div className="input-group">
+        <div class="input-group">
             <Form.Select>
             <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
             <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
@@ -83,12 +86,14 @@ function Results() {
             <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
             </Form.Select>
             {/* Search Bar */}
-            <input type="search" onChange={(event) => {setPName(event.target.value);}} className="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" className="search.btn" onClick={getUsers}>search</button>
+            <input type="search" onChange={(event) => {setPName(event.target.value);}} class="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="search.btn" onClick={getUsers}>search</button>
         </div>
 
         {/* Below function maps our list to readable format */}
+        <h3>Number of Results:{userList.length}</h3>
         <div className="grid">
+            
             {userList.map((val, key) => {
                 return <div>
                     <Card style={{ width: '18rem'}} key={key} className="box">
@@ -96,6 +101,7 @@ function Results() {
                     <Card.Body>
                         <Card.Title>{val.pname}</Card.Title>
                         <Card.Text>{val.pdescription}</Card.Text>
+                        <Card.Text>Price: ${val.pprice}</Card.Text>
                         <Button href="/Product" variant="primary">Product Page</Button>
                     </Card.Body>
                     </Card>
