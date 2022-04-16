@@ -15,16 +15,14 @@ import React from "react";
 import {useState,useEffect} from "react";
 import Axios from "axios";
 // import {Link} from "react-router-dom";
-import {Form} from "react-bootstrap";
+import {Form, FormControl} from "react-bootstrap";
 import {Card} from "react-bootstrap";
 import {Button} from "react-bootstrap";
+
 
 function Results() {
     const [ptag, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
-    useEffect(() => {
-        getRecentPosts();
-    });
 
     // store all db results within a list
     // useState stores userList as a list variable check react states for more info
@@ -34,8 +32,6 @@ function Results() {
         getRecentPosts();
       }, []);
 
-
-
     async function getRecentPosts(){
         const response = await Axios.get('http://localhost:3001/LastThree',
         {
@@ -44,9 +40,6 @@ function Results() {
         // stores returned values into list
         setUserList(response.data);
     };
-
-    
-
 
     // API call to retreive backend
     async function getUsers (){
@@ -74,24 +67,42 @@ function Results() {
     return (
     <div>
         {/* <Link to ="/"><button>Create User</button></Link> */}
+        
+        <h3 className="homeHeader">GatorBay helps SFSU Students, Staff, and Faculty to obtain
+        Books, Clothes, Electronics, and Furniture</h3>
 
-        <h1 className="text-center fw-bold">Results</h1>
 
-        {/* Drop Down */}
-        <div class="input-group">
-            <Form.Select>
-            <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
-            <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
-            <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
-            <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
-            </Form.Select>
+        <div className="inputGroup">
+            {/* Drop Down */}
+            <div>
+                <Form.Select className="formSelect">
+                <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
+                <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
+                <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
+                <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
+                </Form.Select>
+            </div>
             {/* Search Bar */}
-            <input type="search" onChange={(event) => {setPName(event.target.value);}} class="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="search.btn" onClick={getUsers}>search</button>
+            <div>
+                <Form className="d-flex" onChange={(event) => {setPName(event.target.value);}}>
+                    <FormControl
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                    />
+                    <Button variant="outline-success" onClick={getUsers}>Search</Button>
+                </Form>
+            </div>
+            
+            {/* <input type="search" className="searchBar" onChange={(event) => {setPName(event.target.value);}} placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <div>
+                <button type="button" className="searchButton" onClick={getUsers}>search</button>
+            </div> */}
         </div>
 
         {/* Below function maps our list to readable format */}
-        <h3>Number of Results:{userList.length}</h3>
+        <h3 className="searchResults">{userList.length} results out of 12 </h3>
         <div className="grid">
             
             {userList.map((val, key) => {
