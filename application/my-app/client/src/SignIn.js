@@ -49,9 +49,11 @@ function SignIn() {
         <input type="password"
           onChange={(event) => { setPassword(event.target.value); }} />
         <button onClick={addPost}>Sign In</button>
-        <label>Forgot Password?</label>
+        <Link to="">Forgot Password?</Link>
         {/* Link to create an account if user doesn't already have one */}
-        <div className="pointer"><Link to="/createuser">Not a member yet?<br /> Create Account</Link>
+        <div className="pointer">
+          <label>Not a member yet?&nbsp;</label>
+          <Link to="/createuser">Create Account</Link>
         </div>
       </div>
       <Footer />
