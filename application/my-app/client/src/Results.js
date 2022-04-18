@@ -18,9 +18,13 @@ import Axios from "axios";
 import {Form, FormControl} from "react-bootstrap";
 import {Card} from "react-bootstrap";
 import {Button} from "react-bootstrap";
-
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import { Dropdown } from "react-bootstrap";
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 function Results() {
+    
     const [ptag, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
 
@@ -62,6 +66,29 @@ function Results() {
         }
     }
 
+    const Example = () => (
+        <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+           <Button className="message" variant="success">Message Seller</Button>
+        </OverlayTrigger>
+    );
+
+    const popover = (
+    <Popover id="popover-basic">
+        <Popover.Header>
+            Name: John Doe<br />
+            Telephone: 111-111-1111
+         </Popover.Header>
+         <Popover.Body>
+            <DropdownButton variant="muted" id="dropdown-basic-button" title="Select Exchange Location">
+            <Dropdown.Item href="#/action-1">Student Center</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Main Library</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Police Station</Dropdown.Item>
+            </DropdownButton>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="send" onClick={() => this.state2.visible}>Send Message</button>
+        </Popover.Body>
+    </Popover>
+    );
 
     // Find a way to display getUsers without needing onClick for default display
     return (
@@ -85,13 +112,15 @@ function Results() {
             {/* Search Bar */}
             <div>
                 <Form className="d-flex" onChange={(event) => {setPName(event.target.value);}}>
-                    <FormControl
+                    <Form.Group>
+                        <Form.Control className="searchBar" type="text"/>
+                    </Form.Group>
+                    <Button variant="outline-success" onClick={getUsers}>Search</Button>
+                    {/* <FormControl
                     type="search"
                     placeholder="Search"
-                    className="me-2"
                     aria-label="Search"
-                    />
-                    <Button variant="outline-success" onClick={getUsers}>Search</Button>
+                    /> */}
                 </Form>
             </div>
             
@@ -102,18 +131,24 @@ function Results() {
         </div>
 
         {/* Below function maps our list to readable format */}
-        <h3 className="searchResults">{userList.length} results out of 12 </h3>
+        <h3 className="searchResults">{userList.length} results</h3>
         <div className="grid">
-            
             {userList.map((val, key) => {
                 return <div>
                     <Card style={{ width: '18rem'}} key={key} className="box">
-                    <Card.Img variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
+                    <a href="/Product">
+                    <Card.Img href="/Product"variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
+                    </a>
                     <Card.Body>
+                        <a href="/Product">
                         <Card.Title>{val.pname}</Card.Title>
+                        </a>
                         <Card.Text>{val.pdescription}</Card.Text>
-                        <Card.Text>Price: ${val.pprice}</Card.Text>
+                        <Card.Text>
+                            <span>Price: ${val.pprice}</span>
+                        </Card.Text>
                         <Button href="/Product" variant="primary">Product Page</Button>
+                        <Example />
                     </Card.Body>
                     </Card>
                 </div>

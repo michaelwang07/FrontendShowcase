@@ -43,9 +43,14 @@ body {
 }
 
 .searchResults {
+  position: static;
+  margin-left: 200px;
   margin-top: 8px!important;
   margin-bottom: 8px!important;
-  margin-block-start: 00px; 
+}
+
+.searchBar {
+  width: 500px !important;
 }
 
 .product{
@@ -94,7 +99,7 @@ body {
   letter-spacing: 1px;
 }
 
-.description .row span{
+span{
   color: crimson;
 }
 
