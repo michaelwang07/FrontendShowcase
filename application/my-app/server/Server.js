@@ -46,6 +46,20 @@ const db = mysql.createConnection({
 // })
 
 // Get using AXIOS params
+
+app.get('/LastThree',(request,response)=>{
+
+    db.query("SELECT * FROM Products ORDER BY pid DESC LIMIT 3",(err,result)=>{
+
+        if(err){
+            console.log(err);
+        }
+            response.send(result);
+    });
+
+});
+
+
 app.get('/Products', (request, response) => {
     const ptag = request.query.ptag;
     const pname = request.query.pname;
@@ -74,4 +88,3 @@ app.get('/Products', (request, response) => {
 app.listen(3001, () => {
     console.log("Your server is running on port 3001");
 })
-

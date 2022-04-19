@@ -4,10 +4,11 @@ body {
   padding-bottom: 50px;
 }
 
-.input-group {
+.inputGroup {
   display: flex;
   justify-content: center;
-  width: 50%;
+  margin-top: 10px!important;
+  margin-bottom: 10px!important;
 }
 
 .box {
@@ -26,10 +27,30 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: center;
 }
 
 .grid > div {
   flex-basis: calc(20% - 40px);
+}
+
+.homeHeader {
+  padding: 30px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+.searchResults {
+  position: static;
+  margin-left: 200px;
+  margin-top: 8px!important;
+  margin-bottom: 8px!important;
+}
+
+.searchBar {
+  width: 500px !important;
 }
 
 .product{
@@ -78,7 +99,7 @@ body {
   letter-spacing: 1px;
 }
 
-.description .row span{
+span{
   color: crimson;
 }
 

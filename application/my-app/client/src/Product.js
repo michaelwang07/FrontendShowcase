@@ -22,6 +22,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Alert from 'react-bootstrap/Alert';
 import { useState } from "react";
 import Footer from "./Footer";
+import { Button} from 'react-bootstrap';
 
 class Product extends React.Component{
 
@@ -80,7 +81,7 @@ class Product extends React.Component{
        
       const Example = () => (
       <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-         <button className="message" variant="success">Message Seller</button>
+         <Button className="message" variant="success">Message Seller</Button>
       </OverlayTrigger>
       );
 
