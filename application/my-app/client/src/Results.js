@@ -140,7 +140,7 @@ function Results() {
         <div className="grid">
             {userList.map((val, key) => {
                 return <div>
-                    <Card style={{ width: '34rem'}} key={key} className="box">
+                    <Card style={{ width: '32rem'}} key={key} className="box">
                     <a href="/Product">
                     <Card.Img className="resultImage" href="/Product" variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
                     </a>
