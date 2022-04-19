@@ -20,8 +20,7 @@ import {Card} from "react-bootstrap";
 import {Button} from "react-bootstrap";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import { Dropdown } from "react-bootstrap";
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import Col from 'react-bootstrap/Col'
 
 function Results() {
     
@@ -67,8 +66,8 @@ function Results() {
     }
 
     const Example = () => (
-        <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-           <Button className="message" variant="success">Message Seller</Button>
+        <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+           <Button size="lg" className="buttons ms-5" variant="success">Message Seller</Button>
         </OverlayTrigger>
     );
 
@@ -79,11 +78,17 @@ function Results() {
             Telephone: 111-111-1111
          </Popover.Header>
          <Popover.Body>
-            <DropdownButton variant="muted" id="dropdown-basic-button" title="Select Exchange Location">
+            <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
+                <option value ="books">Select Exchange Location</option>
+                <option value ="books">Student Center</option>
+                <option value ="books">Main Library</option>
+                <option value ="books">Police Station</option>
+            </Form.Select>
+            {/* <DropdownButton variant="success" id="dropdown-basic-button" title="Select Exchange Location">
             <Dropdown.Item href="#/action-1">Student Center</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Main Library</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Police Station</Dropdown.Item>
-            </DropdownButton>
+            </DropdownButton> */}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="send" onClick={() => this.state2.visible}>Send Message</button>
         </Popover.Body>
@@ -113,9 +118,9 @@ function Results() {
             <div>
                 <Form className="d-flex" onChange={(event) => {setPName(event.target.value);}}>
                     <Form.Group>
-                        <Form.Control className="searchBar" type="text"/>
+                        <Form.Control className="searchBar" type="text" size="lg"/>
                     </Form.Group>
-                    <Button variant="outline-success" onClick={getUsers}>Search</Button>
+                    <Button size="lg" variant="outline-success" onClick={getUsers}>Search</Button>
                     {/* <FormControl
                     type="search"
                     placeholder="Search"
@@ -135,20 +140,22 @@ function Results() {
         <div className="grid">
             {userList.map((val, key) => {
                 return <div>
-                    <Card style={{ width: '18rem'}} key={key} className="box">
+                    <Card style={{ width: '32rem'}} key={key} className="box">
                     <a href="/Product">
-                    <Card.Img href="/Product"variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
+                    <Card.Img className="resultImage" href="/Product" variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
                     </a>
                     <Card.Body>
                         <a href="/Product">
-                        <Card.Title>{val.pname}</Card.Title>
+                        <Card.Title><h2>{val.pname}</h2></Card.Title>
                         </a>
-                        <Card.Text>{val.pdescription}</Card.Text>
+                        {/* <Card.Text>{val.pdescription}</Card.Text> */}
                         <Card.Text>
-                            <span>Price: ${val.pprice}</span>
+                            <span><h4>Price: ${val.pprice}</h4></span>
                         </Card.Text>
-                        <Button href="/Product" variant="primary">Product Page</Button>
-                        <Example />
+                        <Col className='ms-5'>
+                            <Button size="lg" className="buttons" href="/Product" variant="primary">Product Page</Button>
+                        <Example/>
+                        </Col>
                     </Card.Body>
                     </Card>
                 </div>
