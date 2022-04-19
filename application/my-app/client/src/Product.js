@@ -17,8 +17,7 @@ import Header from "./Header";
 import { createPopper } from '@popperjs/core';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import { Dropdown } from "react-bootstrap";
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import {Form} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
 import { useState } from "react";
 import Footer from "./Footer";
@@ -68,11 +67,12 @@ class Product extends React.Component{
             Telephone: 111-111-1111
          </Popover.Header>
          <Popover.Body>
-            <DropdownButton variant="muted" id="dropdown-basic-button" title="Select Exchange Location">
-            <Dropdown.Item href="#/action-1">Student Center</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Main Library</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Police Station</Dropdown.Item>
-            </DropdownButton>
+            <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
+                <option value ="books">Select Exchange Location</option>
+                <option value ="books">Student Center</option>
+                <option value ="books">Main Library</option>
+                <option value ="books">Police Station</option>
+            </Form.Select>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="send" onClick={() => this.state2.visible}>Send Message</button>
          </Popover.Body>
