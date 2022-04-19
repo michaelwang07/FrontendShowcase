@@ -12,28 +12,47 @@
 *
 ********************************************************************/
 
-import './App.css';
+// import './App.css';
 import './Forms.css';
 import React from "react";
 import { useState } from "react";
 import Axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
+import { Form } from "react-bootstrap";
 
 function CreateUser() {
-
   // State variables to store our user information
   const [fname, setFName] = useState("");
   const [lname, setLName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+  
+  // Variable used to save redirection when routing
+  const navigate = useNavigate();
 
   // Test function to display user variables on front end
   // const displayInfo = () => {
   //   console.log(fname + lname + phone + email + userid + password);
   // };
+
+  
+   // Below function checks if password and confirm password match before pushing to backend
+   // Can be modified to include more variable checks if needed
+   const fieldValidation = () => {
+    if(confirmpassword===password){
+      console.log("passwords match");
+      // addUser(); // Function to add user to backend
+      navigate('/postconfirmation');
+    }  
+    else{
+        console.log("passwords do not match!");
+        alert("Passwords do not match! Please re-enter and try again."); 
+      }
+    };
 
   // Axios API to pass user variables to backend. 
   const addUser = () => {
@@ -52,11 +71,12 @@ function CreateUser() {
     <div className="App">
       <Header />
       <div className="information">
-
+     
         {/* Registration header */}
         <h1>Registration</h1>
 
         {/* Fields that are provided by user */}
+        <Form className="information">
         <label>First Name</label>
         <input type="text"
           onChange={(event) => { setFName(event.target.value); }} />
@@ -66,7 +86,8 @@ function CreateUser() {
           onChange={(event) => { setLName(event.target.value); }} />
 
         <label>Phone Number</label>
-        <input type="text"
+        <br/><i>(format: xxx-xxx-xxxx)</i>
+        <input type="input" value ={phone} placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           onChange={(event) => { setPhone(event.target.value); }} />
 
         <label>Email</label>
@@ -76,16 +97,22 @@ function CreateUser() {
         <label>Password</label>
         <input type="password"
           onChange={(event) => { setPassword(event.target.value); }} />
+        <label>Confirm Password </label>
+        <input type="password"
+          onChange={(event) => { setConfirmPassword(event.target.value); }} />
 
-        <form > 
-          {/* Terms and conditions checkbox */}
-          <input type="checkbox" className="checkbox" />
-          <label>By clicking, you are confirming<br></br>that you agree to this<br></br>sites Terms and Conditions.</label>
-        </form>
+        {/* Terms and conditions checkbox */}
+        <input type="checkbox" className="checkbox" />
+        <label>By clicking, you are confirming<br></br>that you agree to this<br></br>sites Terms and Conditions.</label>
+     
+        <button type="reset" value="Reset">Reset</button>
+        </Form> 
 
-        {/* Button to submit user's information to create a new account */}
-        <Link to="/postconfirmation"><button onClick={addUser}>Create Account</button></Link>
+        {/* Submit */}
+        <button onClick={fieldValidation}>Create Account</button>
 
+           
+      
       </div>
       <Footer />
     </div>

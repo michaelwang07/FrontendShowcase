@@ -5,8 +5,8 @@
 *
 * File: App.js
 *
-* Description: 
-*
+* Description: The purpose of this page is to set all routes that
+*              will be used within our project.
 *
 ********************************************************************/
 
@@ -28,6 +28,7 @@ import WilliamR from './WilliamR';
 import Homepage from './Homepage';
 import Product from './Product';
 import Dashboard from './Dashboard';
+
 
 function App() {
   return (
