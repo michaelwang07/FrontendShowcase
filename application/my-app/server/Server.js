@@ -35,6 +35,25 @@ app.post('/CreateUser', (req, res) => {
     );
 })
 
+
+app.post('/CreateItem', (req, res) => {
+    const user = 1;
+    const category = req.body.category;
+    const pname = req.body.pname;
+    const pdescription = req.body.pdescription;
+    const pprice = req.body.pprice;
+    const pimg = req.body.pimg;
+    db.query('INSERT INTO Items (user, category, pname, pdescription, pprice, pimg) VALUES (?,?,?,?,?,?)', 
+    [user, category, pname, pdescription, pprice, pimg], (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            res.send("Values Inserted");
+        }
+    }
+    );
+})
+
 // Axios GET API call to pull last three posts to be displayed on Home
 app.get('/LastThree',(request,response)=>{
     db.query("SELECT * FROM Products ORDER BY pid DESC LIMIT 3",(err,result)=>{

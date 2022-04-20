@@ -87,7 +87,7 @@ function CreateUser() {
 
         <label>Phone Number</label>
         <br/><i>(format: xxx-xxx-xxxx)</i>
-        <input type="input" value ={phone} placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        <input type="input" placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           onChange={(event) => { setPhone(event.target.value); }} />
 
         <label>Email</label>
