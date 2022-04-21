@@ -24,31 +24,24 @@
 ## You may store the most of the above in this README.md file. DO NOT Store the SSH key or any keys in this README.md file.
 
 
-1.Database Connection name:inlaid-crane-341607:us-west2:team6mysql
-2.Database IP: 34.94.242.160
-3.Database port: 3306
-4.Database Password: Team6password
-5.Database Name for Products: Team6
-6.Database Name in gcloud console: team6mysql 
-7.Database Username: root
+1.Database Connection name:inlaid-crane-341607:us-west2:team6mysql  
+2.Database IP: 34.94.242.160  
+3.Database port: 3306  
+4.Database Password: Team6password  
+5.Database Name for Products: Team6  
+6.Database Name in gcloud console: team6mysql  
+7.Database Username: root  
 
-Instructions to SSH into the server
+Instructions to SSH into the server  
 
 1.Using PuTTY put the server IP into the Host Name (or IP address) bar and set port to 22.  
 2. navigate to SSH then Auth and put the private key in the private key file bar  
 3. Open with PuTTY  
 4. put team6 for username and you are in  
 
-Instructions to SSL into mySQL 
-
-1. Put hostname to 34.94.242.160
-2. Put port as 3306
-3. Username is root
-4. Store password as Team6password
-5.Switch to SSL tab the key file is the client-key.pem
-6.the Cert File is client-cert.pem
-7. The SSL CA file is the server-ca.pem
-
-You may also run the following command to SSL directly into the Database:
-
-mysql -uroot -p -h 34.94.242.160 --ssl-ca=server-ca.pem --ssl-cert=client-cert.pem --ssl-key=client-key.pem
+Instructions to connect to mySQL Database  
+  
+1.After successfully SSH into the server run the command ~$ mysql -h 10.55.224.3 -u root -p  
+2.Then input the password: Team6password  
+3.to view the databases run the command show databases;  
+4.run the command `USE Team6` to start working with the database  
