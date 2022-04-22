@@ -7,36 +7,58 @@
 *
 * Description: This file allows the user to create an account with our
 * web app by having them provide their information such as name, phone
-* number, email, SFSU ID, and password.
+* number, email, and password.
 *
 *
 ********************************************************************/
 
-import './App.css';
+// import './App.css';
 import './Forms.css';
 import React from "react";
 import { useState } from "react";
 import Axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
+import { Form } from "react-bootstrap";
 
 function CreateUser() {
-
-  const [name, setName] = useState("");
+  // State variables to store our user information
+  const [fname, setFName] = useState("");
+  const [lname, setLName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [userid, setID] = useState(0);
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+  
+  // Variable used to save redirection when routing
+  const navigate = useNavigate();
 
+  // Test function to display user variables on front end
   // const displayInfo = () => {
-  //   console.log(name + phone + email + userid + password);
+  //   console.log(fname + lname + phone + email + userid + password);
   // };
 
+  
+   // Below function checks if password and confirm password match before pushing to backend
+   // Can be modified to include more variable checks if needed
+   const fieldValidation = () => {
+    if(confirmpassword===password){
+      console.log("passwords match");
+      // addUser(); // Function to add user to backend
+      navigate('/postconfirmation');
+    }  
+    else{
+        console.log("passwords do not match!");
+        alert("Passwords do not match! Please re-enter and try again."); 
+      }
+    };
+
+  // Axios API to pass user variables to backend. 
   const addUser = () => {
     Axios.post('http://localhost:3001/CreateUser', {
-      userid: userid,
-      name: name,
+      fname: fname,
+      lname: lname,
       phone: phone,
       email: email,
       password: password
@@ -48,34 +70,49 @@ function CreateUser() {
   return (
     <div className="App">
       <Header />
-      {/* Results page button that links to results page */}
-      {/* <Link to="/results"><button>Results Page</button></Link> */}
       <div className="information">
+     
         {/* Registration header */}
         <h1>Registration</h1>
+
         {/* Fields that are provided by user */}
-        <label>Name</label>
+        <Form className="information">
+        <label>First Name</label>
         <input type="text"
-          onChange={(event) => { setName(event.target.value); }} />
+          onChange={(event) => { setFName(event.target.value); }} />
+
+        <label>Last Name</label>
+        <input type="text"
+          onChange={(event) => { setLName(event.target.value); }} />
+
         <label>Phone Number</label>
-        <input type="text"
+        <br/><i>(format: xxx-xxx-xxxx)</i>
+        <input type="input" placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           onChange={(event) => { setPhone(event.target.value); }} />
+
         <label>Email</label>
         <input type="email"
           onChange={(event) => { setEmail(event.target.value); }} />
-        <label>Student ID</label>
-        <input type="number"
-          onChange={(event) => { setID(event.target.value); }} />
+
         <label>Password</label>
         <input type="password"
           onChange={(event) => { setPassword(event.target.value); }} />
-        <form >
-          {/* Terms and conditions checkbox */}
-          <input type="checkbox" class="checkbox" />
-          <label>By clicking, you are confirming<br></br>that you agree to this<br></br>sites Terms and Conditions.</label>
-        </form>
-        {/* Button to submit user's information to create a new account */}
-        <Link to="/postconfirmation"><button onClick={addUser}>Create Account</button></Link>
+        <label>Confirm Password </label>
+        <input type="password"
+          onChange={(event) => { setConfirmPassword(event.target.value); }} />
+
+        {/* Terms and conditions checkbox */}
+        <input type="checkbox" className="checkbox" />
+        <label>By clicking, you are confirming<br></br>that you agree to this<br></br>sites Terms and Conditions.</label>
+     
+        <button type="reset" value="Reset">Reset</button>
+        </Form> 
+
+        {/* Submit */}
+        <button onClick={fieldValidation}>Create Account</button>
+
+           
+      
       </div>
       <Footer />
     </div>

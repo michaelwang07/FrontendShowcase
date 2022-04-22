@@ -39,7 +39,7 @@ function PostConfirmation() {
             <div className="information">
                 {/* Post Preview header */}
                 <h1>Post Preview</h1>
-                <p class="preview">This post may take up to 24 hours for an Admin to accept.</p>
+                <p className="preview">This post may take up to 24 hours for an Admin to accept.</p>
                 {/* Button to confirm user's post */}
                 <button>Confirm Post</button>
             </div>
