@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import { Form } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 
 function CreateUser() {
   // State variables to store our user information
@@ -32,7 +32,6 @@ function CreateUser() {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
 
-  
   // Variable used to save redirection when routing
   const navigate = useNavigate();
 
@@ -41,21 +40,37 @@ function CreateUser() {
   //   console.log(fname + lname + phone + email + userid + password);
   // };
 
-  
-   // Below function checks if password and confirm password match before pushing to backend
-   // Can be modified to include more variable checks if needed
-   const fieldValidation = () => {
-    if(confirmpassword===password){
+
+  // Below function checks if password and confirm password match before pushing to backend
+  // Can be modified to include more variable checks if needed
+  const fieldValidation = () => {
+    if (confirmpassword === password) {
       console.log("passwords match");
       // addUser(); // Function to add user to backend
-      navigate('/postconfirmation');
-    }  
-    else{
-        console.log("passwords do not match!");
-        alert("Passwords do not match! Please re-enter and try again."); 
-      }
-    };
+      //navigate('/postconfirmation');
+    }
+    else {
+      console.log("passwords do not match!");
+      alert("Passwords do not match! Please re-enter and try again.");
+    }
+  };
 
+  function checkFunction() {
+    if ((document.getElementById("check")).checked) {
+      alert("The checkbox is checked");
+    }
+    else {
+      alert("The checkbox is not checked")
+    }
+  }
+
+  // const validateEmail = (email) => {
+  //   return String(email)
+  //     .toLowerCase()
+  //     .match(
+  //       /\S+@\S+\.\S+/
+  //     )
+  // }
 
   // Axios API to pass user variables to backend. 
   const addUser = () => {
@@ -80,41 +95,49 @@ function CreateUser() {
 
         {/* Fields that are provided by user */}
         <Form className="information">
+          {/* First Name */}
+          <label>*First Name</label>
+          <input type="text" required
+            oninvalid="this.setCustomValidity('Enter User Name Here')"
+            oninput="this.setCustomValidity('')"
+            onChange={(event) => { setFName(event.target.value); }} />
 
-        <label>First Name</label>
-        <input type="text"
-          onChange={(event) => { setFName(event.target.value); }} />
+          {/* Last Name */}
+          <label>*Last Name</label>
+          <input type="text" required
+            onChange={(event) => { setLName(event.target.value); }} />
 
-        <label>Last Name</label>
-        <input type="text"
-          onChange={(event) => { setLName(event.target.value); }} />
+          {/* Phone Number */}
+          <label>*Phone Number</label>
+          {/* <br /><span class="phoneFormat">(format: xxx-xxx-xxxx)</span> */}
+          <input type="input" placeholder="e.g. xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            onChange={(event) => { setPhone(event.target.value); }} required />
+          <span class="disclaimer" >*Phone numbers are only used if an issue occurs</span>
 
-        <label>Phone Number</label>
-        <br/><i>(format: xxx-xxx-xxxx)</i>
-        <input type="input" placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          onChange={(event) => { setPhone(event.target.value); }} />
+          {/* Email */}
+          <label>*Email</label>
+          <input type="email" id="email" pattern="[A-Za-z]{1,15}@mail.sfsu.edu" placeholder="gator@mail.sfsu.edu"
+            onChange={(event) => { setEmail(event.target.value); }} required="required" />
 
-        <label>Email</label>
-        <input type="email"
-          onChange={(event) => { setEmail(event.target.value); }} />
+          {/* Password/Confirm Password */}
+          <label>*Password</label>
+          <input type="password" required
+            onChange={(event) => { setPassword(event.target.value); }} />
+          <label>*Confirm Password </label>
+          <input type="password" required
+            onChange={(event) => { setConfirmPassword(event.target.value); }} />
 
-        <label>Password</label>
-        <input type="password"
-          onChange={(event) => { setPassword(event.target.value); }} />
-        <label>Confirm Password </label>
-        <input type="password"
-          onChange={(event) => { setConfirmPassword(event.target.value); }} />
+          {/* Terms and conditions checkbox */}
+          <label class="container">By clicking, you are agreeing <br></br> to this sites&nbsp;
+            <Link to="">Terms and Conditions.</Link>
+            <input type="checkbox" id="check" onclick="checkFunction()" required="required" />
+            <span class="checkmark"></span>
+          </label>
 
-        {/* Terms and conditions checkbox */}
-        <input type="checkbox" className="checkbox" />
-        <label>By clicking, you are confirming<br></br>that you agree to this<br></br>sites Terms and Conditions.</label>
-     
-        <button type="reset" value="Reset">Reset</button>
-        </Form> 
-
-        {/* Submit */}
-        <button onClick={fieldValidation}>Create Account</button>
-
+          <button type="reset" value="Reset">Reset</button>
+          {/* Submit */}
+          <button onClick={fieldValidation}>Create Account</button>
+        </Form>
       </div>
       <Footer />
     </div>
