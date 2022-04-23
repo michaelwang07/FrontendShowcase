@@ -82,12 +82,15 @@ function CreatePost() {
         {/* Create Post Header */}
         <h1>Create Posting</h1>
         <Form className="information">
+
+
           <label>Product Name</label>
           <input type="text"
             onChange={(event) => { setPName(event.target.value); }} />
           <label>Category</label>
           {/* Drop down to select category */}
           <div className="dropDown">
+
             <Form.Select>
               <option value="None">None</option>
               <option value="books" onClick={(event) => { setCategory(1); }}>Books</option>
@@ -96,6 +99,8 @@ function CreatePost() {
               <option value="furniture" onClick={(event) => { setCategory(4); }}>Furniture</option>
             </Form.Select>
           </div>
+
+
           <label>Product Description</label>
           <input type="text"
             onChange={(event) => { setDescription(event.target.value); }} />
@@ -107,6 +112,7 @@ function CreatePost() {
           <div className="fileBox">
             <input type="file" className="browse"
               onChange={(event) => { uploadImage(event); }} />
+
           </div>
 
            <button type="reset" value="Reset">Reset</button>

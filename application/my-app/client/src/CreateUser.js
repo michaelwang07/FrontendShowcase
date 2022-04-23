@@ -1,5 +1,5 @@
 /********************************************************************
-* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
 * Author(s):  Michael Davichick, Michael Almeda
 * Team: 06 
 *
@@ -22,6 +22,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { Form } from "react-bootstrap";
 
+
 function CreateUser() {
   // State variables to store our user information
   const [fname, setFName] = useState("");
@@ -30,6 +31,7 @@ function CreateUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
+
   
   // Variable used to save redirection when routing
   const navigate = useNavigate();
@@ -54,6 +56,7 @@ function CreateUser() {
       }
     };
 
+
   // Axios API to pass user variables to backend. 
   const addUser = () => {
     Axios.post('http://localhost:3001/CreateUser', {
@@ -71,12 +74,13 @@ function CreateUser() {
     <div className="App">
       <Header />
       <div className="information">
-     
+
         {/* Registration header */}
         <h1>Registration</h1>
 
         {/* Fields that are provided by user */}
         <Form className="information">
+
         <label>First Name</label>
         <input type="text"
           onChange={(event) => { setFName(event.target.value); }} />
@@ -111,13 +115,9 @@ function CreateUser() {
         {/* Submit */}
         <button onClick={fieldValidation}>Create Account</button>
 
-           
-      
       </div>
       <Footer />
     </div>
-
-
   );
 }
 
