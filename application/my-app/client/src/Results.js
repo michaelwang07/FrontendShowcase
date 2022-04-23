@@ -23,7 +23,8 @@ function Results() {
     const [ptag, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
     useEffect(() => {
-        getRecentPosts();
+        getRecentPosts();// This will return all backend results to userlist.
+        //Slice the array so that it only includes the last three indexs.
     });
 
     // store all db results within a list
@@ -31,7 +32,7 @@ function Results() {
     const [userList, setUserList] = useState([]);
 
 
-    // TODO replace with recentposts API endpoint (or parameters)
+    // TODO replace with recentposts API from backend
     async function getRecentPosts() {
         const response = await Axios.get('http://localhost:3001/Products',
         {
