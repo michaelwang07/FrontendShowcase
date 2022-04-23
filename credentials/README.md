@@ -23,9 +23,14 @@
 ## <strong>Failure to do so will result it points be deducted from milestone submissions.</strong><br>
 ## You may store the most of the above in this README.md file. DO NOT Store the SSH key or any keys in this README.md file.
 
+1. Server Url: https://inlaid-crane-341607.uc.r.appspot.com/  
+2. Server IP: 34.125.172.95  
+3. Server username: team6  
+4. port for SSH: 22  
+5. SSH Key: located in csc648-03-sp22-team06\credentials\team6_privatekey.ppk  
 
 1.Database Connection name:inlaid-crane-341607:us-west2:team6mysql  
-2.Database IP: 34.94.242.160  
+2.Database IP: 10.55.224.3  
 3.Database port: 3306  
 4.Database Password: Team6password  
 5.Database Name for Products: Team6  
