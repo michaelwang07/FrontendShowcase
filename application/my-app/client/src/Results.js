@@ -11,40 +11,38 @@
 **/
 
 import './App.css';
-import React, { useEffect } from "react";
-import {useState} from "react";
+import React from "react";
+import {useState,useEffect} from "react";
 import Axios from "axios";
 // import {Link} from "react-router-dom";
-import {Form} from "react-bootstrap";
+import {Form, FormControl} from "react-bootstrap";
 import {Card} from "react-bootstrap";
 import {Button} from "react-bootstrap";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import Col from 'react-bootstrap/Col'
 
 function Results() {
+    
     const [ptag, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
-    useEffect(() => {
-        getRecentPosts();// This will return all backend results to userlist.
-        //Slice the array so that it only includes the last three indexs.
-    });
 
     // store all db results within a list
     // useState stores userList as a list variable check react states for more info
     const [userList, setUserList] = useState([]);
+    
+    useEffect(() => {
+        getRecentPosts();
+      }, []);
 
-
-    // TODO replace with recentposts API from backend
-    async function getRecentPosts() {
-        const response = await Axios.get('http://localhost:3001/Products',
+    async function getRecentPosts(){
+        const response = await Axios.get('http://localhost:3001/LastThree',
         {
-            params: {
-                ptag: ptag,
-                pname: pname,
-            }
+            
         });
         // stores returned values into list
         setUserList(response.data);
-    }
-
+    };
 
     // API call to retreive backend
     async function getUsers (){
@@ -67,37 +65,97 @@ function Results() {
         }
     }
 
+    const Example = () => (
+        <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+           <Button size="lg" className="buttons ms-5" variant="success">Message Seller</Button>
+        </OverlayTrigger>
+    );
+
+    const popover = (
+    <Popover id="popover-basic">
+        <Popover.Header>
+            Name: John Doe<br />
+            Telephone: 111-111-1111
+         </Popover.Header>
+         <Popover.Body>
+            <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
+                <option value ="books">Select Exchange Location</option>
+                <option value ="books">Student Center</option>
+                <option value ="books">Main Library</option>
+                <option value ="books">Police Station</option>
+            </Form.Select>
+            {/* <DropdownButton variant="success" id="dropdown-basic-button" title="Select Exchange Location">
+            <Dropdown.Item href="#/action-1">Student Center</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Main Library</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Police Station</Dropdown.Item>
+            </DropdownButton> */}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="send" onClick={() => this.state2.visible}>Send Message</button>
+        </Popover.Body>
+    </Popover>
+    );
 
     // Find a way to display getUsers without needing onClick for default display
     return (
     <div>
         {/* <Link to ="/"><button>Create User</button></Link> */}
+        
+        <h3 className="homeHeader">GatorBay helps SFSU Students, Staff, and Faculty to obtain
+        Books, Clothes, Electronics, and Furniture</h3>
 
-        <h3 className="text-center">GatorBay helps SFSU Students, Staff, and Faculty to obtain Books, Clothes, Electronics, and Furniture</h3>
 
-        {/* Drop Down */}
-        <div className="input-group">
-            <Form.Select>
-            <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
-            <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
-            <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
-            <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
-            </Form.Select>
+        <div className="inputGroup">
+            {/* Drop Down */}
+            <div>
+                <Form.Select className="formSelect">
+                <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
+                <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
+                <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
+                <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
+                </Form.Select>
+            </div>
             {/* Search Bar */}
-            <input type="search" onChange={(event) => {setPName(event.target.value);}} className="form-control search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" className="search.btn" onClick={getUsers}>search</button>
+            <div>
+                <Form className="d-flex" onChange={(event) => {setPName(event.target.value);}}>
+                    <Form.Group>
+                        <Form.Control className="searchBar" type="text" size="lg"/>
+                    </Form.Group>
+                    <Button size="lg" variant="outline-success" onClick={getUsers}>Search</Button>
+                    {/* <FormControl
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    /> */}
+                </Form>
+            </div>
+            
+            {/* <input type="search" className="searchBar" onChange={(event) => {setPName(event.target.value);}} placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <div>
+                <button type="button" className="searchButton" onClick={getUsers}>search</button>
+            </div> */}
         </div>
 
         {/* Below function maps our list to readable format */}
+        <h3 className="searchResults">{userList.length} results</h3>
         <div className="grid">
             {userList.map((val, key) => {
                 return <div>
-                    <Card style={{ width: '18rem'}} key={key} className="box">
-                    <Card.Img variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
+                    <Card style={{ width: '32rem'}} key={key} className="box">
+                    <a href="/Product">
+                    <Card.Img className="resultImage" href="/Product" variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
+                    </a>
                     <Card.Body>
-                        <Card.Title>{val.pname}</Card.Title>
-                        <Card.Text>{val.pdescription}</Card.Text>
-                        <Button href="/Product" variant="primary">Product Page</Button>
+                        <a href="/Product">
+                        <Card.Title><h2>{val.pname}</h2></Card.Title>
+                        </a>
+                        {/* <Card.Text>{val.pdescription}</Card.Text> */}
+                        <Card.Text>
+                            <span><h4>Price: ${val.pprice}</h4></span>
+                        </Card.Text>
+                        <Col className='ms-5'>
+                            <Button size="lg" className="buttons" href="/Product" variant="primary">Product Page</Button>
+                        <Example/>
+                        </Col>
                     </Card.Body>
                     </Card>
                 </div>

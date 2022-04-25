@@ -48,33 +48,44 @@ function CreatePost() {
       <div className="information">
         {/* Create Post Header */}
         <h1>Create Posting</h1>
-        <label>Title</label>
-        <input type="text"
-          onChange={(event) => { setTitle(event.target.value); }} />
-        <label>Category</label>
-        {/* Drop down to select category */}
-        <Form.Select class="dropDown">
-          <option value="books" onClick={(event) => { setCategory("books"); }}>Books</option>
-          <option value="clothing" onClick={(event) => { setCategory("clothing"); }}>Clothing</option>
-          <option value="electronics" onClick={(event) => { setCategory("electronics"); }}>Electronics</option>
-          <option value="furniture" onClick={(event) => { setCategory("furniture"); }}>Furniture</option>
-        </Form.Select>
-        <label>Description</label>
-        <input type="email"
-          onChange={(event) => { setDescription(event.target.value); }} />
-        <label>Price</label>
-        <input type="number"
-          onChange={(event) => { setPrice(event.target.value); }} />
-        <label>Photo</label>
-        <input type="text"
-          onChange={(event) => { setPhoto(event.target.value); }} />
+        <Form className="information">
+          {/* Titles */}
+          <label>Title</label>
+          <input type="text"
+            onChange={(event) => { setTitle(event.target.value); }} />
+          {/* Categories */}
+          <label>Category</label>
+          {/* Drop down to select a category */}
+          <div class="dropDown">
+            <Form.Select>
+              <option value="None">None</option>
+              <option value="books" onClick={(event) => { setCategory("books"); }}>Books</option>
+              <option value="clothing" onClick={(event) => { setCategory("clothing"); }}>Clothing</option>
+              <option value="electronics" onClick={(event) => { setCategory("electronics"); }}>Electronics</option>
+              <option value="furniture" onClick={(event) => { setCategory("furniture"); }}>Furniture</option>
+            </Form.Select>
+          </div>
+          {/* Description */}
+          <label>Description</label>
+          <input type="email"
+            onChange={(event) => { setDescription(event.target.value); }} />
+          {/* Price */}
+          <label>Price</label>
+          <input type="number"
+            onChange={(event) => { setPrice(event.target.value); }} />
+          {/* Photo */}
+          <label class="photo">Photo</label>
+          <div class="fileBox">
+            <input type="file" class="browse"
+              onChange={(event) => { setPhoto(event.target.value); }} />
+          </div>
           {/* Button to create post */}
-        <Link to="/signin"><button>Create Post</button></Link>
+          <Link to="/signin"><button>Create Post</button></Link>
+          <button type="reset" value="Reset">Reset</button>
+        </Form>
       </div>
       <Footer />
     </div>
-
-
   );
 }
 
