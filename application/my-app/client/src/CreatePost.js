@@ -49,10 +49,12 @@ function CreatePost() {
         {/* Create Post Header */}
         <h1>Create Posting</h1>
         <Form className="information">
+
           {/* Titles */}
           <label>Title</label>
           <input type="text"
             onChange={(event) => { setTitle(event.target.value); }} />
+
           {/* Categories */}
           <label>Category</label>
           {/* Drop down to select a category */}
@@ -65,14 +67,17 @@ function CreatePost() {
               <option value="furniture" onClick={(event) => { setCategory("furniture"); }}>Furniture</option>
             </Form.Select>
           </div>
+
           {/* Description */}
           <label>Description</label>
           <input type="email"
             onChange={(event) => { setDescription(event.target.value); }} />
+
           {/* Price */}
           <label>Price</label>
           <input type="number"
             onChange={(event) => { setPrice(event.target.value); }} />
+
           {/* Photo */}
           <label class="photo">Photo</label>
           <div class="fileBox">

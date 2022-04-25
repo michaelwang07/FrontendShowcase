@@ -1,5 +1,5 @@
 /********************************************************************
-* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
 * Author(s):  Michael Davichick, Michael Almeda
 * Team: 06 
 *
@@ -55,6 +55,15 @@ function CreateUser() {
     }
   };
 
+  function checkFunction() {
+    if ((document.getElementById("check")).checked) {
+      alert("The checkbox is checked");
+    }
+    else {
+      alert("The checkbox is not checked")
+    }
+  }
+
   // const validateEmail = (email) => {
   //   return String(email)
   //     .toLowerCase()
@@ -86,57 +95,52 @@ function CreateUser() {
 
         {/* Fields that are provided by user */}
         <Form className="information">
-          <label>First Name</label>
-          <input type="text"
+          {/* First Name */}
+          <label>*First Name</label>
+          <input type="text" required
+            oninvalid="this.setCustomValidity('Enter User Name Here')"
+            oninput="this.setCustomValidity('')"
             onChange={(event) => { setFName(event.target.value); }} />
 
-          <label>Last Name</label>
-          <input type="text"
+          {/* Last Name */}
+          <label>*Last Name</label>
+          <input type="text" required
             onChange={(event) => { setLName(event.target.value); }} />
 
-          <label>Phone Number</label>
-          <br /><i>(format: xxx-xxx-xxxx)</i>
-          <input type="input" placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            onChange={(event) => { setPhone(event.target.value); }} />
+          {/* Phone Number */}
+          <label>*Phone Number</label>
+          {/* <br /><span class="phoneFormat">(format: xxx-xxx-xxxx)</span> */}
+          <input type="input" placeholder="e.g. xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            onChange={(event) => { setPhone(event.target.value); }} required />
+          <span class="disclaimer" >*Phone numbers are only used if an issue occurs</span>
 
-          <label>Email</label>
+          {/* Email */}
+          <label>*Email</label>
           <input type="email" id="email" pattern="[A-Za-z]{1,15}@mail.sfsu.edu" placeholder="gator@mail.sfsu.edu"
-            onChange={(event) => { setEmail(event.target.value); }} />
+            onChange={(event) => { setEmail(event.target.value); }} required="required" />
 
-          <label>Password</label>
-          <input type="password"
+          {/* Password/Confirm Password */}
+          <label>*Password</label>
+          <input type="password" required
             onChange={(event) => { setPassword(event.target.value); }} />
-          <label>Confirm Password </label>
-          <input type="password"
+          <label>*Confirm Password </label>
+          <input type="password" required
             onChange={(event) => { setConfirmPassword(event.target.value); }} />
 
           {/* Terms and conditions checkbox */}
-
-          <label>By clicking, you are confirming that you agree to this sites&nbsp;
+          <label class="container">By clicking, you are agreeing <br></br> to this sites&nbsp;
             <Link to="">Terms and Conditions.</Link>
-            <input type="checkbox" className="checkbox" required />
+            <input type="checkbox" id="check" onclick="checkFunction()" required="required" />
+            <span class="checkmark"></span>
           </label>
 
           <button type="reset" value="Reset">Reset</button>
-          <button type="submit"
-            onClick={() => {
-              fieldValidation();
-              // validateEmail();
-            }}>
-            Create Account
-          </button>
+          {/* Submit */}
+          <button onClick={fieldValidation}>Create Account</button>
         </Form>
-
-        {/* Submit */}
-        {/* <button onClick={fieldValidation}>Create Account</button> */}
-
-
-
       </div>
       <Footer />
     </div>
-
-
   );
 }
 
