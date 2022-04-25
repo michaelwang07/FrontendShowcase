@@ -14,6 +14,7 @@
 
 import './Forms.css';
 import Axios from "axios";
+import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -24,11 +25,11 @@ function SignIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState([]); // Store a single user that matches params if valid
+  const [userID, setUserID] = useState(-1); // Store a single user that matches params if valid
+  const [userName, setUsername] = useState("");
 
   // Variable used to save redirection when routing
   const navigate = useNavigate();
-
 
     // Axios GET API Call to retrieve user
       async function SignIn (){
@@ -39,25 +40,34 @@ function SignIn() {
                 password: password
             }
         });
-        // stores returned values into list
-        setUser(response.data);
+        console.log(userID);
+        // An invalid response will return an empty array of size 0
+        if (response.data.length > 0){ // Confirming the size > 0 ensures we have a valid response
+          setUserID(response.data[0].uid);
+          setUsername(response.data[0].fname);
+        }
     };
 
     const verifyUser = () => {
       // Send our User Parameters to the backend for retrieval
       SignIn();
       // If our user List is not null, then there was a successful match between user login and backend
-      if(user!== null){
-        console.log("success");
-        // Once in this scope, our user has been logged in and we can add them to the session
-        sessionStorage.setItem("id", user[0].uid); // User ID is a unique key in Users Table to identify individual users
-        sessionStorage.setItem("loggedIn","true"); // loggedIn is a boolean value used to change CSS properties when logged in
-        navigate('/postconfirmation'); // Once logged in, we can navigate to another page
-      }
-      else {  // Else invalid login, prompt user to try again 
-        // console.log("passwords do not match!");
-        alert("Email or Password was invalid, Please try again.");
-      }
+      setTimeout(function(){
+        if(userID>=0){
+          console.log("success");
+          console.log("User name: " + userName);
+          console.log("User ID " + userID);
+          // Once in this scope, our user has been logged in and we can add them to the session
+          sessionStorage.setItem("id", userID); // User ID is a unique key in Users Table to identify individual users
+          sessionStorage.setItem("fname", userName);
+          sessionStorage.setItem("loggedIn","true"); // loggedIn is a boolean value used to change CSS properties when logged in
+          // navigate('/postconfirmation'); // Once logged in, we can navigate to another page
+        }
+        if (userID < 0){ // Else invalid login, prompt user to try again 
+          // console.log("passwords do not match!");
+          alert("Email or Password was invalid, Please try again.");
+        }
+      }, 1000);
     };
 
    // Test function to display user variables on front end
@@ -80,7 +90,7 @@ function SignIn() {
         <label>Password</label>
         <input type="password"
           onChange={(event) => { setPassword(event.target.value); }} />
-        <button onClick={displayInfo}>Sign In</button>
+        <button onClick={verifyUser}>Sign In</button>
         <Link to="">Forgot Password?</Link>
         {/* Link to create an account if user doesn't already have one */}
         <div className="pointer">
