@@ -81,12 +81,15 @@ function CreatePost() {
           {/* Photo */}
           <label class="photo">Photo</label>
           <div class="fileBox">
-            <input type="file" class="browse"
+            <input type="file" class="browse"  
               onChange={(event) => { setPhoto(event.target.value); }} />
           </div>
+
           {/* Button to create post */}
-          <Link to="/signin"><button>Create Post</button></Link>
-          <button type="reset" value="Reset">Reset</button>
+          <div class="btn-group">
+            <button type="reset" value="Reset">Reset</button>
+            <Link to="/signin"><button>Create Post</button></Link>
+          </div>
         </Form>
       </div>
       <Footer />
