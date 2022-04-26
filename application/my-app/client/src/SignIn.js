@@ -1,6 +1,6 @@
 /********************************************************************
 * Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
-* Author(s):  Michael Almeda
+* Author(s):  Michael Almeda, Michael Davichick
 * Team: 06 
 *
 * File: SignIn.js

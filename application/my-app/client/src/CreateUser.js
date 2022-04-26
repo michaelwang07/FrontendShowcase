@@ -91,7 +91,7 @@ function CreateUser() {
       <div className="information">
 
         {/* Registration header */}
-        <h1>Registration</h1>
+        <h1>Sign Up</h1>
 
         {/* Fields that are provided by user */}
         <Form className="information">
@@ -134,9 +134,12 @@ function CreateUser() {
             <span class="checkmark"></span>
           </label>
 
-          <button type="reset" value="Reset">Reset</button>
-          {/* Submit */}
-          <button onClick={fieldValidation}>Create Account</button>
+          {/* Sign up and cancel buttons */}
+          <div class="btn-group">
+            <button type="reset" value="Reset">Cancel</button>
+            {/* Submit */}
+            <button onClick={fieldValidation}>Sign Up</button>
+          </div>
         </Form>
       </div>
       <Footer />
