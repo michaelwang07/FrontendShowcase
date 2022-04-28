@@ -88,7 +88,7 @@ function CreatePost() {
           {/* Button to create post */}
           <div class="btn-group">
             <button type="reset" value="Reset">Reset</button>
-            <Link to="/signin"><button>Create Post</button></Link>
+            <Link to="/postconfirmation"><button>Create Post</button></Link>
           </div>
         </Form>
       </div>

@@ -14,10 +14,11 @@
 import './App.css';
 import './Forms.css';
 import Axios from "axios";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
+import UserProfile from "./UserProfile";
 
 function PostConfirmation() {
 
@@ -31,20 +32,34 @@ function PostConfirmation() {
         });
     };
 
+    const loggedIn = () => {
+        const id = UserProfile.getID();
+        if(id != null) {
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+
     return (
-        <div className="App">
-            <Header />
-            {/* Results page button that links to results page */}
-            {/* <Link to="/results"><button>Results Page</button></Link> */}
-            <div className="information">
-                {/* Post Preview header */}
-                <h1>Post Preview</h1>
-                <p className="preview">This post may take up to 24 hours for an Admin to accept.</p>
-                {/* Button to confirm user's post */}
-                <button>Confirm Post</button>
-            </div>
-            <Footer />
-        </div>
+        !loggedIn() ?
+            <Navigate to={'/signin'} replace state = {{ 'referrer':'/createpost' }}/> :
+            (<div className="App">
+                <Header />
+                {/* Results page button that links to results page */}
+                {/* <Link to="/results"><button>Results Page</button></Link> */}
+                <div className="information">
+                    {/* Post Preview header */}
+                    <h1>Post Preview</h1>
+                    <p className="preview">This post may take up to 24 hours for an Admin to accept.</p>
+                    {/* Button to confirm user's post */}
+                    <button>Confirm Post</button>
+                </div>
+                <Footer />
+            </div>)
+
 
     );
 }
