@@ -17,7 +17,7 @@ import Axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -30,6 +30,8 @@ function SignIn() {
 
   // Variable used to save redirection when routing
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
 
     // Axios GET API Call to retrieve user
       async function SignIn (){
@@ -48,9 +50,16 @@ function SignIn() {
         }
     };
 
+    
     const verifyUser = () => {
       // Send our User Parameters to the backend for retrieval
       SignIn();
+      if (location && location.state && location.state.referrer) {
+        navigate(location.state.referrer);
+      } else {
+        navigate('/');
+      }
+
       // If our user List is not null, then there was a successful match between user login and backend
       setTimeout(function(){
         if(userID>=0){
@@ -61,7 +70,13 @@ function SignIn() {
           sessionStorage.setItem("id", userID); // User ID is a unique key in Users Table to identify individual users
           sessionStorage.setItem("fname", userName);
           sessionStorage.setItem("loggedIn","true"); // loggedIn is a boolean value used to change CSS properties when logged in
-          // navigate('/postconfirmation'); // Once logged in, we can navigate to another page
+
+          if (location && location.state && location.state.referrer) {
+            navigate(location.state.referrer);
+          } else {
+            navigate('/homepage');
+          }
+
         }
         if (userID < 0){ // Else invalid login, prompt user to try again 
           // console.log("passwords do not match!");

@@ -85,7 +85,7 @@ function CreatePost() {
               onChange={(event) => { setPhoto(event.target.value); }} />
           </div>
           {/* Button to create post */}
-          <Link to="/signin"><button>Create Post</button></Link>
+          <Link to="/postconfirmation"><button>Create Post</button></Link>
           <button type="reset" value="Reset">Reset</button>
         </Form>
       </div>
