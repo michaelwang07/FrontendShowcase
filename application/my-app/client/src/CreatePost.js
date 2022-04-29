@@ -1,6 +1,6 @@
 /********************************************************************
 * Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
-* Author(s):  Michael Almeda
+* Author(s):  Michael Almeda, Michael Davichick
 * Team: 06 
 *
 * File: CreatePost.js
@@ -22,19 +22,43 @@ import Header from "./Header";
 
 function CreatePost() {
 
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-  const [photo, setPhoto] = useState("");
+  const [pname, setPName] = useState("");
+  const [category, setCategory] = useState(0);
+  const [pdescription, setDescription] = useState("");
+  const [pprice, setPrice] = useState(0);
+  const [pimg, setPhoto] = useState("");
 
-  const addPost = () => {
-    Axios.post('http://localhost:3001/CreatePost', {
-      title: setTitle,
-      category: setCategory,
-      description: setDescription,
-      price: setPrice,
-      photo: setPhoto
+ // Below function pulls the image from the event files
+ const uploadImage = async (event) => {
+  const file = event.target.files[0];
+  const blob = await fileToBlob(file);
+  setPhoto(blob);
+ }
+
+ // Below function converts our file to type blob for back end storage
+ const fileToBlob = (file) => {
+  return new Promise((resolve,reject)=>{
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file); 
+      fileReader.onloadend = () =>{
+          resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) =>{
+          reject(error);
+      };
+  });
+};
+
+  // Axios API to pass Item variables to backend. 
+  const addItem = () => {
+    // const fd = new FormData();
+    // fd.append('image', pimg,pname);
+    Axios.post('http://localhost:3001/CreateItem', {
+      category: category,
+      pname: pname,
+      pdescription: pdescription,
+      pprice: pprice,
+      pimg: pimg,
     }).then(() => {
       console.log("success");
     });
@@ -50,10 +74,10 @@ function CreatePost() {
         <h1>Create Posting</h1>
         <Form className="information">
 
-          {/* Titles */}
+          {/* Title */}
           <label>Title</label>
-          <input type="text"
-            onChange={(event) => { setTitle(event.target.value); }} />
+          <input type="text" required="required"
+            onChange={(event) => { setPName(event.target.value); }} />
 
           {/* Categories */}
           <label>Category</label>
@@ -61,34 +85,34 @@ function CreatePost() {
           <div class="dropDown">
             <Form.Select>
               <option value="None">None</option>
-              <option value="books" onClick={(event) => { setCategory("books"); }}>Books</option>
-              <option value="clothing" onClick={(event) => { setCategory("clothing"); }}>Clothing</option>
-              <option value="electronics" onClick={(event) => { setCategory("electronics"); }}>Electronics</option>
-              <option value="furniture" onClick={(event) => { setCategory("furniture"); }}>Furniture</option>
+              <option value="books" onClick={(event) => { setCategory(1); }}>Books</option>
+              <option value="clothing" onClick={(event) => { setCategory(2); }}>Clothing</option>
+              <option value="electronics" onClick={(event) => { setCategory(3); }}>Electronics</option>
+              <option value="furniture" onClick={(event) => { setCategory(4); }}>Furniture</option>
             </Form.Select>
           </div>
 
           {/* Description */}
           <label>Description</label>
-          <input type="email"
+          <input type="email" required="required"
             onChange={(event) => { setDescription(event.target.value); }} />
 
           {/* Price */}
           <label>Price</label>
-          <input type="number"
+          <input type="number" required="required"
             onChange={(event) => { setPrice(event.target.value); }} />
 
           {/* Photo */}
           <label class="photo">Photo</label>
           <div class="fileBox">
-            <input type="file" class="browse"  
-              onChange={(event) => { setPhoto(event.target.value); }} />
+            <input type="file" class="browse" placeholder="Browse files to upload" 
+              onChange={(event) => { uploadImage(event); }} />
           </div>
 
           {/* Button to create post */}
           <div class="btn-group">
-            <button type="reset" value="Reset">Reset</button>
-            <Link to="/postconfirmation"><button>Create Post</button></Link>
+            <button type="reset" class="reset" value="Reset">Cancel</button>
+            <button onClick={addItem}>Create Post</button>
           </div>
         </Form>
       </div>
