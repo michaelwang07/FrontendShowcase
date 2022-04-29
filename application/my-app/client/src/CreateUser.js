@@ -128,7 +128,7 @@ function CreateUser() {
             onChange={(event) => { setConfirmPassword(event.target.value); }} />
 
           {/* Terms and conditions checkbox */}
-          <label class="container">By clicking, you are agreeing <br></br> to this sites&nbsp;
+          <label class="container">By checking the box, you are agreeing <br></br> to this sites&nbsp;
             <Link to="">Terms and Conditions.</Link>
             <input type="checkbox" id="check" onclick="checkFunction()" required="required" />
             <span class="checkmark"></span>
