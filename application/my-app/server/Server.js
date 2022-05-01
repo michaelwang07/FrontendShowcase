@@ -15,6 +15,24 @@ const db = mysql.createConnection({
 })
 
 
+app.post('/createMessage', (req, res) => {
+    const sender = req.body.sender;
+    const receiver = req.body.receiver;
+    const message = req.body.message;
+    const location = req.body.location
+
+    db.query('INSERT INTO Messages (sender, receiver, message, location) VALUES (?,?,?,?)', 
+    [sender, receiver, message, location], (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            res.send("Values Inserted");
+        }
+    }
+    );
+})
+
+
 // Axios POST API call to create a user in the backend
 app.post('/CreateUser', (req, res) => {
     const fname = req.body.fname;
