@@ -67,6 +67,19 @@ app.get('/SignIn',(request,response)=>{
 
 });
 
+app.get('/getMessagesTest', (request, response) => {
+    const user = request.query.user;
+    db.query("SELECT u.fname AS sender, u.email, m.message, m.post, m.time FROM Users u RIGHT JOIN Messages m on u.uid=m.sender WHERE '"+user+"'=m.receiver", (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            response.send(result);
+        }
+    })
+
+
+});
+
 
 // Axios GET API call to pull last three posts to be displayed on Home
 app.get('/LastThree',(request,response)=>{
