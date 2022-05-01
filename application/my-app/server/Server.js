@@ -2,7 +2,7 @@ const express = require ("express");
 const app = express();
 const mysql = require('mysql2');
 const cors = require ("cors");
-// const e = require("express");
+
 app.use(cors());
 app.use(express.json());
 
@@ -37,7 +37,7 @@ app.post('/CreateUser', (req, res) => {
 
 
 app.post('/CreateItem', (req, res) => {
-    const user = 1;
+    const user = req.body.user;
     const category = req.body.category;
     const pname = req.body.pname;
     const pdescription = req.body.pdescription;
