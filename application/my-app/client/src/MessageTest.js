@@ -9,8 +9,8 @@ import {useState,useEffect} from "react";
 
 function MessageTest() {
 
-  const [user1, setUser1] = useState(0);
-  const [user2, setUser2] = useState(0);
+  const [sender, setSender] = useState(0);
+  const [receiver, setReciever] = useState(0);
   const [message,setMessage] = useState("");
   const [location,setLocation] = useState("");
   const [messageListSent, setMessageListSent] = useState([]);
@@ -24,7 +24,7 @@ function MessageTest() {
 
     async function getUsers(){
       const currentUser = sessionStorage.getItem("id")
-      setUser1(currentUser)
+      setSender(currentUser)
         const response = await Axios.get('http://localhost:3001/getMessagesTest',
         {
           params: {
@@ -39,12 +39,12 @@ function MessageTest() {
 
   const createMessage = () => {
     const currentUser = sessionStorage.getItem("id")
-    setUser1(currentUser)
+    setSender(currentUser)
     // const fd = new FormData();
     // fd.append('image', pimg,pname);
     Axios.post('http://localhost:3001/createMessage', {
-      user1: user1,
-      user2: user2,
+      sender: sender,
+      receiver: receiver,
       message: message,
       location: location,
     }).then(() => {
@@ -82,10 +82,10 @@ async function getMessagesRecieved (){
           {getUsers}
           {console.log(userList)}
             <Form.Select>
-                <option value="Mike" onClick={(event) => { setUser2(1); }}>Mike</option>
-                <option value="John" onClick={(event) => { setUser2(2); }}>John</option>
-                <option value="micheal" onClick={(event) => { setUser2(3); }}>Michael</option>
-                <option value="bobby" onClick={(event) => { setUser2(4); }}>Bobby</option>
+                <option value="Mike" onClick={(event) => { setReciever(1); }}>Mike</option>
+                <option value="John" onClick={(event) => { setReciever(2); }}>John</option>
+                <option value="micheal" onClick={(event) => { setReciever(3); }}>Michael</option>
+                <option value="bobby" onClick={(event) => { setReciever(4); }}>Bobby</option>
             </Form.Select>
 </div>
 
