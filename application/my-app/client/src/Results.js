@@ -70,6 +70,11 @@ function Results() {
            <Button size="lg" className="buttons ms-5" variant="success">Message Seller</Button>
         </OverlayTrigger>
     );
+    
+    // Test function to display user variables on front end
+    const displayInfo = () => {
+        console.log("test");
+    };
 
     const popover = (
     <Popover id="popover-basic">
@@ -94,6 +99,7 @@ function Results() {
         </Popover.Body>
     </Popover>
     );
+// Test function to display user variables on front end
 
     // Find a way to display getUsers without needing onClick for default display
     return (
@@ -153,7 +159,10 @@ function Results() {
                             <span><h4>Price: ${val.pprice}</h4></span>
                         </Card.Text>
                         <Col className='ms-5'>
-                            <Button size="lg" className="buttons" href="/Product" variant="primary">Product Page</Button>
+                        {/* <Button size="lg" className="buttons" href="/Product" variant="primary">Product Page</Button> */}
+
+                        {/* The below button function will now store the product ID into sessions and navigate to a new page using href */}
+                        <Button size="lg" onClick={() => sessionStorage.setItem("post", val.pid)} className="buttons" href="/Product" variant="primary">Product Page</Button>
                         <Example/>
                         </Col>
                     </Card.Body>

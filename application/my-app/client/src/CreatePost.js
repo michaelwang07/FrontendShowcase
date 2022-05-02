@@ -27,7 +27,7 @@ function CreatePost() {
   const [pdescription, setDescription] = useState("");
   const [pprice, setPrice] = useState(0);
   const [pimg, setPhoto] = useState("");
-
+  const user = sessionStorage.getItem("id");
  // Below function pulls the image from the event files
  const uploadImage = async (event) => {
   const file = event.target.files[0];
@@ -59,6 +59,7 @@ function CreatePost() {
       pdescription: pdescription,
       pprice: pprice,
       pimg: pimg,
+      user: user,
     }).then(() => {
       console.log("success");
     });
