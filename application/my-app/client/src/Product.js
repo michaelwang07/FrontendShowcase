@@ -25,6 +25,7 @@ import { Button} from 'react-bootstrap';
 import Axios from "axios";
 
 class Product extends React.Component{
+  
    state = {
       products: [
          {
@@ -40,10 +41,15 @@ class Product extends React.Component{
             "count": 1
          }
       ],
-      index: 0
+      index: 0,
+      price:10,
    };
 
+    handlePrice = function(int){
+      this.setState({price: int})
+   }
   
+
    state2 = {
       visible: true
    }
@@ -88,11 +94,8 @@ class Product extends React.Component{
       </OverlayTrigger>
       );
 
-   // Test function to display user variables on front end
-  const displayInfo = () => {
-    console.log("Test");
-  };
 
+  // API Call to Grab Product from backend stored in Sessions from Card click
   async function getProductID (){
    const response = await Axios.get('http://localhost:3001/SingleProduct',
    {
@@ -103,7 +106,9 @@ class Product extends React.Component{
    // stores returned values into list
    // setUserList(response.data);
    console.log(response.data);
+   console.log(response.data[0].pprice);
 };
+   getProductID ();
       function AlertDismissibleExample() {
          const [show, setShow] = useState(false);
        
@@ -151,7 +156,7 @@ class Product extends React.Component{
                      
                      <Example />
                      {/* <button onLoad={getProductID ()} onClick={() => console.log("button pressed")}>Display Product Information</button> */}
-                     <button onClick={() => getProductID ()}>Display Product Information</button>
+                     <button onClick={() => console.log(this.state.price)}>Display Product Information</button>
 
                   </div>   
                </div>
