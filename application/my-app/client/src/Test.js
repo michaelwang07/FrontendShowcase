@@ -9,12 +9,11 @@ function Test() {
    console.log("Hello " + sessionStorage.getItem("fname"));
    console.log("Your UserID is: " + sessionStorage.getItem("id"));
    console.log("Your sessions are active: " + sessionStorage.getItem("loggedIn"));
+   console.log("The Current Post ID is: " + sessionStorage.getItem("post"));
  }; 
  const clearSession = () =>{
    sessionStorage.clear();
  };
-
-
    return (
        <div>
        {/* <button onClick={setInfo}>Set Info</button> */}
@@ -22,6 +21,5 @@ function Test() {
        <button onClick={clearSession}>Clear Session</button>
        </div>
    );
-
 }
 export default Test;

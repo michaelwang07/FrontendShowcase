@@ -52,29 +52,29 @@ function MessageTest() {
     });
   };
 
-  async function getMessagesSent (){
-    const currentUser = sessionStorage.getItem("id")
-    setUser1(currentUser)
-    const response = await Axios.get('http://localhost:3001/getMessagesSent',
-    {
-        params: {
-            user1:user1,
-        }
-    });
-    setMessageListSent(response.data);
-};
+//   async function getMessagesSent (){
+//     const currentUser = sessionStorage.getItem("id")
+//     setUser1(currentUser)
+//     const response = await Axios.get('http://localhost:3001/getMessagesSent',
+//     {
+//         params: {
+//             user1:user1,
+//         }
+//     });
+//     setMessageListSent(response.data);
+// };
 
-async function getMessagesRecieved (){
-    const currentUser = sessionStorage.getItem("id")
-    setUser1(currentUser)
-    const response = await Axios.get('http://localhost:3001/getMessagesRecieved',
-    {
-        params: {
-            user2:user1,
-        }
-    });
-    setMessageListRecieved(response.data);
-};
+// async function getMessagesRecieved (){
+//     const currentUser = sessionStorage.getItem("id")
+//     setUser1(currentUser)
+//     const response = await Axios.get('http://localhost:3001/getMessagesRecieved',
+//     {
+//         params: {
+//             user2:user1,
+//         }
+//     });
+//     setMessageListRecieved(response.data);
+// };
 
   return (
     <div className="App">
@@ -97,7 +97,7 @@ async function getMessagesRecieved (){
         <button onClick={createMessage}>send Message</button>
         
         <div>
-        <button onClick={getMessagesSent}>check Sent Messages:</button>
+        {/* <button onClick={getMessagesSent}>check Sent Messages:</button> */}
         
         {messageListSent.map((val, key) => {
             
@@ -109,7 +109,7 @@ async function getMessagesRecieved (){
         </div>
         <div>
 
-        <button onClick={getMessagesRecieved}>check Recieved Messages:</button>
+        {/* <button onClick={getMessagesRecieved}>check Recieved Messages:</button> */}
         
         {messageListRecieved.map((val, key) => {
             

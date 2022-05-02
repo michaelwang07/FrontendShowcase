@@ -110,6 +110,20 @@ app.get('/LastThree',(request,response)=>{
 
 });
 
+// API Get to grab Product using Product ID for display on Product Page
+app.get('/SingleProduct', (request, response) => {
+    const pid = request.query.pid;
+    db.query("SELECT * FROM Products WHERE pid='"+pid+"'", (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            response.send(result);
+        }
+        // console.log(ptag+", "+pname);
+    })
+
+});
+
 // AXIOS GET API call to pull all requested posts per user params
 app.get('/Products', (request, response) => {
     const ptag = request.query.ptag;

@@ -19,12 +19,12 @@ import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import {Form} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "./Footer";
 import { Button} from 'react-bootstrap';
+import Axios from "axios";
 
 class Product extends React.Component{
-
    state = {
       products: [
          {
@@ -43,6 +43,7 @@ class Product extends React.Component{
       index: 0
    };
 
+  
    state2 = {
       visible: true
    }
@@ -58,6 +59,8 @@ class Product extends React.Component{
       images[index].className = "active";
    };
 
+   
+  
    render(){
       const {products, index} = this.state;
       const popover = (
@@ -85,6 +88,22 @@ class Product extends React.Component{
       </OverlayTrigger>
       );
 
+   // Test function to display user variables on front end
+  const displayInfo = () => {
+    console.log("Test");
+  };
+
+  async function getProductID (){
+   const response = await Axios.get('http://localhost:3001/SingleProduct',
+   {
+       params: {
+           pid: sessionStorage.getItem("post"),
+       }
+   });
+   // stores returned values into list
+   // setUserList(response.data);
+   console.log(response.data);
+};
       function AlertDismissibleExample() {
          const [show, setShow] = useState(false);
        
@@ -101,7 +120,7 @@ class Product extends React.Component{
          return <button className="send" onClick={() => setShow(true)}>Show Alert</button>;
       }
       
-      console.log(products);
+      // console.log(products);
       return(
          <div className="Product">
             <Header/>
@@ -131,6 +150,9 @@ class Product extends React.Component{
                      </div>
                      
                      <Example />
+                     {/* <button onLoad={getProductID ()} onClick={() => console.log("button pressed")}>Display Product Information</button> */}
+                     <button onClick={() => getProductID ()}>Display Product Information</button>
+
                   </div>   
                </div>
             ))
