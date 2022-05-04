@@ -31,7 +31,6 @@ function SignIn() {
   // Variable used to save redirection when routing
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
 
     // Axios GET API Call to retrieve user
       async function SignIn (){
@@ -54,11 +53,6 @@ function SignIn() {
     const verifyUser = () => {
       // Send our User Parameters to the backend for retrieval
       SignIn();
-      if (location && location.state && location.state.referrer) {
-        navigate(location.state.referrer);
-      } else {
-        navigate('/');
-      }
 
       // If our user List is not null, then there was a successful match between user login and backend
       setTimeout(function(){
@@ -74,7 +68,7 @@ function SignIn() {
           if (location && location.state && location.state.referrer) {
             navigate(location.state.referrer);
           } else {
-            navigate('/homepage');
+            navigate('/');
           }
 
         }
