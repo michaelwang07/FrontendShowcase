@@ -28,7 +28,7 @@ import WilliamR from './WilliamR';
 import Homepage from './Homepage';
 import Product from './Product';
 import Dashboard from './Dashboard';
-// import Test from './Test';
+import Test from './Test';
 
 function App() {
   return (
@@ -48,7 +48,7 @@ function App() {
        <Route path="/team/WilliamR" exact element ={<WilliamR/>} />
        <Route path="/Product" exact element = {<Product/>} />
        <Route path="/dashboard" exact element ={<Dashboard/>} />
-       {/* <Route path="/test" exact element ={<Test/>} /> */}
+       <Route path="/test" exact element ={<Test/>} />
 
      </Routes>
    </Router>

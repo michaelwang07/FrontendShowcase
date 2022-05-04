@@ -54,6 +54,20 @@ app.post('/CreateItem', (req, res) => {
     );
 })
 
+
+app.get('/SignIn',(request,response)=>{
+    const email = request.query.email;
+    const password = request.query.password;
+    db.query("SELECT * FROM Users WHERE email ='"+email+"' AND password ='"+password+"'",(err,result)=>{
+        if(err){
+            console.log(err);
+        }
+            response.send(result);
+    });
+
+});
+
+
 // Axios GET API call to pull last three posts to be displayed on Home
 app.get('/LastThree',(request,response)=>{
     db.query("SELECT * FROM Products ORDER BY pid DESC LIMIT 3",(err,result)=>{

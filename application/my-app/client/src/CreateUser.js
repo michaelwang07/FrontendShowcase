@@ -91,7 +91,7 @@ function CreateUser() {
       <div className="information">
 
         {/* Registration header */}
-        <h1>Registration</h1>
+        <h1>Sign Up</h1>
 
         {/* Fields that are provided by user */}
         <Form className="information">
@@ -128,15 +128,18 @@ function CreateUser() {
             onChange={(event) => { setConfirmPassword(event.target.value); }} />
 
           {/* Terms and conditions checkbox */}
-          <label class="container">By clicking, you are agreeing <br></br> to this sites&nbsp;
+          <label class="container">By checking the box, you are agreeing <br></br> to this sites&nbsp;
             <Link to="">Terms and Conditions.</Link>
             <input type="checkbox" id="check" onclick="checkFunction()" required="required" />
             <span class="checkmark"></span>
           </label>
 
-          <button type="reset" value="Reset">Reset</button>
-          {/* Submit */}
-          <button onClick={fieldValidation}>Create Account</button>
+          {/* Sign up and cancel buttons */}
+          <div class="btn-group">
+            <button type="reset" value="Reset">Cancel</button>
+            {/* Submit */}
+            <button onClick={fieldValidation}>Sign Up</button>
+          </div>
         </Form>
       </div>
       <Footer />
