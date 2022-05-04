@@ -33,6 +33,13 @@ function Products() {
    useEffect(() => {
       getProductID();
     }, []);
+   
+   const convertPhoto = (file) => {
+        if (file !== null){
+            const base64String = btoa(String.fromCharCode(...new Uint8Array(file.data))); // Conversion 
+            return base64String;
+        }
+    }
 
 
    async function getProductID (){
@@ -55,6 +62,7 @@ function Products() {
                     <h1>{val.pname}</h1>
                     <h1>{val.pdescription}</h1>
                     <h1>{val.pprice}</h1>
+                    <img src={`data:image/png;base64,${convertPhoto(val.pimg)}`}></img>
                 </div>
             })}
         </div>
