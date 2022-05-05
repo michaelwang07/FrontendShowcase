@@ -18,21 +18,17 @@ import {Nav, Navbar, Container, NavDropdown} from "react-bootstrap";
 function Header() {
    return(
       <Navbar bg="dark" expand="lg" variant="dark">
-      <Container>
-         <Navbar.Brand href="/">CSC 648 - 03</Navbar.Brand>
-         <Navbar.Text style={{ marginLeft: '13rem' }}>SFSU Software Engineering Project CSC 648-848, Spring 2022. For Demonstration Only</Navbar.Text>
+      <Container className="navbar">
+         <Navbar.Brand className="classBrand" href="/">CSC 648 - 03</Navbar.Brand>
+         <Navbar.Text className="warning">SFSU Software Engineering Project CSC 648-848, Spring 2022. For Demonstration Only</Navbar.Text>
          <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-         <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/team">Team</Nav.Link>
-            <NavDropdown title="Dashboard" id="basic-nav-dropdown">
-               <NavDropdown.Item href="Dashboard">Profile</NavDropdown.Item> 
-               <NavDropdown.Item href="/createpost">Create Post</NavDropdown.Item>
-               {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
-               <NavDropdown.Divider />
-               <NavDropdown.Item href="/signin">Sign In</NavDropdown.Item>
-            </NavDropdown>
+         <Navbar.Collapse>
+            <Nav className="basicNav">
+               <Nav.Link href="/">Home</Nav.Link>
+               <Nav.Link href="/createpost">Create Post</Nav.Link>
+               <Nav.Link href="/team">Team</Nav.Link>
+               <Nav.Link href="/signin">Log In</Nav.Link>
+               <Nav.Link href="/createuser">Sign Up</Nav.Link>
             </Nav>
          </Navbar.Collapse>
       </Container>
@@ -40,7 +36,29 @@ function Header() {
    );
 }
 
-export default Header;
+function Logger() {
+   return(
+      <Navbar bg="dark" expand="lg" variant="dark">
+      <Container className="navbar">
+         <Navbar.Brand className="classBrand" href="/">CSC 648 - 03</Navbar.Brand>
+         <Navbar.Text className="warning">SFSU Software Engineering Project CSC 648-848, Spring 2022. For Demonstration Only</Navbar.Text>
+         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+         <Navbar.Collapse>
+            <Nav className="basicNav">
+               <Nav.Link href="/">Home</Nav.Link>
+               <Nav.Link href="/createpost">Create Post</Nav.Link>
+               <Nav.Link href="/team">Team</Nav.Link>
+               <Nav.Link href="/dashboard">Profile</Nav.Link>
+               <Nav.Link href="/">Sign Out</Nav.Link>
+            </Nav>
+         </Navbar.Collapse>
+      </Container>
+      </Navbar>
+   );
+}
+
+const condition = 1 === 1 ? Header : Logger
+export default condition;
 
 // old navbar bootstrap without react
 
