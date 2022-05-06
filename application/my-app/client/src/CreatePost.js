@@ -19,9 +19,11 @@ import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
+import UserProfile from './UserProfile';
+import { useNavigate, useLocation } from "react-router-dom";
 
 function CreatePost() {
-
+  const navigate = useNavigate();
   const [pname, setPName] = useState("");
   const [category, setCategory] = useState(0);
   const [pdescription, setDescription] = useState("");
@@ -49,10 +51,27 @@ function CreatePost() {
   });
 };
 
+const loggedIn = () => {
+  const id = UserProfile.getID();
+  
+  if(id != null) {
+      return true;
+  }
+  else{
+      return false;
+  }
+  
+}
+
   // Axios API to pass Item variables to backend. 
   const addItem = () => {
     // const fd = new FormData();
     // fd.append('image', pimg,pname);
+    if(!loggedIn()) {
+    //  <Navigate to={'/signin'} replace state = {{ 'referrer':'/createpost' }}/>
+    console.log("Log in");
+      navigate('/signin', {state : { 'referrer':'/createpost' }});
+    }
     Axios.post('http://localhost:3001/CreateItem', {
       category: category,
       pname: pname,
