@@ -105,7 +105,8 @@ function SignIn() {
         {/* Link to create an account if user doesn't already have one */}
         <div className="pointer">
           <label>Not a member yet?&nbsp;</label>
-          <Link to="/createuser">Create Account</Link>
+         { /* pass along original location to CreateUser then hands it back to signin */}
+          <Link to="/createuser"replace state = {{ ...location.state }}>Create Account</Link>
         </div>
       </div>
       <Footer />
