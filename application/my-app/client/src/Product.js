@@ -19,12 +19,13 @@ import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import {Form} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "./Footer";
 import { Button} from 'react-bootstrap';
+import Axios from "axios";
 
 class Product extends React.Component{
-
+  
    state = {
       products: [
          {
@@ -40,8 +41,14 @@ class Product extends React.Component{
             "count": 1
          }
       ],
-      index: 0
+      index: 0,
+      price:10,
    };
+
+    handlePrice = function(int){
+      this.setState({price: int})
+   }
+  
 
    state2 = {
       visible: true
@@ -58,6 +65,8 @@ class Product extends React.Component{
       images[index].className = "active";
    };
 
+   
+  
    render(){
       const {products, index} = this.state;
       const popover = (
@@ -85,6 +94,21 @@ class Product extends React.Component{
       </OverlayTrigger>
       );
 
+
+  // API Call to Grab Product from backend stored in Sessions from Card click
+  async function getProductID (){
+   const response = await Axios.get('http://localhost:3001/SingleProduct',
+   {
+       params: {
+           pid: sessionStorage.getItem("post"),
+       }
+   });
+   // stores returned values into list
+   // setUserList(response.data);
+   console.log(response.data);
+   console.log(response.data[0].pprice);
+};
+   getProductID ();
       function AlertDismissibleExample() {
          const [show, setShow] = useState(false);
        
@@ -101,7 +125,7 @@ class Product extends React.Component{
          return <button className="send" onClick={() => setShow(true)}>Show Alert</button>;
       }
       
-      console.log(products);
+      // console.log(products);
       return(
          <div className="Product">
             <Header/>
@@ -131,6 +155,9 @@ class Product extends React.Component{
                      </div>
                      
                      <Example />
+                     {/* <button onLoad={getProductID ()} onClick={() => console.log("button pressed")}>Display Product Information</button> */}
+                     <button onClick={() => console.log(this.state.price)}>Display Product Information</button>
+
                   </div>   
                </div>
             ))

@@ -2,7 +2,7 @@ const express = require ("express");
 const app = express();
 const mysql = require('mysql2');
 const cors = require ("cors");
-// const e = require("express");
+
 app.use(cors());
 app.use(express.json());
 
@@ -12,6 +12,24 @@ const db = mysql.createConnection({
     host: "34.94.242.160",
     password:"Team6password",
     database: "Team6",
+})
+
+
+app.post('/createMessage', (req, res) => {
+    const sender = req.body.sender;
+    const receiver = req.body.receiver;
+    const message = req.body.message;
+    const location = req.body.location
+
+    db.query('INSERT INTO Messages (sender, receiver, message, location) VALUES (?,?,?,?)', 
+    [sender, receiver, message, location], (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            res.send("Values Inserted");
+        }
+    }
+    );
 })
 
 
@@ -37,7 +55,7 @@ app.post('/CreateUser', (req, res) => {
 
 
 app.post('/CreateItem', (req, res) => {
-    const user = 1;
+    const user = req.body.user;
     const category = req.body.category;
     const pname = req.body.pname;
     const pdescription = req.body.pdescription;
@@ -67,6 +85,19 @@ app.get('/SignIn',(request,response)=>{
 
 });
 
+app.get('/getMessagesTest', (request, response) => {
+    const user = request.query.user;
+    db.query("SELECT u.fname AS sender, u.email, m.message, m.post, m.time FROM Users u RIGHT JOIN Messages m on u.uid=m.sender WHERE '"+user+"'=m.receiver", (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            response.send(result);
+        }
+    })
+
+
+});
+
 
 // Axios GET API call to pull last three posts to be displayed on Home
 app.get('/LastThree',(request,response)=>{
@@ -76,6 +107,20 @@ app.get('/LastThree',(request,response)=>{
         }
             response.send(result);
     });
+
+});
+
+// API Get to grab Product using Product ID for display on Product Page
+app.get('/SingleProduct', (request, response) => {
+    const pid = request.query.pid;
+    db.query("SELECT * FROM Products WHERE pid='"+pid+"'", (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            response.send(result);
+        }
+        // console.log(ptag+", "+pname);
+    })
 
 });
 
