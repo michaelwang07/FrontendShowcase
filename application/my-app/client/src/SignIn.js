@@ -41,7 +41,7 @@ function SignIn() {
                 password: password
             }
         });
-        console.log(userID);
+        
         // An invalid response will return an empty array of size 0
         if (response.data.length > 0){ // Confirming the size > 0 ensures we have a valid response
           setUserID(response.data[0].uid);
@@ -53,7 +53,7 @@ function SignIn() {
     const verifyUser = () => {
       // Send our User Parameters to the backend for retrieval
       SignIn();
-
+  
       // If our user List is not null, then there was a successful match between user login and backend
       setTimeout(function(){
         if(userID>=0){
@@ -64,6 +64,7 @@ function SignIn() {
           sessionStorage.setItem("id", userID); // User ID is a unique key in Users Table to identify individual users
           sessionStorage.setItem("fname", userName);
           sessionStorage.setItem("loggedIn","true"); // loggedIn is a boolean value used to change CSS properties when logged in
+         
 
           if (location && location.state && location.state.referrer) {
             navigate(location.state.referrer);
