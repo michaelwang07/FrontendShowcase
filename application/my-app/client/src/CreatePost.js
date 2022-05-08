@@ -19,7 +19,6 @@ import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
-import UserProfile from './UserProfile';
 import { useNavigate, useLocation } from "react-router-dom";
 
 function CreatePost() {
@@ -137,6 +136,7 @@ const loggedIn = () => {
         </Form>
         <div className="btn-group">
         <button onClick={addItem}>Create Post</button></div>
+
       </div>
       <Footer />
     </div>

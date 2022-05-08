@@ -127,7 +127,7 @@ app.get('/SingleProduct', (request, response) => {
 
 // API Get to grab Product using Product ID for display on Product Page
 app.get('/SingleItem', (request, response) => {
-    const pid = 13;
+    const pid = 12;
     db.query("SELECT * FROM Items WHERE pid='"+pid+"'", (err, result) => {
         if (err){
             console.log(err);

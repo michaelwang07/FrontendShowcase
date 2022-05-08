@@ -63,7 +63,7 @@ function Products() {
                     <h1>{val.pdescription}</h1>
                     <h1>{val.pprice}</h1>
                     {/* <img src={`data:image/png;base64,${convertPhoto(val.pimg)}`}></img> */}
-                    <img src={`${val.pdata}`}></img>
+                    <img src={`${(val.pdata)}`}></img>
 
                 </div>
             })}
