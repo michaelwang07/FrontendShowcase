@@ -52,7 +52,7 @@ function CreatePost() {
 };
 
 const loggedIn = () => {
-  const id = UserProfile.getID();
+  const id = sessionStorage.getItem("id");
   
   if(id != null) {
       return true;
@@ -102,7 +102,7 @@ const loggedIn = () => {
           {/* Categories */}
           <label>Category</label>
           {/* Drop down to select a category */}
-          <div class="dropDown">
+          <div className="dropDown">
             <Form.Select>
               <option value="None">None</option>
               <option value="books" onClick={(event) => { setCategory(1); }}>Books</option>
@@ -114,7 +114,7 @@ const loggedIn = () => {
 
           {/* Description */}
           <label>Description</label>
-          <input type="email" required="required"
+          <input type="text" required="required"
             onChange={(event) => { setDescription(event.target.value); }} />
 
           {/* Price */}
@@ -123,18 +123,20 @@ const loggedIn = () => {
             onChange={(event) => { setPrice(event.target.value); }} />
 
           {/* Photo */}
-          <label class="photo">Photo</label>
-          <div class="fileBox">
-            <input type="file" class="browse" placeholder="Browse files to upload" 
+          <label className="photo">Photo</label>
+          <div className="fileBox">
+            <input type="file" className="browse" placeholder="Browse files to upload" 
               onChange={(event) => { uploadImage(event); }} />
           </div>
 
           {/* Button to create post */}
-          <div class="btn-group">
-            <button type="reset" class="reset" value="Reset">Cancel</button>
-            <button onClick={addItem}>Create Post</button>
+          <div className="btn-group">
+            <button type="reset" className="reset" value="Reset">Cancel</button>
+            {/* <button onClick={addItem}>Create Post</button> */}
           </div>
         </Form>
+        <div className="btn-group">
+        <button onClick={addItem}>Create Post</button></div>
       </div>
       <Footer />
     </div>
