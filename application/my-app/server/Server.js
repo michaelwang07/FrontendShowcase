@@ -129,6 +129,19 @@ app.get('/SingleProduct', (request, response) => {
 
 });
 
+app.get('/MyPosts', (request, response) => {
+    const user = request.query.user;
+    db.query("SELECT * FROM Items WHERE user='"+user+"'", (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            response.send(result);
+        }
+        // console.log(ptag+", "+pname);
+    })
+
+});
+
 
 
 // API Get to grab Product using Product ID for display on Product Page
