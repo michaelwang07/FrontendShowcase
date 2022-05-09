@@ -61,8 +61,9 @@ app.post('/CreateItem', (req, res) => {
     const pdescription = req.body.pdescription;
     const pprice = req.body.pprice;
     const pimg = req.body.pimg;
-    db.query('INSERT INTO Items (user, category, pname, pdescription, pprice, pimg) VALUES (?,?,?,?,?,?)', 
-    [user, category, pname, pdescription, pprice, pimg], (err, result) => {
+    const pdata = req.body.pimg;
+    db.query('INSERT INTO Items (user, category, pname, pdescription, pprice, pimg, pdata) VALUES (?,?,?,?,?,?,?)', 
+    [user, category, pname, pdescription, pprice, pimg, pdata], (err, result) => {
         if (err){
             console.log(err);
         } else{
@@ -114,6 +115,20 @@ app.get('/LastThree',(request,response)=>{
 app.get('/SingleProduct', (request, response) => {
     const pid = request.query.pid;
     db.query("SELECT * FROM Products WHERE pid='"+pid+"'", (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            response.send(result);
+        }
+        // console.log(ptag+", "+pname);
+    })
+
+});
+
+// API Get to grab Product using Product ID for display on Product Page
+app.get('/SingleItem', (request, response) => {
+    const pid = 12;
+    db.query("SELECT * FROM Items WHERE pid='"+pid+"'", (err, result) => {
         if (err){
             console.log(err);
         } else{

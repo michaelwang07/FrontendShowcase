@@ -43,7 +43,7 @@ function Products() {
 
 
    async function getProductID (){
-      const response = await Axios.get('http://localhost:3001/SingleProduct',
+      const response = await Axios.get('http://localhost:3001/SingleItem',
       {
           params: {
               pid: sessionStorage.getItem("post"),
@@ -62,7 +62,9 @@ function Products() {
                     <h1>{val.pname}</h1>
                     <h1>{val.pdescription}</h1>
                     <h1>{val.pprice}</h1>
-                    <img src={`data:image/png;base64,${convertPhoto(val.pimg)}`}></img>
+                    {/* <img src={`data:image/png;base64,${convertPhoto(val.pimg)}`}></img> */}
+                    <img src={`${(val.pdata)}`}></img>
+
                 </div>
             })}
         </div>
