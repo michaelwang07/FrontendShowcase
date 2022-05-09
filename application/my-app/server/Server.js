@@ -33,6 +33,9 @@ app.post('/createMessage', (req, res) => {
 })
 
 
+
+
+
 // Axios POST API call to create a user in the backend
 app.post('/CreateUser', (req, res) => {
     const fname = req.body.fname;
@@ -86,9 +89,9 @@ app.get('/SignIn',(request,response)=>{
 
 });
 
-app.get('/getMessagesTest', (request, response) => {
+app.get('/getMessages', (request, response) => {
     const user = request.query.user;
-    db.query("SELECT u.fname AS sender, u.email, m.message, m.post, m.time FROM Users u RIGHT JOIN Messages m on u.uid=m.sender WHERE '"+user+"'=m.receiver", (err, result) => {
+    db.query("SELECT u.fname AS sender, u.email, m.message, m.post, m.time, u.phone, i.pname FROM Users u RIGHT JOIN Messages m on u.uid=m.sender RIGHT JOIN Items i on m.post=i.pid WHERE '"+user+"'=m.receiver", (err, result) => {
         if (err){
             console.log(err);
         } else{
