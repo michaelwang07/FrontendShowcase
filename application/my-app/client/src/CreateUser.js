@@ -48,7 +48,7 @@ function CreateUser() {
   const fieldValidation = () => {
     if (confirmpassword === password) {
       console.log("passwords match");
-      // addUser(); // Function to add user to backend
+       addUser(); // Function to add user to backend
       navigate('/signin', {state : { ...location.state }});
     }
     else {
