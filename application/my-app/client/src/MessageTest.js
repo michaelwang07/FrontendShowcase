@@ -52,6 +52,13 @@ function MessageTest() {
     });
   };
 
+
+
+
+
+
+  
+
 //   async function getMessagesSent (){
 //     const currentUser = sessionStorage.getItem("id")
 //     setUser1(currentUser)
@@ -109,7 +116,7 @@ function MessageTest() {
         </div>
         <div>
 
-        {/* <button onClick={getMessagesRecieved}>check Recieved Messages:</button> */}
+        {/*  <button onClick={getMessagesRecieved}>check Recieved Messages:</button> */}
         
         {messageListRecieved.map((val, key) => {
             

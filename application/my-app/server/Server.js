@@ -33,6 +33,9 @@ app.post('/createMessage', (req, res) => {
 })
 
 
+
+
+
 // Axios POST API call to create a user in the backend
 app.post('/CreateUser', (req, res) => {
     const fname = req.body.fname;
@@ -86,9 +89,9 @@ app.get('/SignIn',(request,response)=>{
 
 });
 
-app.get('/getMessagesTest', (request, response) => {
+app.get('/getMessages', (request, response) => {
     const user = request.query.user;
-    db.query("SELECT u.fname AS sender, u.email, m.message, m.post, m.time FROM Users u RIGHT JOIN Messages m on u.uid=m.sender WHERE '"+user+"'=m.receiver", (err, result) => {
+    db.query("SELECT u.fname AS sender, u.email, m.message, m.post, m.time, u.phone, i.pname FROM Users u RIGHT JOIN Messages m on u.uid=m.sender RIGHT JOIN Items i on m.post=i.pid WHERE '"+user+"'=m.receiver", (err, result) => {
         if (err){
             console.log(err);
         } else{
@@ -102,7 +105,7 @@ app.get('/getMessagesTest', (request, response) => {
 
 // Axios GET API call to pull last three posts to be displayed on Home
 app.get('/LastThree',(request,response)=>{
-    db.query("SELECT * FROM Products ORDER BY pid DESC LIMIT 3",(err,result)=>{
+    db.query("SELECT * FROM Items WHERE approved=1 ORDER BY pid DESC LIMIT 3",(err,result)=>{
         if(err){
             console.log(err);
         }
@@ -114,7 +117,8 @@ app.get('/LastThree',(request,response)=>{
 // API Get to grab Product using Product ID for display on Product Page
 app.get('/SingleProduct', (request, response) => {
     const pid = request.query.pid;
-    db.query("SELECT * FROM Products WHERE pid='"+pid+"'", (err, result) => {
+    db.query("SELECT I.pid, I.pname, I.pdescription, I.pprice, I.pdata, U.uid, U.fname, U.lname, U.phone, U.email FROM Items I INNER JOIN Users U ON I.user=U.uid WHERE I.pid= '"+pid+"'"
+    ,(err, result) => {
         if (err){
             console.log(err);
         } else{
@@ -125,9 +129,24 @@ app.get('/SingleProduct', (request, response) => {
 
 });
 
+app.get('/MyPosts', (request, response) => {
+    const user = request.query.user;
+    db.query("SELECT * FROM Items WHERE user='"+user+"'", (err, result) => {
+        if (err){
+            console.log(err);
+        } else{
+            response.send(result);
+        }
+        // console.log(ptag+", "+pname);
+    })
+
+});
+
+
+
 // API Get to grab Product using Product ID for display on Product Page
 app.get('/SingleItem', (request, response) => {
-    const pid = 12;
+    const pid = request.query.pid;
     db.query("SELECT * FROM Items WHERE pid='"+pid+"'", (err, result) => {
         if (err){
             console.log(err);
@@ -141,26 +160,26 @@ app.get('/SingleItem', (request, response) => {
 
 // AXIOS GET API call to pull all requested posts per user params
 app.get('/Products', (request, response) => {
-    const ptag = request.query.ptag;
+    const category = request.query.category;
     const pname = request.query.pname;
-    if(ptag !== "*"){
-    db.query("SELECT * FROM Products WHERE ptag='"+ptag+"' AND pname LIKE'"+pname+"%'", (err, result) => {
+    if(category !== "*"){
+    db.query("SELECT * FROM Items WHERE category='"+category+"' AND pname LIKE'"+pname+"%' AND approved=1", (err, result) => {
         if (err){
             console.log(err);
         } else{
             response.send(result);
         }
-        console.log(ptag+", "+pname);
+        console.log(category+", "+pname);
     })
 }
     else{
-        db.query("SELECT * FROM Products WHERE pname LIKE'"+pname+"%'", (err, result) => {
+        db.query("SELECT * FROM Items WHERE pname LIKE'%"+pname+"%' AND approved=1", (err, result) => {
             if (err){   
                 console.log(err);
             } else{
                 response.send(result);
             }
-            console.log(ptag+", "+pname);
+            console.log(category+", "+pname);
         })
     }
 });

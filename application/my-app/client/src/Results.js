@@ -24,7 +24,7 @@ import Col from 'react-bootstrap/Col'
 
 function Results() {
     
-    const [ptag, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
+    const [category, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
 
     // store all db results within a list
@@ -49,7 +49,7 @@ function Results() {
         const response = await Axios.get('http://localhost:3001/Products',
         {
             params: {
-                ptag: ptag,
+                category: category,
                 pname: pname,
             }
         });
@@ -115,9 +115,10 @@ function Results() {
             <div>
                 <Form.Select className="formSelect">
                 <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
-                <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
-                <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
-                <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
+                <option value ="books" onClick={(event) => {setPTag("1");}}>Books</option>
+                <option value ="clothing" onClick={(event) => {setPTag("2");}}>Clothing</option>
+                <option value ="electronics" onClick={(event) => {setPTag("3");}}>Electronics</option>
+                <option value ="furniture" onClick={(event) => {setPTag("4");}}>Furniture</option>
                 </Form.Select>
             </div>
             {/* Search Bar */}
@@ -148,7 +149,7 @@ function Results() {
                 return <div>
                     <Card style={{ width: '32rem'}} key={key} className="box">
                     <a href="/Product">
-                    <Card.Img className="resultImage" href="/Product" variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
+                    <Card.Img onClick={() => sessionStorage.setItem("post", val.pid)} className="resultImage" href="/Product" variant="top" src={`${(val.pdata)}`} />
                     </a>
                     <Card.Body>
                         <a href="/Product">

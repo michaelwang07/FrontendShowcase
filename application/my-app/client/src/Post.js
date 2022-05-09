@@ -11,18 +11,61 @@
 *
 ********************************************************************/
 
+
 import './App.css';
 import { Tabs, Tab, Card, Button, Table, Container } from "react-bootstrap";
+import {useState,useEffect} from "react";
+import React from "react";
+import Axios from "axios";
 // BR
 // post user created.  will be pulled from DB in the future.
 function Post() {
-    return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '25vh' }}>
+    const [messageList, setMessageList] = useState([]);
+    useEffect(() => {
+        getMessages();
+      }, []);
 
-            <Card className="text-center" Card border="primary" style={{ justifyContent: 'center', width: '18rem' }}>
-                <p>No post at this time</p>
-                </Card>
-        </div>
+      async function getMessages(){
+        const response = await Axios.get('http://localhost:3001/MyPosts',
+        {
+            params: {
+                user:sessionStorage.getItem("id"),
+            }  
+        });
+        // stores returned values into list
+        setMessageList(response.data);
+        console.log(response.data);
+    };
+    return (
+        <Table bordered hover>
+    
+        
+             <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Post Title</th>
+                    <th>Time Of Post</th>
+                    <th>Approval Status</th>
+                    
+                </tr>
+            </thead>
+
+            {messageList.map((val, key) => {
+        return <tbody>
+                <tr>
+                    <td>{key+1}</td>
+                    <td>{val.pname}</td>
+                    <td>{val.time}</td>
+                    <td>{val.approved}</td>
+                </tr>
+            </tbody>
+            })}
+        </Table>
+   
+
+
+
+
     );
 
 }
