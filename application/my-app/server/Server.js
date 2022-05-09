@@ -173,7 +173,7 @@ app.get('/Products', (request, response) => {
     })
 }
     else{
-        db.query("SELECT * FROM Items WHERE pname LIKE'"+pname+"%' AND approved=1", (err, result) => {
+        db.query("SELECT * FROM Items WHERE pname LIKE'%"+pname+"%' AND approved=1", (err, result) => {
             if (err){   
                 console.log(err);
             } else{
