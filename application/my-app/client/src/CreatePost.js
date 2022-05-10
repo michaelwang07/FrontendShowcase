@@ -19,15 +19,16 @@ import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function CreatePost() {
-
+  const navigate = useNavigate();
   const [pname, setPName] = useState("");
   const [category, setCategory] = useState(0);
   const [pdescription, setDescription] = useState("");
   const [pprice, setPrice] = useState(0);
   const [pimg, setPhoto] = useState("");
-
+  const user = sessionStorage.getItem("id");
  // Below function pulls the image from the event files
  const uploadImage = async (event) => {
   const file = event.target.files[0];
@@ -49,16 +50,34 @@ function CreatePost() {
   });
 };
 
+const loggedIn = () => {
+  const id = sessionStorage.getItem("id");
+  
+  if(id != null) {
+      return true;
+  }
+  else{
+      return false;
+  }
+  
+}
+
   // Axios API to pass Item variables to backend. 
   const addItem = () => {
     // const fd = new FormData();
     // fd.append('image', pimg,pname);
+    if(!loggedIn()) {
+    //  <Navigate to={'/signin'} replace state = {{ 'referrer':'/createpost' }}/>
+    console.log("Log in");
+      navigate('/signin', {state : { 'referrer':'/createpost' }});
+    }
     Axios.post('http://localhost:3001/CreateItem', {
       category: category,
       pname: pname,
       pdescription: pdescription,
       pprice: pprice,
       pimg: pimg,
+      user: user,
     }).then(() => {
       console.log("success");
     });
@@ -82,7 +101,7 @@ function CreatePost() {
           {/* Categories */}
           <label>Category</label>
           {/* Drop down to select a category */}
-          <div class="dropDown">
+          <div className="dropDown">
             <Form.Select>
               <option value="None">None</option>
               <option value="books" onClick={(event) => { setCategory(1); }}>Books</option>
@@ -94,7 +113,7 @@ function CreatePost() {
 
           {/* Description */}
           <label>Description</label>
-          <input type="email" required="required"
+          <input type="text" required="required"
             onChange={(event) => { setDescription(event.target.value); }} />
 
           {/* Price */}
@@ -103,18 +122,21 @@ function CreatePost() {
             onChange={(event) => { setPrice(event.target.value); }} />
 
           {/* Photo */}
-          <label class="photo">Photo</label>
-          <div class="fileBox">
-            <input type="file" class="browse" placeholder="Browse files to upload" 
+          <label className="photo">Photo</label>
+          <div className="fileBox">
+            <input type="file" className="browse" placeholder="Browse files to upload" 
               onChange={(event) => { uploadImage(event); }} />
           </div>
 
           {/* Button to create post */}
-          <div class="btn-group">
-            <button type="reset" class="reset" value="Reset">Cancel</button>
-            <button onClick={addItem}>Create Post</button>
+          <div className="btn-group">
+            <button type="reset" className="reset" value="Reset">Cancel</button>
+            {/* <button onClick={addItem}>Create Post</button> */}
           </div>
         </Form>
+        <div className="btn-group">
+        <button onClick={addItem}>Create Post</button></div>
+
       </div>
       <Footer />
     </div>

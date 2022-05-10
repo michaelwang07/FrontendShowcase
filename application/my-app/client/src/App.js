@@ -29,6 +29,8 @@ import Homepage from './Homepage';
 import Product from './Product';
 import Dashboard from './Dashboard';
 import Test from './Test';
+import MessageTest from './MessageTest';
+import ProductFunctional from './ProductFunctional';
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
        <Route path="/Product" exact element = {<Product/>} />
        <Route path="/dashboard" exact element ={<Dashboard/>} />
        <Route path="/test" exact element ={<Test/>} />
+       <Route path="/MessageTest" exact element ={<MessageTest/>} />
+       <Route path="/ProductFunctional" exact element ={<ProductFunctional/>} />
 
      </Routes>
    </Router>

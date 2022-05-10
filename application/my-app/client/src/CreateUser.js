@@ -17,11 +17,12 @@ import './Forms.css';
 import React from "react";
 import { useState } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import { Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+
+
 
 function CreateUser() {
   // State variables to store our user information
@@ -34,6 +35,7 @@ function CreateUser() {
 
   // Variable used to save redirection when routing
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Test function to display user variables on front end
   // const displayInfo = () => {
@@ -46,8 +48,8 @@ function CreateUser() {
   const fieldValidation = () => {
     if (confirmpassword === password) {
       console.log("passwords match");
-      // addUser(); // Function to add user to backend
-      //navigate('/postconfirmation');
+       addUser(); // Function to add user to backend
+      navigate('/signin', {state : { ...location.state }});
     }
     else {
       console.log("passwords do not match!");

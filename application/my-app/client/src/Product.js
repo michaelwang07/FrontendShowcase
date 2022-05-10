@@ -17,12 +17,11 @@ import Header from "./Header";
 import { createPopper } from '@popperjs/core';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import {Form, FormControl} from "react-bootstrap";
+import {Form} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
 import { useState } from "react";
 import Footer from "./Footer";
 import { Button} from 'react-bootstrap';
-import InputGroup from 'react-bootstrap/InputGroup'
 
 class Product extends React.Component{
 
@@ -74,11 +73,7 @@ class Product extends React.Component{
                 <option value ="books">Main Library</option>
                 <option value ="books">Police Station</option>
             </Form.Select>
-            &nbsp;
-            <InputGroup className="fromText">
-                <FormControl placeholder="Send additional information" as="textarea" rows={5}/>
-            </InputGroup>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="send" onClick={() => this.state2.visible}>Send Message</button>
          </Popover.Body>
       </Popover>
@@ -134,7 +129,8 @@ class Product extends React.Component{
                            ))
                         }
                      </div>
-                     <Example/>
+                     
+                     <Example />
                   </div>   
                </div>
             ))

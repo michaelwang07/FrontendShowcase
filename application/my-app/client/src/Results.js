@@ -25,7 +25,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 
 function Results() {
     
-    const [ptag, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
+    const [category, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
 
     // store all db results within a list
@@ -50,7 +50,7 @@ function Results() {
         const response = await Axios.get('http://localhost:3001/Products',
         {
             params: {
-                ptag: ptag,
+                category: category,
                 pname: pname,
             }
         });
@@ -71,6 +71,11 @@ function Results() {
            <Button className="buttons ms-5" variant="success">Message Seller</Button>
         </OverlayTrigger>
     );
+    
+    // Test function to display user variables on front end
+    const displayInfo = () => {
+        console.log("test");
+    };
 
     const popover = (
     <Popover id="popover-basic">
@@ -94,6 +99,7 @@ function Results() {
         </Popover.Body>
     </Popover>
     );
+// Test function to display user variables on front end
 
     // Find a way to display getUsers without needing onClick for default display
     return (
@@ -109,9 +115,10 @@ function Results() {
             <div>
                 <Form.Select className="formSelect">
                 <option value ="*" onClick={(event) => {setPTag("*");}}>None</option>
-                <option value ="books" onClick={(event) => {setPTag("books");}}>Books</option>
-                <option value ="electronics" onClick={(event) => {setPTag("electronics");}}>Electronics</option>
-                <option value ="furniture" onClick={(event) => {setPTag("furniture");}}>Furniture</option>
+                <option value ="books" onClick={(event) => {setPTag("1");}}>Books</option>
+                <option value ="clothing" onClick={(event) => {setPTag("2");}}>Clothing</option>
+                <option value ="electronics" onClick={(event) => {setPTag("3");}}>Electronics</option>
+                <option value ="furniture" onClick={(event) => {setPTag("4");}}>Furniture</option>
                 </Form.Select>
             </div>
             {/* Search Bar */}
@@ -142,7 +149,7 @@ function Results() {
                 return <div>
                     <Card style={{ width: '24rem'}} key={key} className="box">
                     <a href="/Product">
-                    <Card.Img className="resultImage" href="/Product" variant="top" src={`data:image/png;base64,${convertPhoto(val.pimg)}`} />
+                    <Card.Img onClick={() => sessionStorage.setItem("post", val.pid)} className="resultImage" href="/Product" variant="top" src={`${(val.pdata)}`} />
                     </a>
                     <Card.Body>
                         <a href="/Product">
@@ -152,8 +159,12 @@ function Results() {
                         <Card.Text>
                             <span><h5>Price: ${val.pprice}</h5></span>
                         </Card.Text>
-                        <Col className='ms-3'>
-                            <Button className="buttons" href="/Product" variant="primary">Product Page</Button>
+                        <Col className='ms-5'>
+                        {/* <Button size="lg" className="buttons" href="/Product" variant="primary">Product Page</Button> */}
+
+                        {/* The below button function will now store the product ID into sessions and navigate to a new page using href */}
+                        <Button size="lg" onClick={() => sessionStorage.setItem("post", val.pid)} className="buttons" href="/Product" variant="primary">Product Page</Button>
+
                         <Example/>
                         </Col>
                     </Card.Body>
