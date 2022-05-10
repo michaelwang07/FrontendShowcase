@@ -19,61 +19,126 @@ import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import {Form} from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Footer from "./Footer";
 import { Button} from 'react-bootstrap';
-import Axios from "axios";
 
+class Product extends React.Component{
 
-function Products() {
-
-   const [curProduct, setCurrentProduct] = useState([]);
-
-
-   useEffect(() => {
-      getProductID();
-    }, []);
-   
-   const convertPhoto = (file) => {
-        if (file !== null){
-            const base64String = btoa(String.fromCharCode(...new Uint8Array(file.data))); // Conversion 
-            return base64String;
-        }
-    }
-
-
-   async function getProductID (){
-      const response = await Axios.get('http://localhost:3001/SingleProduct',
-      {
-          params: {
-              pid: sessionStorage.getItem("post"),
-          }
-      });
-      setCurrentProduct(response.data);
-      console.log(response.data);
+   state = {
+      products: [
+         {
+            "pid": "3",
+            "title": "CSC 220 Intro to Java",
+            "src": [
+               "https://images-na.ssl-images-amazon.com/images/I/814YmHvcy3L.jpg",
+               "https://m.media-amazon.com/images/I/51z0SOZK4YL.jpg",
+               "https://res.cloudinary.com/practicaldev/image/fetch/s--_LATsXYZ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://codegym.cc/api/1.0/rest/images/10000017/e19e6e99-997b-4429-9d9f-06b092ecece2%3Fsize%3D1024",
+            ],
+            "description": "The holy grail of CSC foundation.",
+            "price": 50,
+            "count": 1
+         }
+      ],
+      index: 0
    };
 
-   return (
-      <div>
+   state2 = {
+      visible: true
+   }
+   
+   myRef = React.createRef();
 
-<div className="grid">
-            {curProduct.map((val, key) => {
-                return <div>
-                    <h1>{val.pname}</h1>
-                    <h1>{val.pdescription}</h1>
-                    <h1>{val.pprice}</h1>
-                    <h1>{val.lname}</h1>
-                    {/* <img src={`data:image/png;base64,${convertPhoto(val.pimg)}`}></img> */}
-                    <img src={`${(val.pdata)}`}></img>
+   handleTab = index => {
+      this.setState({index: index})
+      const images = this.myRef.current.children;
+      for(let i = 0; i < images.length; i++) {
+         images[i].className = images[i].className.replace("active", "");
+      }
+      images[index].className = "active";
+   };
 
-                </div>
-            })}
-        </div>
+   render(){
+      const {products, index} = this.state;
+      const popover = (
+      <Popover id="popover-basic">
+         <Popover.Header>
+            Name: John Doe<br />
+            Telephone: 111-111-1111
+         </Popover.Header>
+         <Popover.Body>
+            <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
+                <option value ="books">Select Exchange Location</option>
+                <option value ="books">Student Center</option>
+                <option value ="books">Main Library</option>
+                <option value ="books">Police Station</option>
+            </Form.Select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="send" onClick={() => this.state2.visible}>Send Message</button>
+         </Popover.Body>
+      </Popover>
+      );
+       
+      const Example = () => (
+      <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+         <Button className="message" variant="success">Message Seller</Button>
+      </OverlayTrigger>
+      );
 
-      </div>
-   );
+      function AlertDismissibleExample() {
+         const [show, setShow] = useState(false);
+       
+         if (show) {
+            return (
+               <Alert variant="success" onClose={() => setShow(false)} dismissible>
+                  <Alert.Heading>Message Sent</Alert.Heading>
+                  <p>
+                  Please wait for the seller to respond to you. Thank You!
+                  </p>
+               </Alert>
+            );
+         }
+         return <button className="send" onClick={() => setShow(true)}>Show Alert</button>;
+      }
+      
+      console.log(products);
+      return(
+         <div className="Product">
+            <Header/>
+            <AlertDismissibleExample/>
+            {
+            products.map(item => (
+               <div className="details" key={item._id}>
+                  <div className="big-img">
+                     <img src={item.src[index]} alt=""/>
+                  </div>
 
+                  <div className="description">
+                     <div className="row">
+                        <h2>{item.title}</h2>
+                        <span>${item.price}</span>
+                     </div>
 
+                     <p>{item.description}</p>
+                     <div className="thumb" ref={this.myRef}>
+                        {
+                           item.src.map((img, index) => (
+                              <img src={img} alt="" key={index} 
+                              onClick={() => this.handleTab(index)}
+                              />
+                           ))
+                        }
+                     </div>
+                     
+                     <Example />
+                  </div>   
+               </div>
+            ))
+            }
+            <Footer/>
+         </div>
+      );
+   };
 }
 
-export default Products;
+export default Product;

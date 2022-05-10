@@ -15,6 +15,31 @@ body {
   height: 48px;
 }
 
+.formText {
+  height: 100px;
+}
+
+.navbar {
+  font-size: 20px !important;
+}
+
+.classBrand{
+  font-size: 26px !important;
+}
+
+.warning{
+  font-style: italic;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  font-size: 18px;
+  /* style={{ marginLeft: '6rem', marginRight: '6rem'}} */
+}
+
+.basicNav {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .box {
   margin: 50px;
   background-color: #ffffff;
@@ -32,18 +57,12 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-}
-
-.grid > div {
-  flex-basis: calc(20% - 40px);
-}
-
-.cards {
-  gap: calc(20px + 10%);
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
 .resultImage {
-  height: 550px;
+  height: 380px;
 }
 
 .homeHeader {
@@ -51,7 +70,8 @@ body {
   text-align: center;
   background: #1abc9c;
   color: white;
-  font-size: 30px;
+  font-size: 24px;
+  margin-bottom: 30px;
 }
 
 .searchResults {
@@ -246,4 +266,12 @@ span{
 
 /* .search.btn{
   padding-right: 5px;
+} */
+
+/* .grid > div {
+  flex-basis: calc(20% - 50px);
+}
+
+.cards {
+  gap: calc(100px + 10%);
 } */
