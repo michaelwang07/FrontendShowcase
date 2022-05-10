@@ -21,7 +21,6 @@ import {Button} from "react-bootstrap";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Col from 'react-bootstrap/Col'
-import InputGroup from 'react-bootstrap/InputGroup'
 
 function Results() {
     
@@ -68,7 +67,7 @@ function Results() {
 
     const Example = () => (
         <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-           <Button className="buttons ms-5" variant="success">Message Seller</Button>
+           <Button size="lg" className="buttons ms-5" variant="success">Message Seller</Button>
         </OverlayTrigger>
     );
     
@@ -89,12 +88,13 @@ function Results() {
                 <option value ="books">Student Center</option>
                 <option value ="books">Main Library</option>
                 <option value ="books">Police Station</option>
-                </Form.Select>
-            &nbsp;
-            <InputGroup className="fromText">
-                <FormControl placeholder="Send additional information" as="textarea" rows={5}/>
-            </InputGroup>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </Form.Select>
+            {/* <DropdownButton variant="success" id="dropdown-basic-button" title="Select Exchange Location">
+            <Dropdown.Item href="#/action-1">Student Center</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Main Library</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Police Station</Dropdown.Item>
+            </DropdownButton> */}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="send" onClick={() => this.state2.visible}>Send Message</button>
         </Popover.Body>
     </Popover>
@@ -106,8 +106,8 @@ function Results() {
     <div>
         {/* <Link to ="/"><button>Create User</button></Link> */}
         
-        <h5 className="homeHeader" >GatorBay helps SFSU Students, Staff, and Faculty to obtain
-        Books, Clothes, Electronics, and Furniture</h5>
+        <h3 className="homeHeader">GatorBay helps SFSU Students, Staff, and Faculty to obtain
+        Books, Clothes, Electronics, and Furniture</h3>
 
 
         <div className="inputGroup">
@@ -143,28 +143,27 @@ function Results() {
         </div>
 
         {/* Below function maps our list to readable format */}
-        <h4 className="searchResults">{userList.length} results</h4>
+        <h3 className="searchResults">{userList.length} results</h3>
         <div className="grid">
             {userList.map((val, key) => {
                 return <div>
-                    <Card style={{ width: '24rem'}} key={key} className="box">
+                    <Card style={{ width: '32rem'}} key={key} className="box">
                     <a href="/Product">
                     <Card.Img onClick={() => sessionStorage.setItem("post", val.pid)} className="resultImage" href="/Product" variant="top" src={`${(val.pdata)}`} />
                     </a>
                     <Card.Body>
                         <a href="/Product">
-                        <Card.Title><h4>{val.pname}</h4></Card.Title>
+                        <Card.Title><h2>{val.pname}</h2></Card.Title>
                         </a>
                         {/* <Card.Text>{val.pdescription}</Card.Text> */}
                         <Card.Text>
-                            <span><h5>Price: ${val.pprice}</h5></span>
+                            <span><h4>Price: ${val.pprice}</h4></span>
                         </Card.Text>
                         <Col className='ms-5'>
                         {/* <Button size="lg" className="buttons" href="/Product" variant="primary">Product Page</Button> */}
 
                         {/* The below button function will now store the product ID into sessions and navigate to a new page using href */}
                         <Button size="lg" onClick={() => sessionStorage.setItem("post", val.pid)} className="buttons" href="/Product" variant="primary">Product Page</Button>
-
                         <Example/>
                         </Col>
                     </Card.Body>
