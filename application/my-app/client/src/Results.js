@@ -22,19 +22,22 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { useNavigate} from "react-router-dom";
 function Results() {
-    
+    const navigate = useNavigate();
     const [category, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
 
     // store all db results within a list
     // useState stores userList as a list variable check react states for more info
     const [userList, setUserList] = useState([]);
-    
     const[location, setLocation] = useState("");
     const[message, setMessage] = useState("");
-    const[senderPID, setSenderPID] = useState("");
-    const[counter, setCounter] = useState(0);
+    const[postID, setPostID] = useState("");
+    const[postCreator, setPostCreator] = useState("");
+    const user = sessionStorage.getItem("id");
+
+
     useEffect(() => {
         getRecentPosts();
       }, []);
@@ -62,26 +65,49 @@ function Results() {
     };
 
 
-    const Example = (x) => (
+    const Example = (x,y) => (
         <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-           <Button size="lg" onClick ={() => displayInfo(x)} className="buttons ms-5" variant="success">Message Seller</Button>
+           <Button size="lg" onClick ={() => setPID(x,y)} className="buttons ms-5" variant="success">Message Seller</Button>
         </OverlayTrigger>
     );
     
-    // Test function to display user variables on front end
-    const displayInfo = (x) => {
-     console.log(x);
+    // Display 
+    const setPID = (x,y) => {
+     console.log("PID: " + x);
+     console.log("USER: " + y);
+     setPostID(x);
+     setPostCreator(y);
     };
-    const displayVariables = () => {
+    const sendMessage = () => {
         console.log(location + message);
-       };
+        console.log("POSTPID: " + postID);
+        console.log("we are:" + user);
+        console.log("sending to: " + postCreator);
+    if(user !== null){
+        Axios.post('http://localhost:3001/createMessage', {
+            sender: user,
+            receiver: postCreator,
+            message: message,
+            location: location,
+            post: postID,
+          }).then(() => {
+            console.log("success");
+          });
+          navigate('/');
+    }else{
+        navigate('/signin');
+    }    
+ 
+
+
+     };
 
     const popover = (
     <Popover id="popover-basic">
-        {/* <Popover.Header>
+        <Popover.Header>
             Name: John Doe<br />
             Telephone: 111-111-1111
-         </Popover.Header> */}
+         </Popover.Header>
          <Popover.Body>
             <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
                 <option onClick={(event) => {setLocation("No Preference");}} value ="No Preference">Select Exchange Location</option>
@@ -92,7 +118,7 @@ function Results() {
             <InputGroup className="fromText" onChange={(event) => {setMessage(event.target.value);}}>
                 <FormControl placeholder="Send additional information" as="textarea" rows={5}/>
             </InputGroup>
-            <button className="send" onClick={() => displayVariables()}>Send Message</button>
+            <button className="send" onClick={() => sendMessage()}>Send Message</button>
         </Popover.Body>
     </Popover>
     );
@@ -147,10 +173,9 @@ function Results() {
                         {/* <Button size="lg" className="buttons" href="/Product" variant="primary">Product Page</Button> */}
 
                         {/* The below button function will now store the product ID into sessions and navigate to a new page using href */}
-                        <Button size="lg" onClick={() => sessionStorage.setItem("post", val.pid)} className="buttons" href="/Product" variant="primary">Product Page</Button>
-                        {/* <Button size="lg" onClick={() => Example()} className="buttons" variant="success">Test Button</Button> */}
-                        
-                        {Example(val.pid)}
+                        <Button size="lg" onClick={() => sessionStorage.setItem("post", val.pid)} className="buttons" href="/Product" variant="primary">Product Page</Button>                        
+                        {/* Opens popup in which we send the cards PID value */}
+                        {Example(val.pid, val.user)}
                
 
             
