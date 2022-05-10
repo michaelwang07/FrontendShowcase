@@ -43,7 +43,7 @@ function Products() {
 
 
    async function getProductID (){
-      const response = await Axios.get('http://localhost:3001/SingleItem',
+      const response = await Axios.get('http://localhost:3001/SingleProduct',
       {
           params: {
               pid: sessionStorage.getItem("post"),
