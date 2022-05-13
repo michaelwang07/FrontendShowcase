@@ -49,6 +49,8 @@ function Products() {
       });
       setCurrentProduct(response.data);
       console.log(response.data);
+      setPostCreator(response.data[0].uid);
+      // console.log("testing UID "+response.data[0].uid);
    };
 
    const popover = (
@@ -81,13 +83,11 @@ function Products() {
 
    const setPID = (x, y) => {
       console.log("PID: " + x);
-      console.log("USER: " + y);
       setPostID(x);
-      setPostCreator(y);
    };
 
    const sendMessage = () => {
-      console.log(location + message);
+      console.log("location " + location + "message " + message);
       console.log("POSTPID: " + postID);
       console.log("we are:" + user);
       console.log("sending to: " + postCreator);
