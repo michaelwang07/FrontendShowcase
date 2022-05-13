@@ -32,13 +32,14 @@ function Products() {
       getProductID();
    }, []);
 
-   async function getProductID() {
-      const response = await Axios.get('http://localhost:3001/SingleItem',
-         {
-            params: {
-               pid: sessionStorage.getItem("post"),
-            }
-         });
+
+   async function getProductID (){
+      const response = await Axios.get('http://localhost:3001/SingleProduct',
+      {
+          params: {
+              pid: sessionStorage.getItem("post"),
+          }
+      });
       setCurrentProduct(response.data);
       console.log(response.data);
    };

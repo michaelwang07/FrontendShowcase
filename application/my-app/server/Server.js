@@ -20,9 +20,9 @@ app.post('/createMessage', (req, res) => {
     const receiver = req.body.receiver;
     const message = req.body.message;
     const location = req.body.location
-
-    db.query('INSERT INTO Messages (sender, receiver, message, location) VALUES (?,?,?,?)', 
-    [sender, receiver, message, location], (err, result) => {
+    const post = req.body.post;
+    db.query('INSERT INTO Messages (sender, receiver, message, location, post) VALUES (?,?,?,?,?)', 
+    [sender, receiver, message, location, post], (err, result) => {
         if (err){
             console.log(err);
         } else{

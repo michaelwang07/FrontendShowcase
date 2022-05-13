@@ -20,17 +20,24 @@ import {Card} from "react-bootstrap";
 import {Button} from "react-bootstrap";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import Col from 'react-bootstrap/Col'
-
+import Col from 'react-bootstrap/Col';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { useNavigate} from "react-router-dom";
 function Results() {
-    
+    const navigate = useNavigate();
     const [category, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
     const [pname, setPName] = useState(""); // P.Name (Name of product set in search bar)
 
     // store all db results within a list
     // useState stores userList as a list variable check react states for more info
     const [userList, setUserList] = useState([]);
-    
+    const[location, setLocation] = useState("");
+    const[message, setMessage] = useState("");
+    const[postID, setPostID] = useState("");
+    const[postCreator, setPostCreator] = useState("");
+    const user = sessionStorage.getItem("id");
+
+
     useEffect(() => {
         getRecentPosts();
       }, []);
@@ -57,24 +64,43 @@ function Results() {
         setUserList(response.data);
     };
 
-    // Function to convert buffer type image to base64 for display
-    const convertPhoto = (file) => {
-        if (file !== null){
-            const base64String = btoa(String.fromCharCode(...new Uint8Array(file.data))); // Conversion 
-            return base64String;
-        }
-    }
 
-    const Example = () => (
+    const Example = (x,y) => (
         <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-           <Button size="lg" className="buttons ms-5" variant="success">Message Seller</Button>
+           <Button size="lg" onClick ={() => setPID(x,y)} className="buttons ms-5" variant="success">Message Seller</Button>
         </OverlayTrigger>
     );
     
-    // Test function to display user variables on front end
-    const displayInfo = () => {
-        console.log("test");
+    // Display 
+    const setPID = (x,y) => {
+     console.log("PID: " + x);
+     console.log("USER: " + y);
+     setPostID(x);
+     setPostCreator(y);
     };
+    const sendMessage = () => {
+        console.log(location + message);
+        console.log("POSTPID: " + postID);
+        console.log("we are:" + user);
+        console.log("sending to: " + postCreator);
+    if(user !== null){
+        Axios.post('http://localhost:3001/createMessage', {
+            sender: user,
+            receiver: postCreator,
+            message: message,
+            location: location,
+            post: postID,
+          }).then(() => {
+            console.log("success");
+          });
+          navigate('/');
+    }else{
+        navigate('/signin');
+    }    
+ 
+
+
+     };
 
     const popover = (
     <Popover id="popover-basic">
@@ -84,28 +110,22 @@ function Results() {
          </Popover.Header>
          <Popover.Body>
             <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
-                <option value ="books">Select Exchange Location</option>
-                <option value ="books">Student Center</option>
-                <option value ="books">Main Library</option>
-                <option value ="books">Police Station</option>
+                <option onClick={(event) => {setLocation("No Preference");}} value ="No Preference">Select Exchange Location</option>
+                <option onClick={(event) => {setLocation("Student Center");}} value ="Student Center">Student Center</option>
+                <option onClick={(event) => {setLocation("Main Library");}} value ="Main Library">Main Library</option>
+                <option onClick={(event) => {setLocation("Police Station");}} value ="books">Police Station</option>
             </Form.Select>
-            {/* <DropdownButton variant="success" id="dropdown-basic-button" title="Select Exchange Location">
-            <Dropdown.Item href="#/action-1">Student Center</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Main Library</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Police Station</Dropdown.Item>
-            </DropdownButton> */}
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="send" onClick={() => this.state2.visible}>Send Message</button>
+            <InputGroup className="fromText" onChange={(event) => {setMessage(event.target.value);}}>
+                <FormControl placeholder="Send additional information" as="textarea" rows={5}/>
+            </InputGroup>
+            <button className="send" onClick={() => sendMessage()}>Send Message</button>
         </Popover.Body>
     </Popover>
     );
 // Test function to display user variables on front end
-
     // Find a way to display getUsers without needing onClick for default display
     return (
-    <div>
-        {/* <Link to ="/"><button>Create User</button></Link> */}
-        
+    <div>   
         <h3 className="homeHeader">GatorBay helps SFSU Students, Staff, and Faculty to obtain
         Books, Clothes, Electronics, and Furniture</h3>
 
@@ -128,18 +148,8 @@ function Results() {
                         <Form.Control className="searchBar" type="text" size="lg"/>
                     </Form.Group>
                     <Button size="lg" variant="outline-success" onClick={getUsers}>Search</Button>
-                    {/* <FormControl
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                    /> */}
                 </Form>
             </div>
-            
-            {/* <input type="search" className="searchBar" onChange={(event) => {setPName(event.target.value);}} placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <div>
-                <button type="button" className="searchButton" onClick={getUsers}>search</button>
-            </div> */}
         </div>
 
         {/* Below function maps our list to readable format */}
@@ -163,11 +173,16 @@ function Results() {
                         {/* <Button size="lg" className="buttons" href="/Product" variant="primary">Product Page</Button> */}
 
                         {/* The below button function will now store the product ID into sessions and navigate to a new page using href */}
-                        <Button size="lg" onClick={() => sessionStorage.setItem("post", val.pid)} className="buttons" href="/Product" variant="primary">Product Page</Button>
-                        <Example/>
+                        <Button size="lg" onClick={() => sessionStorage.setItem("post", val.pid)} className="buttons" href="/Product" variant="primary">Product Page</Button>                        
+                        {/* Opens popup in which we send the cards PID value */}
+                        {Example(val.pid, val.user)}
+               
+
+            
+
                         </Col>
                     </Card.Body>
-                    </Card>
+                    </Card> 
                 </div>
             })}
         </div>
