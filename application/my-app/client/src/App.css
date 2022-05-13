@@ -148,6 +148,11 @@ span{
   margin-top: 15px;
   margin-left: 35px;
 }
+
+.profileMessages{
+   color: blue;
+   text-decoration: underline;
+}
 /* depreciated */
 
 /* .App {

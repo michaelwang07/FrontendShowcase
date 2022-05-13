@@ -17,9 +17,11 @@ import { Tabs, Tab, Card, Button, Table, Container } from "react-bootstrap";
 import {useState,useEffect} from "react";
 import React from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 // BR
 // post user created.  will be pulled from DB in the future.
 function Post() {
+   const navigate = useNavigate();
     const [messageList, setMessageList] = useState([]);
     useEffect(() => {
         getMessages();
@@ -36,6 +38,13 @@ function Post() {
         setMessageList(response.data);
         console.log(response.data);
     };
+
+    const testPrint = (x) => {
+      sessionStorage.setItem("post", x);
+      navigate('/ProductFunctional');
+      // console.log(x);
+    };
+
     return (
         <Table bordered hover>
     
@@ -44,6 +53,7 @@ function Post() {
                 <tr>
                     <th>#</th>
                     <th>Post Title</th>
+                    <th>Post ID</th>
                     <th>Time Of Post</th>
                     <th>Approval Status</th>
                     
@@ -55,6 +65,7 @@ function Post() {
                 <tr>
                     <td>{key+1}</td>
                     <td>{val.pname}</td>
+                    <td className="profileMessages" onClick={() => testPrint(val.pid)}>Link</td>
                     <td>{val.time}</td>
                     <td>{val.approved}</td>
                 </tr>

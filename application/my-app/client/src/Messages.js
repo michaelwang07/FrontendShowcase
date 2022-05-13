@@ -18,6 +18,7 @@ import { Tabs, Tab, Card, Button, Table, Container } from "react-bootstrap";
 import {useState,useEffect} from "react";
 import React from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 // BR
 // what will be displayed for the messages tab.  in future will be pulled from DB
 
@@ -25,8 +26,9 @@ import Axios from "axios";
 
 
 function Messages() {
-
     const [messageList, setMessageList] = useState([]);
+    const navigate = useNavigate();
+
     useEffect(() => {
         getMessages();
       }, []);
@@ -42,6 +44,13 @@ function Messages() {
         setMessageList(response.data);
         console.log(response.data);
     };
+
+    const testPrint = (x) => {
+      sessionStorage.setItem("post", x);
+      navigate('/ProductFunctional');
+      // console.log(x);
+    };
+
     return (
         <Table bordered hover>
     
@@ -50,10 +59,10 @@ function Messages() {
                 <tr>
                     <th>#</th>
                     <th>Post Title</th>
+                    <th>Link to Post</th>
                     <th>Buyer Name</th>
                     <th>Message</th>
                     <th>Phone Number</th>
-                    
                 </tr>
             </thead>
 
@@ -61,7 +70,8 @@ function Messages() {
         return <tbody>
                 <tr>
                     <td>{key+1}</td>
-                    <td>{val.pname}</td>
+                    <td onClick={() => testPrint(val.pid)}>{val.pname}</td>
+                    <td className="profileMessages" onClick={() => testPrint(val.pid)}>Link</td>
                     <td>{val.sender}</td>
                     <td>{val.message}</td>
                     <td>{val.phone}</td>

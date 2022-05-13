@@ -91,7 +91,7 @@ app.get('/SignIn',(request,response)=>{
 
 app.get('/getMessages', (request, response) => {
     const user = request.query.user;
-    db.query("SELECT u.fname AS sender, u.email, m.message, m.post, m.time, u.phone, i.pname FROM Users u RIGHT JOIN Messages m on u.uid=m.sender RIGHT JOIN Items i on m.post=i.pid WHERE '"+user+"'=m.receiver", (err, result) => {
+    db.query("SELECT u.fname AS sender, u.email, m.message, m.post, m.time, u.phone, i.pname, i.pid FROM Users u RIGHT JOIN Messages m on u.uid=m.sender RIGHT JOIN Items i on m.post=i.pid WHERE '"+user+"'=m.receiver", (err, result) => {
         if (err){
             console.log(err);
         } else{
