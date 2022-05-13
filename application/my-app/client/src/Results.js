@@ -102,10 +102,6 @@ function Results() {
 
    const popover = (
       <Popover id="popover-basic">
-         <Popover.Header>
-            Name: John Doe<br />
-            Telephone: 111-111-1111
-         </Popover.Header>
          <Popover.Body>
             <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
                <option onClick={(event) => { setLocation("No Preference"); }} value="No Preference">Select Exchange Location</option>
