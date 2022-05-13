@@ -80,8 +80,8 @@ function Products() {
       );
 
    const Example = () => (
-      <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-         <Button className="message" variant="success">Message Seller</Button>
+      <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+         <Button size="lg" className="message" variant="success">Message Seller</Button>
       </OverlayTrigger>
    );
 
@@ -92,14 +92,12 @@ function Products() {
             <div className="details">
                {curProduct.map((val, key) => {
                   return <div className="details">
-                     <div className="big-img">
-                        <img src={`${(val.pdata)}`} />
-                     </div>
+                     <img className="big-img" src={`${(val.pdata)}`} />
 
                      <div className="description">
                         <div className="row">
-                           <h2>{val.pname}</h2>
-                           <span>${val.pprice}</span>
+                           <h1 className="cardTitle">{val.pname}</h1>
+                           <span><h4>${val.pprice}</h4></span>
                         </div>
 
                         <p>{val.pdescription}</p>
