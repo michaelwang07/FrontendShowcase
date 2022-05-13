@@ -99,8 +99,8 @@ body {
 }
 
 .big-img{
-  max-width: 500px;
-  min-width: 250px;
+  max-width: 1200px;
+  min-width: 600px;
   overflow: hidden;
   margin: 25px;
 }
