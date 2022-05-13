@@ -23,6 +23,7 @@ import Popover from 'react-bootstrap/Popover';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from "react-router-dom";
+
 function Results() {
    const navigate = useNavigate();
    const [category, setPTag] = useState("*");   // P.Tag (Electronics, Furniture, Clothing, Books)
@@ -156,11 +157,11 @@ function Results() {
             {userList.map((val, key) => {
                return <div>
                   <Card style={{ width: '22rem' }} key={key} className="box">
-                     <a href="/Product">
-                        <Card.Img onClick={() => sessionStorage.setItem("post", val.pid)} className="resultImage" href="/Product" variant="top" src={`${(val.pdata)}`} />
+                     <a href="/ProductFunctional">
+                        <Card.Img onClick={() => sessionStorage.setItem("post", val.pid)} className="resultImage" href="/ProductFunctional" variant="top" src={`${(val.pdata)}`} />
                      </a>
                      <Card.Body>
-                        <a href="/Product">
+                        <a href="/ProductFunctional">
                            <Card.Title className='cardTitle'><h4>{val.pname}</h4></Card.Title>
                         </a>
                         {/* <Card.Text>{val.pdescription}</Card.Text> */}

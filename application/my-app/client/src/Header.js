@@ -49,7 +49,7 @@ function Logger() {
                <Nav.Link href="/createpost">Create Post</Nav.Link>
                <Nav.Link href="/team">Team</Nav.Link>
                <Nav.Link href="/dashboard">Profile</Nav.Link>
-               <Nav.Link href="/">Sign Out</Nav.Link>
+               <Nav.Link href="/" onClick={sessionStorage.setItem("loggedIn","false")}>Sign Out</Nav.Link>
             </Nav>
          </Navbar.Collapse>
       </Container>
@@ -57,7 +57,7 @@ function Logger() {
    );
 }
 
-const condition = 1 === 1 ? Header : Logger
+const condition = sessionStorage.getItem("loggedIn") === "false" ? Header : Logger
 export default condition;
 
 // old navbar bootstrap without react
