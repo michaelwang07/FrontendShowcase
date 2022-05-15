@@ -1,6 +1,6 @@
 /********************************************************************
 * Project: SFSU Software Engineering Project CSC648-848, Spring 2022
-* Author(s):  Michael Davichick, Michael Almeda
+* Author(s):  Michael Davichick
 * Team: 06 
 *
 * File: CreateUser.js
@@ -11,6 +11,14 @@
 *
 *
 ********************************************************************/
+
+/*                --- CODE REVIEW ---
+* 
+* @Header Comment
+* Great use of a basic header comment. It provides enough information
+* to get a good understanding of this file's purpose and it's author.
+* 
+*/
 
 // import './App.css';
 import './Forms.css';
@@ -57,6 +65,14 @@ function CreateUser() {
     }
   };
 
+  /*                --- CODE REVIEW ---
+  * 
+  * @function checkFunction()
+  * A comment to describe what this function's purpose is would be ideal
+  * for keeping the in-line comment consistency.
+  * Overall, good consistency with in-line comments.
+  * 
+  */
   function checkFunction() {
     if ((document.getElementById("check")).checked) {
       alert("The checkbox is checked");
