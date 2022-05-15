@@ -1,6 +1,6 @@
 /********************************************************************
-* Project: SFSU Softeare Engineering Project CSC648-848, Spring 2022
-* Author(s):  Michael Almeda, Michael Davichick
+* Project: SFSU Software Engineering Project CSC648-848, Spring 2022
+* Author(s): Michael Davichick
 * Team: 06 
 *
 * File: SignIn.js
@@ -11,6 +11,14 @@
 *
 *
 ********************************************************************/
+
+/*                --- CODE REVIEW ---
+* 
+* @Header Comment
+* Great use of a basic header comment. It provides enough information
+* to get a good understanding of this file's purpose and it's author.
+* 
+*/
 
 import './Forms.css';
 import Axios from "axios";
@@ -49,6 +57,13 @@ function SignIn() {
         }
     };
 
+/*                --- CODE REVIEW ---
+* 
+* @function setTimeout()
+* Spacing among teh if statements is not consistent.
+* Consider reformatting.
+* 
+*/
     
     const verifyUser = () => {
       // Send our User Parameters to the backend for retrieval
@@ -84,6 +99,13 @@ function SignIn() {
   const displayInfo = () => {
     console.log(email + password);
   };
+
+/*                --- CODE REVIEW ---
+* 
+* @method onChange
+* Consistent with every other onChange event made in Form Validation
+* 
+*/
 
   return (
     <div className="App">
