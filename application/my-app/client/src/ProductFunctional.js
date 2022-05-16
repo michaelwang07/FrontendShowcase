@@ -23,6 +23,7 @@ import Footer from "./Footer";
 import { Button } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from "react-router-dom";
+import Toast from 'react-bootstrap/Toast'
 import Axios from "axios";
 
 
@@ -53,35 +54,6 @@ function Products() {
       // console.log("testing UID "+response.data[0].uid);
    };
 
-   const popover = (
-      <Popover id="popover-basic">
-         <Popover.Body>
-            <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
-               <option onClick={(event) => { setLocation("No Preference"); }} value="No Preference">Select Exchange Location</option>
-               <option onClick={(event) => { setLocation("Student Center"); }} value="Student Center">Student Center</option>
-               <option onClick={(event) => { setLocation("Main Library"); }} value="Main Library">Main Library</option>
-               <option onClick={(event) => { setLocation("Police Station"); }} value="books">Police Station</option>
-            </Form.Select>
-            &nbsp;
-            <InputGroup className="fromText" onChange={(event) => { setMessage(event.target.value); }}>
-               <FormControl placeholder="Send additional information" as="textarea" rows={5} />
-            </InputGroup>
-            <button className="send" onClick={() => sendMessage()}>Send Message</button>
-         </Popover.Body>
-      </Popover>
-   );
-
-   const Example = (x, y) => (
-      <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-         <Button onClick={() => setPID(x, y)} className="buttons ms-5" variant="success">Message Seller</Button>
-      </OverlayTrigger>
-   );
-
-   const setPID = (x, y) => {
-      console.log("PID: " + x);
-      setPostID(x);
-   };
-
    const sendMessage = () => {
       console.log("location " + location + "message " + message);
       console.log("POSTPID: " + postID);
@@ -97,10 +69,52 @@ function Products() {
          }).then(() => {
             console.log("success");
          });
-         navigate('/');
       } else {
          navigate('/signin');
       }
+   };
+
+   const [showB, setShowB] = useState(false);
+   const notification = () => setShowB(!showB);
+
+   const onButtonClick = function(event){
+      sendMessage();
+      notification();
+   }
+
+   const popover = (
+      <Popover>
+         <Popover.Body className='popover-basic'>
+            <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
+               <option onClick={(event) => { setLocation("No Preference"); }} value="No Preference">Select Exchange Location</option>
+               <option onClick={(event) => { setLocation("Student Center"); }} value="Student Center">Student Center</option>
+               <option onClick={(event) => { setLocation("Main Library"); }} value="Main Library">Main Library</option>
+               <option onClick={(event) => { setLocation("Police Station"); }} value="books">Police Station</option>
+            </Form.Select>
+            &nbsp;
+            <InputGroup className="fromText" onChange={(event) => { setMessage(event.target.value); }}>
+               <FormControl placeholder="Send additional information" as="textarea" rows={5} />
+            </InputGroup>
+            <button className="send" onClick={onButtonClick}>Send Message</button>
+            <Toast onClose={notification} className="notification" bg={'info'} show={showB} animation={false}>
+               <Toast.Header>
+                  <strong className="lg-auto">Message Was Sent!</strong>
+               </Toast.Header>
+               <Toast.Body>Please do not spam similar messages.</Toast.Body>
+            </Toast>
+         </Popover.Body>
+      </Popover>
+   );
+
+   const triggerPopover = (x, y) => (
+      <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+         <Button onClick={() => setPID(x, y)} className="buttons ms-5" variant="success">Message Seller</Button>
+      </OverlayTrigger>
+   );
+
+   const setPID = (x, y) => {
+      console.log("PID: " + x);
+      setPostID(x);
    };
 
    return(
@@ -111,7 +125,6 @@ function Products() {
                {curProduct.map((val, key) => {
                   return <div className="details">
                      <img className="big-img" src={`${(val.pdata)}`} />
-
                      <div className="description">
                         <div className="row">
                            <h1 className="cardTitle">{val.pname}</h1>
@@ -119,7 +132,7 @@ function Products() {
                         </div>
 
                         <p>{val.pdescription}</p>
-                        {Example(val.pid, val.user)}
+                        {triggerPopover(val.pid, val.user)}
                      </div>
                   </div>
                })}

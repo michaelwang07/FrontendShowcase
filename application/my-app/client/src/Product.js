@@ -5,7 +5,7 @@
 *
 * File: Product.js
 *
-* Description: Product template for all our products
+* Description: Product template for all our products. DEPRECIATED.
 *
 *
 ********************************************************************/
