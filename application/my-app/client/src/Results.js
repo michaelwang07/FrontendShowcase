@@ -23,6 +23,7 @@ import Popover from 'react-bootstrap/Popover';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from "react-router-dom";
+import Toast from 'react-bootstrap/Toast'
 
 function Results() {
    const navigate = useNavigate();
@@ -66,7 +67,7 @@ function Results() {
    };
 
 
-   const Example = (x, y) => (
+   const triggerPopover = (x, y) => (
       <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
          <Button onClick={() => setPID(x, y)} className="buttons ms-5" variant="success">Message Seller</Button>
       </OverlayTrigger>
@@ -79,6 +80,7 @@ function Results() {
       setPostID(x);
       setPostCreator(y);
    };
+
    const sendMessage = () => {
       console.log(location + message);
       console.log("POSTPID: " + postID);
@@ -100,9 +102,17 @@ function Results() {
       }
    };
 
+   const [showB, setShowB] = useState(false);
+   const notification = () => setShowB(!showB);
+
+   const onButtonClick = function(event){
+      sendMessage();
+      notification();
+   }
+
    const popover = (
-      <Popover id="popover-basic">
-         <Popover.Body>
+      <Popover>
+         <Popover.Body className='popover-basic'>
             <Form.Select className="formSelect" variant="muted" id="dropdown-basic-button" aria-label="Select Exchange Location">
                <option onClick={(event) => { setLocation("No Preference"); }} value="No Preference">Select Exchange Location</option>
                <option onClick={(event) => { setLocation("Student Center"); }} value="Student Center">Student Center</option>
@@ -113,7 +123,13 @@ function Results() {
             <InputGroup className="fromText" onChange={(event) => { setMessage(event.target.value); }}>
                <FormControl placeholder="Send additional information" as="textarea" rows={5} />
             </InputGroup>
-            <button className="send" onClick={() => sendMessage()}>Send Message</button>
+            <button className="send" onClick={onButtonClick}>Send Message</button>
+            <Toast onClose={notification} className="notification" bg={'info'} show={showB} animation={false}>
+               <Toast.Header>
+                  <strong className="lg-auto">Message Was Sent!</strong>
+               </Toast.Header>
+               <Toast.Body>Please do not spam similar messages.</Toast.Body>
+            </Toast>
          </Popover.Body>
       </Popover>
    );
@@ -148,7 +164,7 @@ function Results() {
          </div>
 
          {/* Below function maps our list to readable format */}
-         <h4 className="searchResults">{userList.length} results</h4>
+         <h5 className="searchResults">{userList.length} results</h5>
          <div className="grid">
             {userList.map((val, key) => {
                return <div>
@@ -170,7 +186,7 @@ function Results() {
                            {/* The below button function will now store the product ID into sessions and navigate to a new page using href */}
                            <Button onClick={() => sessionStorage.setItem("post", val.pid)} className="buttons" href="/ProductFunctional" variant="primary">Product Page</Button>
                            {/* Opens popup in which we send the cards PID value */}
-                           {Example(val.pid, val.user)}
+                           {triggerPopover(val.pid, val.user)}
                         </Col>
                      </Card.Body>
                   </Card>
