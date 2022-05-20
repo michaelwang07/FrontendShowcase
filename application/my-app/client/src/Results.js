@@ -82,10 +82,11 @@ function Results() {
    };
 
    const sendMessage = () => {
-      console.log(location + message);
-      console.log("POSTPID: " + postID);
-      console.log("we are:" + user);
-      console.log("sending to: " + postCreator);
+      // console.log(location + message);
+      // console.log("POSTPID: " + postID);
+      // console.log("we are:" + user);
+      // console.log("sending to: " + postCreator);
+      var today = new Date();
       if (user !== null) {
          Axios.post('http://localhost:3001/createMessage', {
             sender: user,
@@ -93,6 +94,7 @@ function Results() {
             message: message,
             location: location,
             post: postID,
+            time: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() +' '+ today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(),
          }).then(() => {
             console.log("success");
          });

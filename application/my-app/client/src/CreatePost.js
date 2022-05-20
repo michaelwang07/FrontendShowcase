@@ -66,6 +66,7 @@ const loggedIn = () => {
   const addItem = () => {
     // const fd = new FormData();
     // fd.append('image', pimg,pname);
+    var today = new Date();
     if(!loggedIn()) {
     //  <Navigate to={'/signin'} replace state = {{ 'referrer':'/createpost' }}/>
     console.log("Log in");
@@ -78,6 +79,7 @@ const loggedIn = () => {
       pprice: pprice,
       pimg: pimg,
       user: user,
+      time: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() +' '+ today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(),
     }).then(() => {
       console.log("success");
     });
