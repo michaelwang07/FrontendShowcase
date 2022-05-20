@@ -21,8 +21,9 @@ app.post('/createMessage', (req, res) => {
     const message = req.body.message;
     const location = req.body.location
     const post = req.body.post;
-    db.query('INSERT INTO Messages (sender, receiver, message, location, post) VALUES (?,?,?,?,?)', 
-    [sender, receiver, message, location, post], (err, result) => {
+    const time = req.body.time;
+    db.query('INSERT INTO Messages (sender, receiver, message, location, time, post) VALUES (?,?,?,?,?,?)', 
+    [sender, receiver, message, location, time, post], (err, result) => {
         if (err){
             console.log(err);
         } else{
@@ -65,8 +66,9 @@ app.post('/CreateItem', (req, res) => {
     const pprice = req.body.pprice;
     const pimg = req.body.pimg;
     const pdata = req.body.pimg;
-    db.query('INSERT INTO Items (user, category, pname, pdescription, pprice, pimg, pdata) VALUES (?,?,?,?,?,?,?)', 
-    [user, category, pname, pdescription, pprice, pimg, pdata], (err, result) => {
+    const time = req.body.time;
+    db.query('INSERT INTO Items (user, category, pname, pdescription, pprice, pimg, time, pdata) VALUES (?,?,?,?,?,?,?,?)', 
+    [user, category, pname, pdescription, pprice, pimg, time, pdata], (err, result) => {
         if (err){
             console.log(err);
         } else{

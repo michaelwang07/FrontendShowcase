@@ -31,7 +31,7 @@ import Dashboard from './Dashboard';
 import Test from './Test';
 import MessageTest from './MessageTest';
 import ProductFunctional from './ProductFunctional';
-
+import Confirmation from './Confirmation';
 function App() {
   return (
    <Router>
@@ -53,6 +53,7 @@ function App() {
        <Route path="/test" exact element ={<Test/>} />
        <Route path="/MessageTest" exact element ={<MessageTest/>} />
        <Route path="/ProductFunctional" exact element ={<ProductFunctional/>} />
+       <Route path="/Confirmation" exact element ={<Confirmation/>} />
 
      </Routes>
    </Router>

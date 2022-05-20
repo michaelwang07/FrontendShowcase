@@ -4,6 +4,11 @@ function Test() {
    sessionStorage.setItem("test","true");
    console.log("Setting");
  }; 
+ const displayTime = () => {
+  var today = new Date(),
+  time = today.getFullYear() + '-'+(today.getMonth()+1)+'-'+today.getDay() + ' '+today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+  console.log(time);
+}; 
  const displayInfo = () => {
    // console.log("Displaying Test variable " + sessionStorage.getItem("test"));
    console.log("Hello " + sessionStorage.getItem("fname"));
@@ -19,6 +24,7 @@ function Test() {
        {/* <button onClick={setInfo}>Set Info</button> */}
        <button onClick={displayInfo}>Display Session</button>
        <button onClick={clearSession}>Clear Session</button>
+       <button onClick={displayTime}>display Time</button>
        </div>
    );
 }

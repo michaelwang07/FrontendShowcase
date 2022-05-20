@@ -61,6 +61,7 @@ function Messages() {
                     <th>Post Title</th>
                     <th>Link to Post</th>
                     <th>Buyer Name</th>
+                    <th>Date of Message</th>
                     <th>Message</th>
                     <th>Phone Number</th>
                 </tr>
@@ -73,6 +74,7 @@ function Messages() {
                     <td onClick={() => testPrint(val.pid)}>{val.pname}</td>
                     <td className="profileMessages" onClick={() => testPrint(val.pid)}>Link</td>
                     <td>{val.sender}</td>
+                    <td>{val.time.toString().substring(0,10)}</td>
                     <td>{val.message}</td>
                     <td>{val.phone}</td>
                 </tr>
