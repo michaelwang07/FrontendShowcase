@@ -193,6 +193,11 @@ span{
   height: 65px;
 }
 
+.italics{
+  font-style: italic;
+  margin-bottom: -8px;
+}
+
 /* depreciated */
 
 /* .App {
