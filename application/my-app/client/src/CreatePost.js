@@ -82,6 +82,7 @@ const loggedIn = () => {
       time: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() +' '+ today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(),
     }).then(() => {
       console.log("success");
+      navigate('/test');
     });
   };
 
