@@ -126,6 +126,7 @@ const loggedIn = () => {
 
           {/* Photo */}
           <label className="photo">Photo</label>
+          <p className="italics">*Images must be under 300x300</p>
           <div className="fileBox">
             <input type="file" className="browse" placeholder="Browse files to upload" 
               onChange={(event) => { uploadImage(event); }} />
