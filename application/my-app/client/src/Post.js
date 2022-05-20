@@ -54,7 +54,7 @@ function Post() {
                     <th>#</th>
                     <th>Post Title</th>
                     <th>Post ID</th>
-                    <th>Time Of Post</th>
+                    <th>Date of Post</th>
                     <th>Approval Status</th>
                     
                 </tr>
@@ -66,7 +66,7 @@ function Post() {
                     <td>{key+1}</td>
                     <td>{val.pname}</td>
                     <td className="profileMessages" onClick={() => testPrint(val.pid)}>Link</td>
-                    <td>{val.time}</td>
+                    <td>{val.time.toString().substring(0,10)}</td>
                     <td>{val.approved}</td>
                 </tr>
             </tbody>
