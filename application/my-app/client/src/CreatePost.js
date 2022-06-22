@@ -20,6 +20,9 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import { useNavigate, useLocation } from "react-router-dom";
+import Confirmation from './Confirmation';
+
+let post = false;
 
 function CreatePost() {
   const navigate = useNavigate();
@@ -29,8 +32,9 @@ function CreatePost() {
   const [pprice, setPrice] = useState(0);
   const [pimg, setPhoto] = useState("");
   const user = sessionStorage.getItem("id");
+
  // Below function pulls the image from the event files
- const uploadImage = async (event) => {
+  const uploadImage = async (event) => {
   const file = event.target.files[0];
   const blob = await fileToBlob(file);
   setPhoto(blob);
@@ -80,67 +84,96 @@ const loggedIn = () => {
       user: user,
     }).then(() => {
       console.log("success");
+      navigate('/confirmation');
     });
   };
 
-  return (
-    <div className="App">
-      <Header />
-      {/* Results page button that links to results page */}
-      {/* <Link to="/results"><button>Results Page</button></Link> */}
-      <div className="information">
-        {/* Create Post Header */}
-        <h1>Create Posting</h1>
-        <Form className="information">
 
-          {/* Title */}
-          <label>Title</label>
-          <input type="text" required="required"
-            onChange={(event) => { setPName(event.target.value); }} />
+  const onPost = function(event) {
+    // addItem();
+    changePost();
+  }
 
-          {/* Categories */}
-          <label>Category</label>
-          {/* Drop down to select a category */}
-          <div className="dropDown">
-            <Form.Select>
-              <option value="None">None</option>
-              <option value="books" onClick={(event) => { setCategory(1); }}>Books</option>
-              <option value="clothing" onClick={(event) => { setCategory(2); }}>Clothing</option>
-              <option value="electronics" onClick={(event) => { setCategory(3); }}>Electronics</option>
-              <option value="furniture" onClick={(event) => { setCategory(4); }}>Furniture</option>
-            </Form.Select>
-          </div>
+    return (
+      <div className="App">
+        <Header />
+        {/* Results page button that links to results page */}
+        {/* <Link to="/results"><button>Results Page</button></Link> */}
+        <div className="information">
+          {/* Create Post Header */}
+          <h1>Create Posting</h1>
+          <Form className="information">
 
-          {/* Description */}
-          <label>Description</label>
-          <input type="text" required="required"
-            onChange={(event) => { setDescription(event.target.value); }} />
+            {/* Title */}
+            <label>Title</label>
+            <input type="text" required="required"
+              onChange={(event) => { setPName(event.target.value); }} />
 
-          {/* Price */}
-          <label>Price</label>
-          <input type="number" required="required"
-            onChange={(event) => { setPrice(event.target.value); }} />
+            {/* Categories */}
+            <label>Category</label>
+            {/* Drop down to select a category */}
+            <div className="dropDown">
+              <Form.Select>
+                <option value="None">None</option>
+                <option value="books" onClick={(event) => { setCategory(1); }}>Books</option>
+                <option value="clothing" onClick={(event) => { setCategory(2); }}>Clothing</option>
+                <option value="electronics" onClick={(event) => { setCategory(3); }}>Electronics</option>
+                <option value="furniture" onClick={(event) => { setCategory(4); }}>Furniture</option>
+              </Form.Select>
+            </div>
 
-          {/* Photo */}
-          <label className="photo">Photo</label>
-          <div className="fileBox">
-            <input type="file" className="browse" placeholder="Browse files to upload" 
-              onChange={(event) => { uploadImage(event); }} />
-          </div>
+            {/* Description */}
+            <label>Description</label>
+            <input type="text" required="required"
+              onChange={(event) => { setDescription(event.target.value); }} />
 
-          {/* Button to create post */}
+            {/* Price */}
+            <label>Price</label>
+            <input type="number" required="required"
+              onChange={(event) => { setPrice(event.target.value); }} />
+
+            {/* Photo */}
+            <label className="photo">Photo</label>
+            <div className="fileBox">
+              <input type="file" className="browse" placeholder="Browse files to upload" 
+                onChange={(event) => { uploadImage(event); }} />
+            </div>
+
+            {/* Button to create post */}
+            <div className="btn-group">
+              <button type="reset" className="reset" value="Reset">Cancel</button>
+              {/* <button onClick={addItem}>Create Post</button> */}
+            </div>
+          </Form>
           <div className="btn-group">
-            <button type="reset" className="reset" value="Reset">Cancel</button>
-            {/* <button onClick={addItem}>Create Post</button> */}
-          </div>
-        </Form>
-        <div className="btn-group">
-        <button onClick={addItem}>Create Post</button></div>
+          <button onClick={onPost}>Create Post</button></div>
 
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+    );
 }
 
-export default CreatePost;
+function confirm() {
+  return(
+    <div>
+       <Header/>
+       <div className="confirmationBox">
+          <h1 className="confirmationTitle">
+             Post Created Successfuly
+          </h1>
+          <p className="confirmationText">
+             This post will take up to 24 hours for Admins <br/>to approve before released onto our website. <br/>Thank you for your patience! 
+          </p>
+       </div>
+       <Footer/>
+    </div>
+ );
+}
+
+function changePost() {
+  console.log("post: ", post);
+}
+
+const posting = post === false ? CreatePost : Confirmation
+export default posting;

@@ -59,8 +59,6 @@ function PostConfirmation() {
                 </div>
                 <Footer />
             </div>)
-
-
     );
 }
 

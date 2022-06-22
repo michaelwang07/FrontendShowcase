@@ -106,7 +106,7 @@ function Results() {
    const notification = () => setShowB(!showB);
 
    const onButtonClick = function(event){
-      sendMessage();
+      //sendMessage();
       notification();
    }
 
